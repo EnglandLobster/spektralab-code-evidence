@@ -46,13 +46,38 @@
   },
   {
     "path": "README.md",
-    "bytes": 4747,
-    "sha256": "e0105ada8401ec18ca8b41775a529c5eaac6d8bc5af105b436fa850174f6490f"
+    "bytes": 8779,
+    "sha256": "4b01d344cb0d9fdf9f0674db52abeb2874ad07d649469a9bf4f52818623110cb"
   },
   {
     "path": "REPRODUCING.md",
     "bytes": 1264,
     "sha256": "9b711f190c5ac19a893b22923a58b089bee6193a9162867a1c699592fb86392f"
+  },
+  {
+    "path": "assets/visual-guide/01-layer-alias.png",
+    "bytes": 1676157,
+    "sha256": "bee0621b74de3f85022707e907b881b8d3940bc213bdb7e6a5f41bd9fd6f8f19"
+  },
+  {
+    "path": "assets/visual-guide/02-endpoint-rule.png",
+    "bytes": 1643597,
+    "sha256": "a392d9a349061864afb3e62b5378affef51e5de33a19c2b152e32f01376b5072"
+  },
+  {
+    "path": "assets/visual-guide/03-numeric-guards.png",
+    "bytes": 1705919,
+    "sha256": "104da057e2d302534a211ea75cbb8f15609f4779fa0d081c3df96810eef0664c"
+  },
+  {
+    "path": "assets/visual-guide/04-cleanroom-response.png",
+    "bytes": 1668997,
+    "sha256": "e0be45297c42b64891b1c94b606d72c64d96953d60855170902a41bf7ebcab10"
+  },
+  {
+    "path": "assets/visual-guide/README.md",
+    "bytes": 445,
+    "sha256": "502b3967a4e0289a0b7f53b4543cd7a1f9654e8534303c5c271fed0c71a26cc3"
   },
   {
     "path": "core-comparison/air-bitcode/000.bc",
