@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-01",
+  "input": "24-code-evidence-review",
+  "path_redacted_files": [
+    "evidence-index.json",
+    "README-zh.txt",
+    "00-summary-zh.txt",
+    "history/19-additional-core-evidence-zh.txt"
+  ],
+  "excluded_packaging_helpers": [
+    "package_response_exhibits.py",
+    "build_consolidated_review.py"
+  ],
+  "comparison_tests_rerun": false,
+  "statement_pages": 4
+}

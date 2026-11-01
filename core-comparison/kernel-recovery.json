@@ -1,0 +1,15 @@
+{
+  "input_sha256": "0b0ced4cfd4327559b3c034689f23ba349a5786d50596c700e74155f09616864",
+  "executable_sha256": "62c0343b402acbc35eaefc17108baf1c94336d62ee92ada656c7550603d7acff",
+  "output_sha256": "2813dceea70d30a28fe341f0ad9032512f3ae653f5eb7dc17c51ed53c94172d1",
+  "bytes": 318180,
+  "lines": 13923,
+  "algorithm": "XOR of two 32-byte executable constants; FNV-1a-64 seed; SplitMix64 XOR stream, little-endian bytes",
+  "decoder_address_start": "0x100910978",
+  "decoder_address_end_exclusive": "0x100910cf4",
+  "key_constant_addresses": [
+    "0x1009c1ee8",
+    "0x1009c1f08"
+  ],
+  "independent_actual_arm64_emulation_matches": true
+}

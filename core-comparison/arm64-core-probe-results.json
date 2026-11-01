@@ -1,0 +1,97 @@
+{
+  "binary_sha256": "62c0343b402acbc35eaefc17108baf1c94336d62ee92ada656c7550603d7acff",
+  "method": "Unicorn ARM64 executes acquired App Store code; only imported libm/libc and operator new/delete are hooked",
+  "logistic": {
+    "cases": 2028,
+    "max_abs_error": 3.530509218307998e-14,
+    "ios_function": "0x1008f5754-0x1008f5864",
+    "reference": "Executed unmodified upstream locked_logistic_rising AST with NumPy",
+    "constants": {
+      "0x1009b3350": 1e-05,
+      "0x1009c1998": 2.5066282746310007,
+      "0x1009c19a0": 0.6931471805599453
+    },
+    "import_calls": {
+      "0x1009799a0": 2028,
+      "0x1009799ac": 1887,
+      "0x100979a6c": 1887,
+      "0x100979994": 4197,
+      "0x100979a84": 2169
+    },
+    "observed_branch_hits": {
+      "0x1008f580c": 1887,
+      "0x1008f5838": 1190,
+      "0x1008f5824": 838,
+      "0x1008f57f4": 141
+    },
+    "covered": [
+      "nu floor",
+      "exponent clip -500/+500",
+      "nu*log(2) <=50 and >50",
+      "t<=0 and t>0"
+    ]
+  },
+  "polynomial": {
+    "cases": 1500,
+    "max_abs_error": 1.9984014443252818e-15,
+    "ios_block": "0x1008f4be8-0x1008f4c8c (exclusive)",
+    "reference": "Executed upstream poly2d_deg4 and hanika_sigmoid AST; NumPy exp2",
+    "matched": "14 nonconstant coefficients in same order; p0 ignored; correction bounded to +/-2 stops"
+  },
+  "pre_dir_density": {
+    "cases": 168,
+    "channel_outputs": 19296,
+    "max_abs_error": 4.440892098500626e-16,
+    "ios_function": "0x1008ed6f8-0x1008edf64",
+    "reference": "Executed unmodified upstream compute_density_curves_before_dir_couplers AST; contract mapped to numpy.einsum",
+    "import_calls": {
+      "0x10097970c": 840,
+      "0x10097982c": 672,
+      "0x100979700": 840
+    },
+    "scope": "Complete CPU function, including its actual nanmax and interpolation helpers; monotonic finite test curves"
+  },
+  "morph_layer_alias": {
+    "cases": 200,
+    "max_abs_error": 0.0,
+    "ios_block": "0x1008ee408-0x1008ee4b4 (exclusive)",
+    "execution": "Starts at full print_curves_morph entry; reads real mutated arrays immediately after scaling",
+    "reference": "Unmodified upstream _morph_channel_params AST, exhaustion=0 early-return path",
+    "layers": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "two_layer_alias_example": {
+      "input_centers": [
+        -1.0,
+        1.0
+      ],
+      "input_sigmas": [
+        0.4,
+        0.4
+      ],
+      "global_gamma": 2,
+      "upstream_centers": [
+        -0.5,
+        0.25
+      ],
+      "ios_centers": [
+        -0.5,
+        0.25
+      ],
+      "upstream_sigmas": [
+        0.2,
+        0.1
+      ],
+      "ios_sigmas": [
+        0.2,
+        0.1
+      ],
+      "observation": "Second layer is both mid and slow, so it is divided by gamma twice; first layer once."
+    },
+    "scope": "Synthetic edge cases for implementation fingerprinting; no claim that shipped profiles use 1 or 2 layers"
+  }
+}

@@ -1,0 +1,770 @@
+[
+  {
+    "kernel": "spk_take_rgb",
+    "file": "reference-sources/desktop/engine/src/shaders/util.metal",
+    "source_line": 12,
+    "source_arguments": [
+      "img",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "img",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/047.ll"
+  },
+  {
+    "kernel": "spk_affine3",
+    "file": "reference-sources/desktop/engine/src/shaders/util.metal",
+    "source_line": 24,
+    "source_arguments": [
+      "x",
+      "s",
+      "t",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "x",
+      "s",
+      "t",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/048.ll"
+  },
+  {
+    "kernel": "spk_mul",
+    "file": "reference-sources/desktop/engine/src/shaders/util.metal",
+    "source_line": 37,
+    "source_arguments": [
+      "x",
+      "y",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "x",
+      "y",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/049.ll"
+  },
+  {
+    "kernel": "spk_glare_add",
+    "file": "reference-sources/desktop/engine/src/shaders/util.metal",
+    "source_line": 48,
+    "source_arguments": [
+      "xyz",
+      "field",
+      "illum",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "xyz",
+      "field",
+      "illum",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/050.ll"
+  },
+  {
+    "kernel": "spk_reduce_max",
+    "file": "reference-sources/desktop/engine/src/shaders/util.metal",
+    "source_line": 62,
+    "source_arguments": [
+      "x",
+      "n",
+      "partials",
+      "thread_position_in_grid",
+      "threads_per_grid",
+      "lid",
+      "tg",
+      "tgsize"
+    ],
+    "ios_arguments": [
+      "x",
+      "n",
+      "partials",
+      "thread_position_in_grid",
+      "threads_per_grid",
+      "lid",
+      "tg",
+      "tgsize"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/051.ll"
+  },
+  {
+    "kernel": "spk_zoom_bilinear_mirror",
+    "file": "reference-sources/desktop/engine/src/shaders/util.metal",
+    "source_line": 89,
+    "source_arguments": [
+      "img",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "img",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/052.ll"
+  },
+  {
+    "kernel": "spk_to_rgba16",
+    "file": "reference-sources/desktop/engine/src/shaders/util.metal",
+    "source_line": 116,
+    "source_arguments": [
+      "rgb",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "rgb",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/053.ll"
+  },
+  {
+    "kernel": "spk_math_probe",
+    "file": "reference-sources/desktop/engine/src/shaders/util.metal",
+    "source_line": 148,
+    "source_arguments": [
+      "in",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "in",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/054.ll"
+  },
+  {
+    "kernel": "spk_stride_sample",
+    "file": "reference-sources/desktop/engine/src/shaders/util.metal",
+    "source_line": 162,
+    "source_arguments": [
+      "img",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "img",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/055.ll"
+  },
+  {
+    "kernel": "spk_lut3d_trilinear",
+    "file": "reference-sources/desktop/engine/src/shaders/util.metal",
+    "source_line": 195,
+    "source_arguments": [
+      "density",
+      "lut",
+      "lo",
+      "inv_span",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "density",
+      "lut",
+      "lo",
+      "inv_span",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/056.ll"
+  },
+  {
+    "kernel": "spk_di_normalise",
+    "file": "reference-sources/desktop/engine/src/shaders/util.metal",
+    "source_line": 249,
+    "source_arguments": [
+      "density",
+      "lo",
+      "inv_span",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "density",
+      "lo",
+      "inv_span",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/057.ll"
+  },
+  {
+    "kernel": "spk_log10_guarded",
+    "file": "reference-sources/desktop/engine/src/shaders/nodes.metal",
+    "source_line": 18,
+    "source_arguments": [
+      "x",
+      "k",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "x",
+      "k",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/026.ll"
+  },
+  {
+    "kernel": "spk_boost",
+    "file": "reference-sources/desktop/engine/src/shaders/nodes.metal",
+    "source_line": 31,
+    "source_arguments": [
+      "x",
+      "p",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "x",
+      "p",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/027.ll"
+  },
+  {
+    "kernel": "spk_curves",
+    "file": "reference-sources/desktop/engine/src/shaders/nodes.metal",
+    "source_line": 80,
+    "source_arguments": [
+      "x",
+      "xa",
+      "inv",
+      "y",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "x",
+      "xa",
+      "inv",
+      "y",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/028.ll"
+  },
+  {
+    "kernel": "spk_matmul3",
+    "file": "reference-sources/desktop/engine/src/shaders/nodes.metal",
+    "source_line": 94,
+    "source_arguments": [
+      "x",
+      "m",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "x",
+      "m",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/029.ll"
+  },
+  {
+    "kernel": "spk_tc_b",
+    "file": "reference-sources/desktop/engine/src/shaders/nodes.metal",
+    "source_line": 109,
+    "source_arguments": [
+      "rgb",
+      "m",
+      "n",
+      "tc",
+      "bout",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "rgb",
+      "m",
+      "n",
+      "tc",
+      "bout",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/030.ll"
+  },
+  {
+    "kernel": "spk_lut2d_cubic",
+    "file": "reference-sources/desktop/engine/src/shaders/nodes.metal",
+    "source_line": 133,
+    "source_arguments": [
+      "tc",
+      "b",
+      "lut",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "tc",
+      "b",
+      "lut",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/031.ll"
+  },
+  {
+    "kernel": "spk_couplers_correction",
+    "file": "reference-sources/desktop/engine/src/shaders/nodes.metal",
+    "source_line": 166,
+    "source_arguments": [
+      "cmy",
+      "m",
+      "dmax",
+      "pos",
+      "shift",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "cmy",
+      "m",
+      "dmax",
+      "pos",
+      "shift",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/032.ll"
+  },
+  {
+    "kernel": "spk_spectral_epilogue",
+    "file": "reference-sources/desktop/engine/src/shaders/nodes.metal",
+    "source_line": 187,
+    "source_arguments": [
+      "cmy",
+      "chd",
+      "base",
+      "ixs",
+      "ep",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "cmy",
+      "chd",
+      "base",
+      "ixs",
+      "ep",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/033.ll"
+  },
+  {
+    "kernel": "spk_print_exposure",
+    "file": "reference-sources/desktop/engine/src/shaders/nodes.metal",
+    "source_line": 213,
+    "source_arguments": [
+      "x",
+      "k",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "x",
+      "k",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/034.ll"
+  },
+  {
+    "kernel": "spk_cctf_decode",
+    "file": "reference-sources/desktop/engine/src/shaders/nodes.metal",
+    "source_line": 279,
+    "source_arguments": [
+      "x",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "x",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/035.ll"
+  },
+  {
+    "kernel": "spk_cctf_encode_matrix",
+    "file": "reference-sources/desktop/engine/src/shaders/nodes.metal",
+    "source_line": 291,
+    "source_arguments": [
+      "x",
+      "m",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "x",
+      "m",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/036.ll"
+  },
+  {
+    "kernel": "spk_geometry_resample_df",
+    "file": "reference-sources/desktop/engine/src/shaders/nodes.metal",
+    "source_line": 307,
+    "source_arguments": [
+      "img",
+      "g",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "img",
+      "g",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/037.ll"
+  },
+  {
+    "kernel": "spk_bw_correct",
+    "file": "reference-sources/desktop/engine/src/shaders/nodes.metal",
+    "source_line": 361,
+    "source_arguments": [
+      "xyz",
+      "p",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "xyz",
+      "p",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/038.ll"
+  },
+  {
+    "kernel": "spk_edr",
+    "file": "reference-sources/desktop/engine/src/shaders/nodes.metal",
+    "source_line": 378,
+    "source_arguments": [
+      "rgb",
+      "p",
+      "lut",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "rgb",
+      "p",
+      "lut",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/039.ll"
+  },
+  {
+    "kernel": "spk_di_encode",
+    "file": "reference-sources/desktop/engine/src/shaders/nodes.metal",
+    "source_line": 410,
+    "source_arguments": [
+      "y",
+      "p",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "y",
+      "p",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/040.ll"
+  },
+  {
+    "kernel": "spk_sep_fir_acc",
+    "file": "reference-sources/desktop/engine/src/shaders/blur.metal",
+    "source_line": 19,
+    "source_arguments": [
+      "img",
+      "w",
+      "accin",
+      "wt",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "img",
+      "w",
+      "accin",
+      "wt",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/003.ll"
+  },
+  {
+    "kernel": "spk_iir_df_acc",
+    "file": "reference-sources/desktop/engine/src/shaders/blur.metal",
+    "source_line": 64,
+    "source_arguments": [
+      "img",
+      "coef",
+      "act",
+      "accin",
+      "wt",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "img",
+      "coef",
+      "act",
+      "accin",
+      "wt",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/004.ll"
+  },
+  {
+    "kernel": "spk_lincomb3",
+    "file": "reference-sources/desktop/engine/src/shaders/blur.metal",
+    "source_line": 116,
+    "source_arguments": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/005.ll"
+  },
+  {
+    "kernel": "spk_scene_latitude",
+    "file": "reference-sources/desktop/engine/src/shaders/scene_latitude.metal",
+    "source_line": 43,
+    "source_arguments": [
+      "rgb",
+      "p",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "rgb",
+      "p",
+      "n",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/046.ll"
+  },
+  {
+    "kernel": "spk_grain_layers",
+    "file": "reference-sources/desktop/engine/src/shaders/grain.metal",
+    "source_line": 14,
+    "source_arguments": [
+      "cmy",
+      "xa",
+      "inv",
+      "ylay",
+      "lp",
+      "streams",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "cmy",
+      "xa",
+      "inv",
+      "ylay",
+      "lp",
+      "streams",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/020.ll"
+  },
+  {
+    "kernel": "spk_grain_simple",
+    "file": "reference-sources/desktop/engine/src/shaders/grain.metal",
+    "source_line": 52,
+    "source_arguments": [
+      "cmy",
+      "lp",
+      "streams",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "cmy",
+      "lp",
+      "streams",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/021.ll"
+  },
+  {
+    "kernel": "spk_lognormal_field",
+    "file": "reference-sources/desktop/engine/src/shaders/grain.metal",
+    "source_line": 75,
+    "source_arguments": [
+      "p",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "p",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/022.ll"
+  },
+  {
+    "kernel": "spk_grain_layer_one",
+    "file": "reference-sources/desktop/engine/src/shaders/grain.metal",
+    "source_line": 109,
+    "source_arguments": [
+      "cmy",
+      "xa",
+      "inv",
+      "ylay",
+      "lp",
+      "streams",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "ios_arguments": [
+      "cmy",
+      "xa",
+      "inv",
+      "ylay",
+      "lp",
+      "streams",
+      "meta",
+      "out",
+      "thread_position_in_grid"
+    ],
+    "match": true,
+    "ir": "core-comparison/air-ir/023.ll"
+  }
+]

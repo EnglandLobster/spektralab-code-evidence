@@ -1,0 +1,263 @@
+{
+  "recorded_at": "2026-10-28T15:57:15.407305+00:00",
+  "comparison_scope": "String-level triage against the pinned, selected public desktop source files in 05-reference-source-manifest.json. This is not a comparison of all engine functions.",
+  "kernel_names_total": 24,
+  "kernel_names_found": 23,
+  "kernels": [
+    {
+      "name": "spk_log10_guarded",
+      "reference_path": "engine/src/shaders/nodes.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 18,
+      "binary_offset": 11733573
+    },
+    {
+      "name": "spk_boost",
+      "reference_path": "engine/src/shaders/nodes.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 31,
+      "binary_offset": 11733420
+    },
+    {
+      "name": "spk_highlight_headroom",
+      "reference_path": "engine/src/shaders/nodes.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 58,
+      "binary_offset": null
+    },
+    {
+      "name": "spk_curves",
+      "reference_path": "engine/src/shaders/nodes.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 80,
+      "binary_offset": 11732810
+    },
+    {
+      "name": "spk_matmul3",
+      "reference_path": "engine/src/shaders/nodes.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 94,
+      "binary_offset": 11732821
+    },
+    {
+      "name": "spk_tc_b",
+      "reference_path": "engine/src/shaders/nodes.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 109,
+      "binary_offset": 11733268
+    },
+    {
+      "name": "spk_lut2d_cubic",
+      "reference_path": "engine/src/shaders/nodes.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 133,
+      "binary_offset": 11733277
+    },
+    {
+      "name": "spk_couplers_correction",
+      "reference_path": "engine/src/shaders/nodes.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 166,
+      "binary_offset": 11733643
+    },
+    {
+      "name": "spk_spectral_epilogue",
+      "reference_path": "engine/src/shaders/nodes.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 187,
+      "binary_offset": 11732833
+    },
+    {
+      "name": "spk_print_exposure",
+      "reference_path": "engine/src/shaders/nodes.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 213,
+      "binary_offset": 11733794
+    },
+    {
+      "name": "spk_cctf_decode",
+      "reference_path": "engine/src/shaders/nodes.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 279,
+      "binary_offset": 11732936
+    },
+    {
+      "name": "spk_cctf_encode_matrix",
+      "reference_path": "engine/src/shaders/nodes.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 291,
+      "binary_offset": 11734135
+    },
+    {
+      "name": "spk_geometry_resample_df",
+      "reference_path": "engine/src/shaders/nodes.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 307,
+      "binary_offset": 11732972
+    },
+    {
+      "name": "spk_bw_correct",
+      "reference_path": "engine/src/shaders/nodes.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 361,
+      "binary_offset": 11733933
+    },
+    {
+      "name": "spk_edr",
+      "reference_path": "engine/src/shaders/nodes.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 378,
+      "binary_offset": 11734028
+    },
+    {
+      "name": "spk_di_encode",
+      "reference_path": "engine/src/shaders/nodes.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 410,
+      "binary_offset": 11733896
+    },
+    {
+      "name": "spk_grain_layers",
+      "reference_path": "engine/src/shaders/grain.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 14,
+      "binary_offset": 11733667
+    },
+    {
+      "name": "spk_grain_simple",
+      "reference_path": "engine/src/shaders/grain.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 52,
+      "binary_offset": 11733704
+    },
+    {
+      "name": "spk_lognormal_field",
+      "reference_path": "engine/src/shaders/grain.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 75,
+      "binary_offset": 11732855
+    },
+    {
+      "name": "spk_grain_layer_one",
+      "reference_path": "engine/src/shaders/grain.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 109,
+      "binary_offset": 11733684
+    },
+    {
+      "name": "spk_sep_fir_acc",
+      "reference_path": "engine/src/shaders/blur.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 19,
+      "binary_offset": 11725960
+    },
+    {
+      "name": "spk_iir_df_acc",
+      "reference_path": "engine/src/shaders/blur.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 64,
+      "binary_offset": 11725976
+    },
+    {
+      "name": "spk_lincomb3",
+      "reference_path": "engine/src/shaders/blur.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 116,
+      "binary_offset": 11726121
+    },
+    {
+      "name": "spk_scene_latitude",
+      "reference_path": "engine/src/shaders/scene_latitude.metal",
+      "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "source_line": 43,
+      "binary_offset": 11734699
+    }
+  ],
+  "matching_long_cpp_literals": [
+    {
+      "text": "the print profile carries no fitted density_curves_model",
+      "reference_path": "engine/src/core/curves.cpp",
+      "source_line": 172,
+      "binary_offset": 11676413
+    },
+    {
+      "text": "every print-curve gamma factor must be strictly positive",
+      "reference_path": "engine/src/core/curves.cpp",
+      "source_line": 186,
+      "binary_offset": 11676470
+    },
+    {
+      "text": "developer_exhaustion must be in [0, 1]",
+      "reference_path": "engine/src/core/curves.cpp",
+      "source_line": 188,
+      "binary_offset": 11676527
+    },
+    {
+      "text": "hanatos/spectra_lut has the wrong shape",
+      "reference_path": "engine/src/core/hanatos.cpp",
+      "source_line": 245,
+      "binary_offset": 11676780
+    },
+    {
+      "text": "math probe could not allocate: ",
+      "reference_path": "engine/src/gpu/metal_gpu.cpp",
+      "source_line": 185,
+      "binary_offset": 11683955
+    },
+    {
+      "text": "1.1e-5, which is past the float32 bar and silent).",
+      "reference_path": "engine/src/gpu/metal_gpu.cpp",
+      "source_line": 205,
+      "binary_offset": 11684275
+    },
+    {
+      "text": "in shaders/util.metal before trusting parity.",
+      "reference_path": "engine/src/gpu/metal_gpu.cpp",
+      "source_line": 212,
+      "binary_offset": 11684496
+    },
+    {
+      "text": "safe (probe: fma contraction present, no reassociation)",
+      "reference_path": "engine/src/gpu/metal_gpu.cpp",
+      "source_line": 215,
+      "binary_offset": 11684542
+    },
+    {
+      "text": "the frame's MTLBuffer belongs to a different MTLDevice than the engine's",
+      "reference_path": "engine/src/gpu/metal_gpu.cpp",
+      "source_line": 586,
+      "binary_offset": 11684804
+    },
+    {
+      "text": "could not create a texture over the result buffer",
+      "reference_path": "engine/src/gpu/metal_gpu.cpp",
+      "source_line": 687,
+      "binary_offset": 11685116
+    },
+    {
+      "text": "could not build a pipeline for '",
+      "reference_path": "engine/src/gpu/metal_gpu.cpp",
+      "source_line": 993,
+      "binary_offset": 11684990
+    },
+    {
+      "text": "could not open a command buffer",
+      "reference_path": "engine/src/gpu/metal_gpu.cpp",
+      "source_line": 1099,
+      "binary_offset": 11685023
+    },
+    {
+      "text": "could not open a compute encoder",
+      "reference_path": "engine/src/gpu/metal_gpu.cpp",
+      "source_line": 1105,
+      "binary_offset": 11685055
+    },
+    {
+      "text": "cannot create a Metal command queue",
+      "reference_path": "engine/src/gpu/metal_gpu.cpp",
+      "source_line": 1183,
+      "binary_offset": 11683775
+    }
+  ],
+  "next_step": "Compare implementation and control/data flow in the decrypted executable and decode the app-specific kernels.bin container before drawing a code-provenance conclusion."
+}

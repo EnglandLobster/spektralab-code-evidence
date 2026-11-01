@@ -1,0 +1,427 @@
+[
+  {
+    "module": "000",
+    "functions": [
+      "spk_rows_copy"
+    ],
+    "ir": "air-ir/000.ll"
+  },
+  {
+    "module": "001",
+    "functions": [
+      "spk_rows_to_rgba16"
+    ],
+    "ir": "air-ir/001.ll"
+  },
+  {
+    "module": "002",
+    "functions": [
+      "spk_zoom_rows"
+    ],
+    "ir": "air-ir/002.ll"
+  },
+  {
+    "module": "003",
+    "functions": [
+      "spk_sep_fir_acc"
+    ],
+    "ir": "air-ir/003.ll"
+  },
+  {
+    "module": "004",
+    "functions": [
+      "spk_iir_df_acc"
+    ],
+    "ir": "air-ir/004.ll"
+  },
+  {
+    "module": "005",
+    "functions": [
+      "spk_lincomb3"
+    ],
+    "ir": "air-ir/005.ll"
+  },
+  {
+    "module": "006",
+    "functions": [
+      "spk_iir_df_acc_carry"
+    ],
+    "ir": "air-ir/006.ll"
+  },
+  {
+    "module": "007",
+    "functions": [
+      "spk_mask_reduce"
+    ],
+    "ir": "air-ir/007.ll"
+  },
+  {
+    "module": "008",
+    "functions": [
+      "spk_mask_epilogue"
+    ],
+    "ir": "air-ir/008.ll"
+  },
+  {
+    "module": "009",
+    "functions": [
+      "spk_cam16ucs_compress"
+    ],
+    "ir": "air-ir/009.ll"
+  },
+  {
+    "module": "010",
+    "functions": [
+      "spk_glare_field1",
+      "_ZN3Rng6normalEv"
+    ],
+    "ir": "air-ir/010.ll"
+  },
+  {
+    "module": "011",
+    "functions": [
+      "spk_sep_fir1"
+    ],
+    "ir": "air-ir/011.ll"
+  },
+  {
+    "module": "012",
+    "functions": [
+      "spk_glare_fir1_add"
+    ],
+    "ir": "air-ir/012.ll"
+  },
+  {
+    "module": "013",
+    "functions": [
+      "spk_grain_m_layers",
+      "_Z7poissonR3Rngf"
+    ],
+    "ir": "air-ir/013.ll"
+  },
+  {
+    "module": "014",
+    "functions": [
+      "spk_grain_m_layer_one",
+      "_Z7poissonR3Rngf"
+    ],
+    "ir": "air-ir/014.ll"
+  },
+  {
+    "module": "015",
+    "functions": [
+      "spk_grain_m_simple",
+      "_Z7poissonR3Rngf"
+    ],
+    "ir": "air-ir/015.ll"
+  },
+  {
+    "module": "016",
+    "functions": [
+      "spk_grain_m_field",
+      "_ZN3Rng6normalEv"
+    ],
+    "ir": "air-ir/016.ll"
+  },
+  {
+    "module": "017",
+    "functions": [
+      "spk_grain_m_post"
+    ],
+    "ir": "air-ir/017.ll"
+  },
+  {
+    "module": "018",
+    "functions": [
+      "spk_grain_m_fir2d_r3",
+      "_Z17grain_fir2d_tiledILj3ELj16EEvPU9MTLdeviceKfS1_S1_S1_PU9MTLdeviceKjPU9MTLdevicefPU14MTLthreadgroupfS7_jjjj"
+    ],
+    "ir": "air-ir/018.ll"
+  },
+  {
+    "module": "019",
+    "functions": [
+      "spk_grain_m_fir2d_r9",
+      "_Z17grain_fir2d_tiledILj9ELj8EEvPU9MTLdeviceKfS1_S1_S1_PU9MTLdeviceKjPU9MTLdevicefPU14MTLthreadgroupfS7_jjjj"
+    ],
+    "ir": "air-ir/019.ll"
+  },
+  {
+    "module": "020",
+    "functions": [
+      "spk_grain_layers",
+      "_Z7poissonR3Rngf"
+    ],
+    "ir": "air-ir/020.ll"
+  },
+  {
+    "module": "021",
+    "functions": [
+      "spk_grain_simple",
+      "_Z7poissonR3Rngf"
+    ],
+    "ir": "air-ir/021.ll"
+  },
+  {
+    "module": "022",
+    "functions": [
+      "spk_lognormal_field",
+      "_ZN3Rng6normalEv"
+    ],
+    "ir": "air-ir/022.ll"
+  },
+  {
+    "module": "023",
+    "functions": [
+      "spk_grain_layer_one",
+      "_Z7poissonR3Rngf"
+    ],
+    "ir": "air-ir/023.ll"
+  },
+  {
+    "module": "024",
+    "functions": [
+      "spk_halo_splat"
+    ],
+    "ir": "air-ir/024.ll"
+  },
+  {
+    "module": "025",
+    "functions": [
+      "spk_halo_up_mix"
+    ],
+    "ir": "air-ir/025.ll"
+  },
+  {
+    "module": "026",
+    "functions": [
+      "spk_log10_guarded"
+    ],
+    "ir": "air-ir/026.ll"
+  },
+  {
+    "module": "027",
+    "functions": [
+      "spk_boost"
+    ],
+    "ir": "air-ir/027.ll"
+  },
+  {
+    "module": "028",
+    "functions": [
+      "spk_curves"
+    ],
+    "ir": "air-ir/028.ll"
+  },
+  {
+    "module": "029",
+    "functions": [
+      "spk_matmul3"
+    ],
+    "ir": "air-ir/029.ll"
+  },
+  {
+    "module": "030",
+    "functions": [
+      "spk_tc_b"
+    ],
+    "ir": "air-ir/030.ll"
+  },
+  {
+    "module": "031",
+    "functions": [
+      "spk_lut2d_cubic"
+    ],
+    "ir": "air-ir/031.ll"
+  },
+  {
+    "module": "032",
+    "functions": [
+      "spk_couplers_correction"
+    ],
+    "ir": "air-ir/032.ll"
+  },
+  {
+    "module": "033",
+    "functions": [
+      "spk_spectral_epilogue"
+    ],
+    "ir": "air-ir/033.ll"
+  },
+  {
+    "module": "034",
+    "functions": [
+      "spk_print_exposure"
+    ],
+    "ir": "air-ir/034.ll"
+  },
+  {
+    "module": "035",
+    "functions": [
+      "spk_cctf_decode",
+      "_Z16cctf_decode_modefj"
+    ],
+    "ir": "air-ir/035.ll"
+  },
+  {
+    "module": "036",
+    "functions": [
+      "spk_cctf_encode_matrix",
+      "_Z16cctf_encode_modefj"
+    ],
+    "ir": "air-ir/036.ll"
+  },
+  {
+    "module": "037",
+    "functions": [
+      "spk_geometry_resample_df"
+    ],
+    "ir": "air-ir/037.ll"
+  },
+  {
+    "module": "038",
+    "functions": [
+      "spk_bw_correct"
+    ],
+    "ir": "air-ir/038.ll"
+  },
+  {
+    "module": "039",
+    "functions": [
+      "spk_edr"
+    ],
+    "ir": "air-ir/039.ll"
+  },
+  {
+    "module": "040",
+    "functions": [
+      "spk_di_encode"
+    ],
+    "ir": "air-ir/040.ll"
+  },
+  {
+    "module": "041",
+    "functions": [
+      "spk_overscan_canvas",
+      "_ZL12sample_framePU9MTLdeviceKfffjjfj",
+      "_ZL8gate_sdfDv2_fPU9MTLdeviceKf"
+    ],
+    "ir": "air-ir/041.ll"
+  },
+  {
+    "module": "042",
+    "functions": [
+      "spk_mask_soften"
+    ],
+    "ir": "air-ir/042.ll"
+  },
+  {
+    "module": "043",
+    "functions": [
+      "spk_overscan_add_mask"
+    ],
+    "ir": "air-ir/043.ll"
+  },
+  {
+    "module": "044",
+    "functions": [
+      "spk_overscan_film_present",
+      "_ZL10film_alphaDv2_fPU9MTLdeviceKf",
+      "_ZL8perf_sdfDv2_fPU9MTLdeviceKfRj"
+    ],
+    "ir": "air-ir/044.ll"
+  },
+  {
+    "module": "045",
+    "functions": [
+      "spk_overscan_light",
+      "_ZL8perf_sdfDv2_fPU9MTLdeviceKfRj",
+      "_ZL10film_alphaDv2_fPU9MTLdeviceKf"
+    ],
+    "ir": "air-ir/045.ll"
+  },
+  {
+    "module": "046",
+    "functions": [
+      "spk_scene_latitude"
+    ],
+    "ir": "air-ir/046.ll"
+  },
+  {
+    "module": "047",
+    "functions": [
+      "spk_take_rgb"
+    ],
+    "ir": "air-ir/047.ll"
+  },
+  {
+    "module": "048",
+    "functions": [
+      "spk_affine3"
+    ],
+    "ir": "air-ir/048.ll"
+  },
+  {
+    "module": "049",
+    "functions": [
+      "spk_mul"
+    ],
+    "ir": "air-ir/049.ll"
+  },
+  {
+    "module": "050",
+    "functions": [
+      "spk_glare_add"
+    ],
+    "ir": "air-ir/050.ll"
+  },
+  {
+    "module": "051",
+    "functions": [
+      "spk_reduce_max"
+    ],
+    "ir": "air-ir/051.ll"
+  },
+  {
+    "module": "052",
+    "functions": [
+      "spk_zoom_bilinear_mirror"
+    ],
+    "ir": "air-ir/052.ll"
+  },
+  {
+    "module": "053",
+    "functions": [
+      "spk_to_rgba16"
+    ],
+    "ir": "air-ir/053.ll"
+  },
+  {
+    "module": "054",
+    "functions": [
+      "spk_math_probe"
+    ],
+    "ir": "air-ir/054.ll"
+  },
+  {
+    "module": "055",
+    "functions": [
+      "spk_stride_sample"
+    ],
+    "ir": "air-ir/055.ll"
+  },
+  {
+    "module": "056",
+    "functions": [
+      "spk_lut3d_trilinear"
+    ],
+    "ir": "air-ir/056.ll"
+  },
+  {
+    "module": "057",
+    "functions": [
+      "spk_di_normalise"
+    ],
+    "ir": "air-ir/057.ll"
+  }
+]

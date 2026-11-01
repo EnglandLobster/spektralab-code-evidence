@@ -1,0 +1,108 @@
+{
+  "date": "2026-10-29",
+  "sample": "SpektraLab iOS 1.0.1 build 202610271810",
+  "sources_verified_against_acquisition_manifest": [
+    {
+      "repository": "JamesQiu2005/SpektraLab",
+      "commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "path": "engine/src/core/curves.cpp",
+      "source_url": "https://raw.githubusercontent.com/JamesQiu2005/SpektraLab/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/core/curves.cpp",
+      "local_path": "reference-sources/desktop/engine/src/core/curves.cpp",
+      "sha256": "1cde1154d92bf7671f8a427b0798ab9aa284e5ee15d94788b6677095cec57c85"
+    },
+    {
+      "repository": "JamesQiu2005/SpektraLab",
+      "commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "path": "engine/src/core/curves.hpp",
+      "source_url": "https://raw.githubusercontent.com/JamesQiu2005/SpektraLab/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/core/curves.hpp",
+      "local_path": "reference-sources/desktop/engine/src/core/curves.hpp",
+      "sha256": "2452bbc867df9cb517810c00c0f4c9ff9d8cd00eb3f110bbaf81dce3854c2e8d"
+    },
+    {
+      "repository": "JamesQiu2005/SpektraLab",
+      "commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "path": "engine/src/core/hanatos.cpp",
+      "source_url": "https://raw.githubusercontent.com/JamesQiu2005/SpektraLab/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/core/hanatos.cpp",
+      "local_path": "reference-sources/desktop/engine/src/core/hanatos.cpp",
+      "sha256": "e6e23dd599af20fca75eca648d86f5a46d9663de96cc617b0f87013c18c92a35"
+    },
+    {
+      "repository": "JamesQiu2005/SpektraLab",
+      "commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "path": "engine/src/core/hanatos.hpp",
+      "source_url": "https://raw.githubusercontent.com/JamesQiu2005/SpektraLab/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/core/hanatos.hpp",
+      "local_path": "reference-sources/desktop/engine/src/core/hanatos.hpp",
+      "sha256": "53043a6953e674198b3c0790fca15cc7989501c3025de8d3accae458039836f1"
+    },
+    {
+      "repository": "andreavolpato/spektrafilm",
+      "commit": "3bb2c2d2801ff68b92019cf1dbcbb133d60832bc",
+      "path": "src/spektrafilm/model/couplers.py",
+      "source_url": "https://raw.githubusercontent.com/andreavolpato/spektrafilm/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/model/couplers.py",
+      "local_path": "reference-sources/upstream/src/spektrafilm/model/couplers.py",
+      "sha256": "706a1832cdfa0399b45e9a246b4c29ef669d42bf4d679080fb0346cf6ec5fcf3"
+    },
+    {
+      "repository": "andreavolpato/spektrafilm",
+      "commit": "3bb2c2d2801ff68b92019cf1dbcbb133d60832bc",
+      "path": "src/spektrafilm/utils/morph_curves.py",
+      "source_url": "https://raw.githubusercontent.com/andreavolpato/spektrafilm/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/utils/morph_curves.py",
+      "local_path": "reference-sources/upstream/src/spektrafilm/utils/morph_curves.py",
+      "sha256": "f082d40c69f8f8c70f4d94ae947becf907609f2f56426c2fa7b9dd3006d4a6c9"
+    },
+    {
+      "repository": "andreavolpato/spektrafilm",
+      "commit": "3bb2c2d2801ff68b92019cf1dbcbb133d60832bc",
+      "path": "src/spektrafilm/utils/spectral_upsampling.py",
+      "source_url": "https://raw.githubusercontent.com/andreavolpato/spektrafilm/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/utils/spectral_upsampling.py",
+      "local_path": "reference-sources/upstream/src/spektrafilm/utils/spectral_upsampling.py",
+      "sha256": "6c51273383c6aa5538c3c742dfd46a6660300c8211936bfbbc498c64e60ef6ea"
+    }
+  ],
+  "files": [
+    {
+      "path": "19-additional-core-evidence-zh.txt",
+      "sha256": "e5bcae1b93fd22018ac28c5f495f71666160370e30ed6a565861c902ce65718a"
+    },
+    {
+      "path": "core-comparison/arm64_core_probe.py",
+      "sha256": "5da76178c88af7fbfbb6091f4b8268a7c26713e8809cb8fed45c0a7556c49004"
+    },
+    {
+      "path": "core-comparison/arm64-core-probe-results.json",
+      "sha256": "f0d83689e08184519b965ca8729ced2c4c4c3d52919e363d831fd07f732793da"
+    },
+    {
+      "path": "core-comparison/locked-logistic.asm",
+      "sha256": "1194b5bb3c8fb1be81a2145dd803d289d70c3bcca782745f4cec75fb2738f0a0"
+    },
+    {
+      "path": "core-comparison/hanatos-weights.asm",
+      "sha256": "b0f19eb6461b1a23944b59c6e1eee20d5a04699eb89a33063cf6f61bfac34660"
+    },
+    {
+      "path": "core-comparison/hanatos-build.asm",
+      "sha256": "e2818b797bb1694cc282e4724fc26cf4419c338f895be9c92a4dde43193bb79d"
+    },
+    {
+      "path": "core-comparison/pre-dir-density.asm",
+      "sha256": "b85ec34c8cbc55433268b28c8672ff2f26b252a23184b7b1d1d54f69ff0ea3d4"
+    },
+    {
+      "path": "core-comparison/print-curves-morph.asm",
+      "sha256": "f5c67986d70376974e6c042de1b3c6f3bb6596e89eee82327b32f128ec0921a3"
+    },
+    {
+      "path": "core-comparison/macho_inspect.py",
+      "sha256": "b907d4407910f280a2b2b81715962c0d42be92920676d448b9cff21b5ae1df8a"
+    }
+  ],
+  "runtime": {
+    "python": "3.14.6",
+    "unicorn": "2.1.4",
+    "capstone": "5.0.9",
+    "numpy": "2.5.4"
+  },
+  "test_cases": 3896,
+  "interpretation": "Confirmed implementation correspondences and distinctive shared edge behavior; strong common-lineage inference, not a historical copying trace or final licensing determination."
+}

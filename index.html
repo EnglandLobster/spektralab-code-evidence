@@ -1,0 +1,404 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SpektraLab iOS 代码证据总档案</title><style>
+:root{color-scheme:light;--ink:#202730;--muted:#5b6470;--rule:#d9e1e7;--blue:#17587c;--bg:#f4f6f8}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.72 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}header,main{max-width:1160px;margin:auto;padding:32px 40px}header{padding-top:50px}h1{font-size:34px;line-height:1.3;margin:12px 0 20px}h2{font-size:24px;line-height:1.4;margin:0 0 20px}h3{font-size:20px;line-height:1.5;margin:10px 0}p{margin:12px 0}a{color:var(--blue);text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}.eyebrow,.meta{font-size:13px;color:var(--muted)}.lead{font-size:19px}.notice{border-left:4px solid #c89342;padding:14px 22px;background:#fff7e9}.card{background:white;border:1px solid var(--rule);border-radius:12px;padding:28px;margin-bottom:24px;scroll-margin-top:20px}.badge{font-size:12px;letter-spacing:.03em;display:inline-block;background:#e7f0f5;color:#15516f;border-radius:5px;padding:4px 8px;margin-right:8px}.desk .badge{background:#f0eaf7;color:#664186}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.codebox{min-width:0}.codebox h4{font-size:13px;margin:12px 0 6px}pre{font:12px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace;background:#16222d;color:#e8edf1;padding:18px;border-radius:8px;overflow:auto;tab-size:4}.result{font-size:17px;font-weight:650;border-left:3px solid var(--blue);padding-left:14px}.scope{font-size:14px;color:var(--muted)}table{width:100%;border-collapse:collapse;font-size:14px}td,th{text-align:left;padding:12px;border-bottom:1px solid var(--rule);vertical-align:top}th{background:#eff3f6;white-space:nowrap}.tablewrap{overflow:auto}.keytable th{width:160px}.keytable td{overflow-wrap:anywhere}.files{font-size:13px;line-height:1.9}.nav{display:flex;gap:16px;flex-wrap:wrap;margin:22px 0 0}.nav a{font-size:14px}details{margin-top:12px}summary{cursor:pointer;color:var(--blue)}footer{font-size:13px;color:var(--muted);padding:20px 0}.compare{font-size:26px;font-weight:650}.compare small{font-size:13px;font-weight:400;display:block}.comparebox{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;background:#f5f8fa;padding:16px;text-align:center;border-radius:8px}@media(max-width:760px){header,main{padding:24px 16px}h1{font-size:28px}.card{padding:22px 18px}.grid{grid-template-columns:1fr}.lead{font-size:17px}td,th{padding:9px}.compare{font-size:22px}}@media print{body{background:white;font-size:11pt}header,main{max-width:none;padding:15px}.card{break-inside:auto;border-radius:0}h2,h3,h4{break-after:avoid}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f1f3f5;color:#111;font-size:8pt}.grid{display:block}.nav{display:none}a{color:#222}details{display:block}}
+</style><body><header><div class="eyebrow">技术核对档案 · 2026 年 10 月 29 日 · 固定样本与固定源码版本</div><h1>SpektraLab iOS<br>代码证据总档案</h1><p class="lead">现有材料确认：SpektraLab iOS 1.0.1 的多个核心计算路径，与固定版本的 SpektraFilm 原始源码在具体实现选择、边界行为及受测数值结果上对应；另有明确对应 SpektraLab 桌面工程的诊断文本、自检逻辑和内核接口。</p><div class="notice">开发者已提出“AI 分析源码后生成规格，由另一团队实现”的解释。现有结果定位了规格或实现记录需要解释的具体对应；要判断历史上的复制路径，需要与该 build 对应的规格内容、生成输入、源码接触范围和版本记录。授权范围另需权利人材料。</div><nav class="nav"><a href="#overview">证据总表</a><a href="#sample">样本与方法</a><a href="#U02">重复缩放</a><a href="#U06">端点插值</a><a href="#D01">工程文本</a><a href="#differences">差异记录</a><a href="#reproduce">复核材料</a></nav></header><main><section class="card" id="overview"><h2>先看证据总表</h2><p>本档案按 8 个上游相关主题和 3 个桌面工程主题组织。U01 与 U02 属于同一曲线模块；U08 的上游部分是结构核对，数值测试基线为桌面源码。主题数不作为独立证据数量或复用比例。</p><div class="tablewrap"><table><thead><tr><th>编号 / 主题</th><th>对应来源</th><th>已核验结果</th></tr></thead><tbody><tr><td><a href="#U01">U01 显影曲线变形与耗尽补偿：完整函数路径</a></td><td>SpektraFilm 原始源码</td><td>64 组 / 3264 个输出；最大绝对差 8.881784197001252e-16</td></tr><tr><td><a href="#U02">U02 层索引重叠：同一层被连续缩放</a></td><td>SpektraFilm 原始源码</td><td>200 组 / 1–5 层；centers、sigmas 最大绝对差 0</td></tr><tr><td><a href="#U03">U03 光谱窗口 logistic：整组稳定化阈值与分支</a></td><td>SpektraFilm 原始源码</td><td>2028 组；最大绝对差 3.530509218307998e-14</td></tr><tr><td><a href="#U04">U04 曝光补偿：忽略常数项的四阶曲面与 ±2 档限幅</a></td><td>SpektraFilm 原始源码</td><td>1500 组；最大绝对差 1.998401444325282e-15</td></tr><tr><td><a href="#U05">U05 DIR 前密度反推：完整函数与双重取负</a></td><td>SpektraFilm 原始源码</td><td>168 组 / 19296 个通道输出；最大绝对差 4.440892098500626e-16</td></tr><tr><td><a href="#U06">U06 曲线插值：首端点截断覆盖重复点右偏规则</a></td><td>SpektraFilm 原始源码</td><td>140 组 / 8400 个通道输出；最大绝对差 4.192071023645383e-07；另含 2 个边界例子</td></tr><tr><td><a href="#U07">U07 径向色域压缩：射线交点、阈值与重建</a></td><td>SpektraFilm 原始源码</td><td>624 组；最大绝对差 4.440892098500626e-16</td></tr><tr><td><a href="#U08">U08 DIR 逐像素校正：上游结构对应、桌面数值对照</a></td><td>SpektraFilm 结构 + 桌面版数值基线</td><td>与桌面函数比较：10000 组 / 90000 个通道输出；最大绝对差 0</td></tr><tr><td><a href="#D01">D01 工程诊断原句：文档编号、源码路径及实际引用</a></td><td>SpektraLab 桌面工程</td><td>7 个自检字符串片段 / 636 字节；另保留早期 14 条桌面长文本命中清单，两份清单有重叠，数量不相加</td></tr><tr><td><a href="#D02">D02 浮点自检：输入、AIR 算法及零值优先分类</a></td><td>SpektraLab 桌面工程</td><td>输入 128 个 float / 512 字节一致；10,000 组随机 + 64 组启动数据输出字节一致；4 组分类器注入结果一致</td></tr><tr><td><a href="#D03">D03 34 个内核的参数名及顺序对应</a></td><td>SpektraLab 桌面工程</td><td>34 / 34 组接口匹配；取代早期 23 组统计，不累加为 57 组</td></tr></tbody></table></div></section><section class="card" id="sample"><h2>样本与方法</h2><table class="keytable"><tr><th>App 样本</th><td>SpektraLab iOS 1.0.1 build 202610271810</td></tr><tr><th>Bundle ID</th><td>com.spektralab.mobile.29zmsyhtll</td></tr><tr><th>主程序 SHA-256</th><td>62c0343b402acbc35eaefc17108baf1c94336d62ee92ada656c7550603d7acff</td></tr><tr><th>SpektraFilm 提交</th><td>3bb2c2d2801ff68b92019cf1dbcbb133d60832bc</td></tr><tr><th>桌面版提交</th><td>fd891c6bc5eb350387602deb5c1ef9b6dcdab948</td></tr></table><ul><li>CPU：Unicorn 执行已提取 App 的实际 ARM64 指令。外部 libm/libc/new/delete 由本机函数承接；模型函数及内部 helper 执行原始指令。完整曲线测试按 Mach-O 链式指针记录在仿真内存实施 20,831 项 rebase，以解析 C++ 回调；磁盘样本与指令未修改。</li><li>GPU：按 App 自己的解码路径恢复 kernels.bin；独立 Python 解码与实际 ARM64 解码输出逐字节一致，得到 318,180 字节 MTLB，提取 58 个 AIR 模块。所列执行比较使用原始 bitcode 编译到同一台 Mac CPU；不是手机 GPU 运行结果。</li><li>上游基线：从固定提交的 Python 原函数提取 AST，保留函数体；按需移除 Numba 装饰器、将 prange 绑定 range、contract 绑定 numpy.einsum，并使用 NumPy/SciPy。U01–U07 的预期值来源为原始 SpektraFilm。</li><li>代码展示：公开 Python/C++/Metal 文件称为“源码”；iOS 材料称为“ARM64 反汇编”或“AIR 中间表示”。中文说明及函数归属识别属于分析注释，未将人工还原的伪代码标作 iOS 原源码。地址为该样本的首选虚拟地址，未包含运行时 ASLR 滑移。</li></ul><p class="files">许可：<a href="reference-sources/upstream/LICENSE">SpektraFilm LICENSE</a> · <a href="reference-sources/desktop/license/LICENSE">桌面 LICENSE</a> · <a href="reference-sources/desktop/modern_UI/Spektrafilm/Spektrafilm/Resources/Licenses/README.txt">桌面组件许可清单</a></p></section><section class="card " id="U01"><span class="badge">U01 · SpektraFilm 原始源码</span><span class="meta">完整函数执行 + 控制流核对</span><h2>显影曲线变形与耗尽补偿：完整函数路径</h2><p>iOS 的实际排序、gamma 缩放、Gumbel 混合、残差和求根路径，与原始 apply_print_curves_morph 及其依赖对应。求根部分共同采用 1e-12 残差阈值、初始区间 ±0.25、12 次扩区间尝试、先端点为零再判断异号、双端同时翻倍、Brent 容差 1e-10。</p><p class="result">64 组 / 3264 个输出；最大绝对差 8.881784197001252e-16</p><p>贯穿显影曲线构建的一整条路径；共同阈值、分支顺序和数值结果均有定位。</p><p class="scope">测试范围：三通道、三层、active=true 的有效输入；正片/负片；exhaustion=0/0.2/0.6/1。求根括区间的静态证据与完整函数测试属于同一项，不重复计数。iOS 的 200 次迭代预算是观察到的 iOS 实现细节，不把它列为上游相同默认值。</p><p class="files">源码定位：utils/morph_curves.py:77–296；耗尽补偿 152–203<br>iOS 定位：0x1008edf64–0x1008eec84；括区间分支 0x1008ee664–0x1008ee6d8</p><div class="grid"><div class="codebox"><h4>SpektraFilm 原文：求根区间与重试</h4><div class="files"><a href="reference-sources/upstream/src/spektrafilm/utils/morph_curves.py">morph_curves.py:183–201</a> · <a href="https://github.com/andreavolpato/spektrafilm/blob/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/utils/morph_curves.py#L183">固定提交原文</a></div><pre> 183      r_zero = residual(0.0)
+ 184      if abs(r_zero) &lt;= 1e-12:
+ 185          return 0.0
+ 186  
+ 187      lo = -0.25
+ 188      hi = 0.25
+ 189      r_lo = residual(lo)
+ 190      r_hi = residual(hi)
+ 191      for _ in range(12):
+ 192          if r_lo == 0.0:
+ 193              return float(lo)
+ 194          if r_hi == 0.0:
+ 195              return float(hi)
+ 196          if r_lo * r_hi &lt; 0.0:
+ 197              return float(_brentq(residual, lo, hi, xtol=1e-10))
+ 198          lo *= 2.0
+ 199          hi *= 2.0
+ 200          r_lo = residual(lo)
+ 201          r_hi = residual(hi)</pre></div><div class="codebox"><h4>iOS 原始 ARM64 反汇编节选</h4><div class="files"><a href="core-comparison/print-curves-morph.asm">print-curves-morph.asm:458–479</a></div><pre> 458  0x1008ee684: fmov     d9, #-0.25000000
+ 459  0x1008ee688: fmov     d8, #0.25000000
+ 460  0x1008ee68c: mov      w19, #0xc
+ 461  0x1008ee690: add      x0, sp, #0xd0
+ 462  0x1008ee694: mov      v0.16b, v9.16b
+ 463  0x1008ee698: bl       #0x1008eec84
+ 464  0x1008ee69c: mov      v10.16b, v0.16b
+ 465  0x1008ee6a0: add      x0, sp, #0xd0
+ 466  0x1008ee6a4: mov      v0.16b, v8.16b
+ 467  0x1008ee6a8: bl       #0x1008eec84
+ 468  0x1008ee6ac: fcmp     d10, #0.0
+ 469  0x1008ee6b0: b.eq     #0x1008ee73c
+ 470  0x1008ee6b4: mov      v11.16b, v0.16b
+ 471  0x1008ee6b8: fcmp     d0, #0.0
+ 472  0x1008ee6bc: b.eq     #0x1008ee748
+ 473  0x1008ee6c0: fmul     d0, d10, d11
+ 474  0x1008ee6c4: fcmp     d0, #0.0
+ 475  0x1008ee6c8: b.mi     #0x1008ee974
+ 476  0x1008ee6cc: fadd     d9, d9, d9
+ 477  0x1008ee6d0: fadd     d8, d8, d8
+ 478  0x1008ee6d4: subs     w19, w19, #1
+ 479  0x1008ee6d8: b.ne     #0x1008ee690</pre></div></div><details><summary>打开完整材料与测试结果</summary><div class="files"><a href="core-comparison/direct-upstream-round2-results.json">core-comparison/direct-upstream-round2-results.json</a><br><a href="core-comparison/direct_upstream_round2.py">core-comparison/direct_upstream_round2.py</a><br><a href="core-comparison/print-curves-morph.asm">core-comparison/print-curves-morph.asm</a><br><a href="core-comparison/macho_rebase.py">core-comparison/macho_rebase.py</a><br><a href="core-comparison/morph-emulator-rebases.json">core-comparison/morph-emulator-rebases.json</a></div></details></section><section class="card " id="U02"><span class="badge">U02 · SpektraFilm 原始源码</span><span class="meta">实际指令执行到中间状态</span><h2>层索引重叠：同一层被连续缩放</h2><p>双方都按排序后的首项、中项、末项选三层，再依次原地修改。当输入只有两层时，中层和慢层指向同一层，造成同一层连续除以 gamma 两次。</p><p class="result">200 组 / 1–5 层；centers、sigmas 最大绝对差 0</p><p>这是比正常输入效果相似更具体的边界行为：centers=[-1,1]、sigmas=[0.4,0.4]、gamma=2 时，双方得到 [-0.5,0.25] 和 [0.2,0.1]。</p><p class="scope">测试范围：合成边界输入；尚未核查上架 profile 是否实际使用一层或两层。读取的是第三次缩放后的中间数组。与 U01 同属曲线变形函数，是额外的边界测试而非新的独立模块。</p><p class="files">源码定位：utils/morph_curves.py:133–137、206–242<br>iOS 定位：索引 0x1008ee408–0x1008ee414；缩放 0x1008ee448–0x1008ee4b0</p><div class="grid"><div class="codebox"><h4>SpektraFilm 原文：三层索引</h4><div class="files"><a href="reference-sources/upstream/src/spektrafilm/utils/morph_curves.py">morph_curves.py:133–137</a> · <a href="https://github.com/andreavolpato/spektrafilm/blob/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/utils/morph_curves.py#L133">固定提交原文</a></div><pre> 133  def _speed_layer_indices(centers_c):
+ 134      &quot;&quot;&quot;Return (i_fast, i_mid, i_slow) by ascending center (grain-speed order).&quot;&quot;&quot;
+ 135      order = np.argsort(np.asarray(centers_c, dtype=float))
+ 136      n = len(order)
+ 137      return int(order[0]), int(order[n // 2]), int(order[-1])</pre></div><div class="codebox"><h4>SpektraFilm 原文：三次原地缩放</h4><div class="files"><a href="reference-sources/upstream/src/spektrafilm/utils/morph_curves.py">morph_curves.py:226–231</a> · <a href="https://github.com/andreavolpato/spektrafilm/blob/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/utils/morph_curves.py#L226">固定提交原文</a></div><pre> 226      sigmas_c[i_fast] = max(sigmas_c[i_fast] / g_fast, SIGMA_FLOOR)
+ 227      centers_c[i_fast] = centers_c[i_fast] / g_fast
+ 228      sigmas_c[i_mid] = max(sigmas_c[i_mid] / g_mid, SIGMA_FLOOR)
+ 229      centers_c[i_mid] = centers_c[i_mid] / g_mid
+ 230      sigmas_c[i_slow] = max(sigmas_c[i_slow] / g_slow, SIGMA_FLOOR)
+ 231      centers_c[i_slow] = centers_c[i_slow] / g_slow</pre></div><div class="codebox"><h4>iOS 原始 ARM64 反汇编节选</h4><div class="files"><a href="core-comparison/print-curves-morph.asm">print-curves-morph.asm:299–302</a></div><pre> 299  0x1008ee408: ldr      x10, [x26]
+ 300  0x1008ee40c: lsr      x8, x28, #1
+ 301  0x1008ee410: ldr      x9, [x26, x8, lsl #3]
+ 302  0x1008ee414: ldur     x8, [x19, #-8]</pre></div><div class="codebox"><h4>iOS 原始 ARM64 反汇编节选</h4><div class="files"><a href="core-comparison/print-curves-morph.asm">print-curves-morph.asm:315–341</a></div><pre> 315  0x1008ee448: ldur     x24, [x29, #-0xf8]
+ 316  0x1008ee44c: ldr      d2, [x24, x10, lsl #3]
+ 317  0x1008ee450: fdiv     d2, d2, d1
+ 318  0x1008ee454: ldr      d3, [sp, #0x48]
+ 319  0x1008ee458: fcmp     d2, d3
+ 320  0x1008ee45c: fcsel    d2, d3, d2, mi
+ 321  0x1008ee460: str      d2, [x24, x10, lsl #3]
+ 322  0x1008ee464: ldur     x19, [x29, #-0xc8]
+ 323  0x1008ee468: ldr      d2, [x19, x10, lsl #3]
+ 324  0x1008ee46c: fdiv     d1, d2, d1
+ 325  0x1008ee470: str      d1, [x19, x10, lsl #3]
+ 326  0x1008ee474: ldr      d1, [x24, x9, lsl #3]
+ 327  0x1008ee478: fdiv     d1, d1, d0
+ 328  0x1008ee47c: fcmp     d1, d3
+ 329  0x1008ee480: fcsel    d1, d3, d1, mi
+ 330  0x1008ee484: str      d1, [x24, x9, lsl #3]
+ 331  0x1008ee488: ldr      d1, [x19, x9, lsl #3]
+ 332  0x1008ee48c: fdiv     d1, d1, d0
+ 333  0x1008ee490: str      d1, [x19, x9, lsl #3]
+ 334  0x1008ee494: ldr      d1, [x24, x8, lsl #3]
+ 335  0x1008ee498: fdiv     d1, d1, d0
+ 336  0x1008ee49c: fcmp     d1, d3
+ 337  0x1008ee4a0: fcsel    d1, d3, d1, mi
+ 338  0x1008ee4a4: str      d1, [x24, x8, lsl #3]
+ 339  0x1008ee4a8: ldr      d1, [x19, x8, lsl #3]
+ 340  0x1008ee4ac: fdiv     d0, d1, d0
+ 341  0x1008ee4b0: str      d0, [x19, x8, lsl #3]</pre></div></div><details><summary>打开完整材料与测试结果</summary><div class="files"><a href="core-comparison/arm64-core-probe-results.json">core-comparison/arm64-core-probe-results.json</a><br><a href="core-comparison/arm64_core_probe.py">core-comparison/arm64_core_probe.py</a></div></details></section><section class="card " id="U03"><span class="badge">U03 · SpektraFilm 原始源码</span><span class="meta">完整子函数执行 + 常量读取</span><h2>光谱窗口 logistic：整组稳定化阈值与分支</h2><p>共同采用 nu 下限 1e-5、指数截断 ±500、nu×log(2) 在 50 处分流，以及相应 log1p/expm1 稳定化公式。iOS 还按 t 的正负实现稳定的 logaddexp；上游在这一层调用 NumPy logaddexp。</p><p class="result">2028 组；最大绝对差 3.530509218307998e-14</p><p>关键是阈值和稳定化策略成组对应，且两类分支都已执行覆盖：nu×log(2)&gt;50 / ≤50 为 141 / 1887 次；t&gt;0 / ≤0 为 838 / 1190 次。</p><p class="scope">测试范围：已执行 locked_logistic_rising 子函数；4 参数 erf、8 参数 logiflex 窗口及通道组合另有静态核对，未把它写成整个光谱窗口或 LUT 的端到端验证。</p><p class="files">源码定位：utils/spectral_upsampling.py:192–212<br>iOS 定位：0x1008f5754–0x1008f5864；调用点包含 0x1008f42e8</p><div class="grid"><div class="codebox"><h4>SpektraFilm 原文：稳定化实现</h4><div class="files"><a href="reference-sources/upstream/src/spektrafilm/utils/spectral_upsampling.py">spectral_upsampling.py:201–212</a> · <a href="https://github.com/andreavolpato/spektrafilm/blob/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/utils/spectral_upsampling.py#L201">固定提交原文</a></div><pre> 201      nu = np.maximum(np.asarray(nu, dtype=float), 1e-5)
+ 202      S = 1.0 / (sigma * _SQRT2PI)
+ 203      k = (2.0 * nu * S) / (1.0 - 2.0 ** (-nu))
+ 204      exponent = np.clip(-k * (x - mu), -500.0, 500.0)
+ 205      nu_log2 = nu * np.log(2.0)
+ 206      log_q = np.where(
+ 207          nu_log2 &gt; 50.0,
+ 208          nu_log2 + np.log1p(-np.exp(-nu_log2)),
+ 209          np.log(np.expm1(nu_log2)),
+ 210      )
+ 211      log_denom = np.logaddexp(0.0, log_q + exponent)
+ 212      return np.exp(-(1.0 / nu) * log_denom)</pre></div><div class="codebox"><h4>iOS 原始 ARM64 反汇编节选</h4><div class="files"><a href="core-comparison/locked-logistic.asm">locked-logistic.asm:37–60</a></div><pre>  37  0x1008f57e0: fmul     d8, d10, d0
+  38  0x1008f57e4: mov      x8, #0x4049000000000000
+  39  0x1008f57e8: fmov     d0, x8
+  40  0x1008f57ec: fcmp     d8, d0
+  41  0x1008f57f0: b.le     #0x1008f580c
+  42  0x1008f57f4: fneg     d0, d8
+  43  0x1008f57f8: bl       #0x100979994
+  44  0x1008f57fc: fneg     d0, d0
+  45  0x1008f5800: bl       #0x100979a84
+  46  0x1008f5804: fadd     d0, d8, d0
+  47  0x1008f5808: b        #0x1008f5818
+  48  0x1008f580c: mov      v0.16b, v8.16b
+  49  0x1008f5810: bl       #0x1009799ac
+  50  0x1008f5814: bl       #0x100979a6c
+  51  0x1008f5818: fadd     d8, d9, d0
+  52  0x1008f581c: fcmp     d8, #0.0
+  53  0x1008f5820: b.le     #0x1008f5838
+  54  0x1008f5824: fneg     d0, d8
+  55  0x1008f5828: bl       #0x100979994
+  56  0x1008f582c: bl       #0x100979a84
+  57  0x1008f5830: fadd     d0, d8, d0
+  58  0x1008f5834: b        #0x1008f5844
+  59  0x1008f5838: mov      v0.16b, v8.16b
+  60  0x1008f583c: bl       #0x100979994</pre></div></div><details><summary>打开完整材料与测试结果</summary><div class="files"><a href="core-comparison/arm64-core-probe-results.json">core-comparison/arm64-core-probe-results.json</a><br><a href="core-comparison/locked-logistic.asm">core-comparison/locked-logistic.asm</a><br><a href="core-comparison/hanatos-weights.asm">core-comparison/hanatos-weights.asm</a><br><a href="core-comparison/arm64_core_probe.py">core-comparison/arm64_core_probe.py</a></div></details></section><section class="card " id="U04"><span class="badge">U04 · SpektraFilm 原始源码</span><span class="meta">内联计算块执行</span><h2>曝光补偿：忽略常数项的四阶曲面与 ±2 档限幅</h2><p>保留 15 个系数位置但忽略 p0，使用相同顺序的 14 个非常数项；经 z/sqrt(1+(z/2)²) 限幅，最后取 exp2。测试把 p0 设置为大随机值，检验它确实不参与结果。</p><p class="result">1500 组；最大绝对差 1.998401444325282e-15</p><p>参数布局、项顺序、限幅和指数转换组合对应，可与光谱窗口证据合并评估。</p><p class="scope">测试范围：执行首通道内联计算块，预先设置其寄存器输入；非完整 LUT 构建。系数顺序也受 profile 格式约束，数学公式和数据兼容性应计入解释。</p><p class="files">源码定位：utils/spectral_upsampling.py:169–189、235–245<br>iOS 定位：0x1008f4be8–0x1008f4c8c（不含终点）</p><div class="grid"><div class="codebox"><h4>SpektraFilm 原文：四阶多项式</h4><div class="files"><a href="reference-sources/upstream/src/spektrafilm/utils/spectral_upsampling.py">spectral_upsampling.py:174–190</a> · <a href="https://github.com/andreavolpato/spektrafilm/blob/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/utils/spectral_upsampling.py#L174">固定提交原文</a></div><pre> 174  def poly2d_deg4(tc: np.ndarray,
+ 175                  params: np.ndarray,
+ 176                  center_tc: tuple[float, float] = (0.0, 0.0),) -&gt; np.ndarray:
+ 177      x = tc[..., 0] - center_tc[0]
+ 178      y = tc[..., 1] - center_tc[1]
+ 179      x2 = x * x
+ 180      y2 = y * y
+ 181      xy_term = x * y
+ 182      x3 = x2 * x
+ 183      y3 = y2 * y
+ 184      _, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14 = params
+ 185      # note that we want center_tc to be zero correction -&gt; not adding c0
+ 186      return (
+ 187          c1 * x + c2 * y + c3 * x2 + c4 * y2 + c5 * xy_term
+ 188          + c6 * x3 + c7 * y3 + c8 * (x2 * y) + c9 * (x * y2)
+ 189          + c10 * (x2 * x2) + c11 * (y2 * y2) + c12 * (x3 * y) + c13 * (x2 * y2) + c14 * (x * y3)
+ 190      )</pre></div><div class="codebox"><h4>iOS 原始 ARM64 反汇编节选</h4><div class="files"><a href="core-comparison/hanatos-build.asm">hanatos-build.asm:382–422</a></div><pre> 382  0x1008f4be8: fmul     d10, d11, d11
+ 383  0x1008f4bec: fmul     d12, d4, d11
+ 384  0x1008f4bf0: fmul     d15, d11, d10
+ 385  0x1008f4bf4: fmul     d8, d1, d11
+ 386  0x1008f4bf8: fmul     d9, d4, d10
+ 387  0x1008f4bfc: fmul     d14, d10, d10
+ 388  0x1008f4c00: fmul     d18, d6, d11
+ 389  0x1008f4c04: str      d18, [sp, #0x4c0]
+ 390  0x1008f4c08: fmul     d13, d1, d10
+ 391  0x1008f4c0c: ldp      d0, d1, [x26, #8]
+ 392  0x1008f4c10: fmul     d1, d11, d1
+ 393  0x1008f4c14: fmadd    d0, d0, d4, d1
+ 394  0x1008f4c18: ldp      d1, d2, [x26, #0x18]
+ 395  0x1008f4c1c: ldr      q3, [sp, #0x520]
+ 396  0x1008f4c20: fmadd    d0, d1, d3, d0
+ 397  0x1008f4c24: fmadd    d0, d2, d10, d0
+ 398  0x1008f4c28: ldp      d1, d2, [x26, #0x28]
+ 399  0x1008f4c2c: fmadd    d0, d1, d12, d0
+ 400  0x1008f4c30: str      d12, [sp, #0x4a0]
+ 401  0x1008f4c34: fmadd    d0, d2, d6, d0
+ 402  0x1008f4c38: ldp      d1, d2, [x26, #0x38]
+ 403  0x1008f4c3c: fmadd    d0, d1, d15, d0
+ 404  0x1008f4c40: fmadd    d0, d2, d8, d0
+ 405  0x1008f4c44: ldp      d1, d2, [x26, #0x48]
+ 406  0x1008f4c48: fmadd    d0, d1, d9, d0
+ 407  0x1008f4c4c: str      d9, [sp, #0x4b0]
+ 408  0x1008f4c50: fmadd    d0, d2, d7, d0
+ 409  0x1008f4c54: ldp      d1, d2, [x26, #0x58]
+ 410  0x1008f4c58: fmadd    d0, d1, d14, d0
+ 411  0x1008f4c5c: fmadd    d0, d2, d18, d0
+ 412  0x1008f4c60: ldp      d1, d2, [x26, #0x68]
+ 413  0x1008f4c64: fmadd    d0, d1, d13, d0
+ 414  0x1008f4c68: fmul     d1, d4, d15
+ 415  0x1008f4c6c: str      d1, [sp, #0x490]
+ 416  0x1008f4c70: fmadd    d0, d2, d1, d0
+ 417  0x1008f4c74: fmov     d1, #0.50000000
+ 418  0x1008f4c78: fmul     d1, d0, d1
+ 419  0x1008f4c7c: fmadd    d1, d1, d1, d5
+ 420  0x1008f4c80: fsqrt    d1, d1
+ 421  0x1008f4c84: fdiv     d0, d0, d1
+ 422  0x1008f4c88: bl       #0x1009799a0</pre></div></div><details><summary>打开完整材料与测试结果</summary><div class="files"><a href="core-comparison/arm64-core-probe-results.json">core-comparison/arm64-core-probe-results.json</a><br><a href="core-comparison/hanatos-build.asm">core-comparison/hanatos-build.asm</a><br><a href="core-comparison/arm64_core_probe.py">core-comparison/arm64_core_probe.py</a></div></details></section><section class="card " id="U05"><span class="badge">U05 · SpektraFilm 原始源码</span><span class="meta">完整函数及真实 helper 执行</span><h2>DIR 前密度反推：完整函数与双重取负</h2><p>正片分支取 dmax−density，按 donor-row/receiver-column 矩阵计算抑制量，从 log_exposure 中减去后逐通道插值；正片在插值前后各取一次负号的步骤也保留。</p><p class="result">168 组 / 19296 个通道输出；最大绝对差 4.440892098500626e-16</p><p>实际 nanmax、插值 helper 和整个反推函数均执行；双重取负在通常有限输入线性插值中代数冗余，是额外的实现对应细节。</p><p class="scope">测试范围：有限、单调曲线，正片/负片与多种长度。与 U08 的逐像素耦合剂校正属于不同阶段。</p><p class="files">源码定位：model/couplers.py:8–38<br>iOS 定位：0x1008ed6f8–0x1008edf64；nanmax 0x1008fbc40；interp 0x1008fbcd0</p><div class="grid"><div class="codebox"><h4>SpektraFilm 原文：反推及双重取负</h4><div class="files"><a href="reference-sources/upstream/src/spektrafilm/model/couplers.py">couplers.py:30–38</a> · <a href="https://github.com/andreavolpato/spektrafilm/blob/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/model/couplers.py#L30">固定提交原文</a></div><pre>  30      couplers_amount_curves = contract(&#x27;jk, km-&gt;jm&#x27;, density_curves_silver, dir_couplers_matrix)
+  31      log_exposure_0 = log_exposure[:,None] - couplers_amount_curves
+  32      density_curves_corrected = np.zeros_like(density_curves)
+  33      for i in np.arange(3):
+  34          if positive:
+  35              density_curves_corrected[:,i] = -np.interp(log_exposure, log_exposure_0[:,i], -density_curves[:,i])
+  36          else:
+  37              density_curves_corrected[:,i] = np.interp(log_exposure, log_exposure_0[:,i], density_curves[:,i])
+  38      return density_curves_corrected</pre></div><div class="codebox"><h4>iOS 原始 ARM64 反汇编节选</h4><div class="files"><a href="core-comparison/pre-dir-density.asm">pre-dir-density.asm:286–304</a></div><pre> 286  0x1008edb68: ldr      d0, [x9], #0x18
+ 287  0x1008edb6c: fneg     d1, d0
+ 288  0x1008edb70: cmp      w21, #0
+ 289  0x1008edb74: fcsel    d0, d1, d0, ne
+ 290  0x1008edb78: str      d0, [x28, x8, lsl #3]
+ 291  0x1008edb7c: add      x8, x8, #1
+ 292  0x1008edb80: cmp      x23, x8
+ 293  0x1008edb84: b.ne     #0x1008edb60
+ 294  0x1008edb88: mov      x19, #0
+ 295  0x1008edb8c: mov      x26, #0
+ 296  0x1008edb90: ldr      x8, [x22]
+ 297  0x1008edb94: ldr      d0, [x8, x26, lsl #3]
+ 298  0x1008edb98: mov      x0, x27
+ 299  0x1008edb9c: mov      x1, x28
+ 300  0x1008edba0: mov      x2, x23
+ 301  0x1008edba4: bl       #0x1008fbcd0
+ 302  0x1008edba8: fneg     d1, d0
+ 303  0x1008edbac: cmp      w21, #0
+ 304  0x1008edbb0: fcsel    d0, d1, d0, ne</pre></div></div><details><summary>打开完整材料与测试结果</summary><div class="files"><a href="core-comparison/arm64-core-probe-results.json">core-comparison/arm64-core-probe-results.json</a><br><a href="core-comparison/pre-dir-density.asm">core-comparison/pre-dir-density.asm</a><br><a href="core-comparison/arm64_core_probe.py">core-comparison/arm64_core_probe.py</a></div></details></section><section class="card " id="U06"><span class="badge">U06 · SpektraFilm 原始源码</span><span class="meta">iOS AIR 与原始 Python 对照执行</span><h2>曲线插值：首端点截断覆盖重复点右偏规则</h2><p>对横坐标 [0,0,1,2]、值 [10,20,30,40] 查询 0，iOS 与上游 fast_interp 都返回 10；同一上游文件的 NumPy 插值基线返回 20。内部重复点 [0,1,1,2] 查询 1 时三者都返回 30。</p><p class="result">140 组 / 8400 个通道输出；最大绝对差 4.192071023645383e-07；另含 2 个边界例子</p><p>共同选择是先处理首端点，再进行右偏二分查找，能用四个数字直接复核。</p><div class="comparebox"><div class="compare">10<small>SpektraFilm</small></div><div class="compare">10<small>iOS AIR</small></div><div class="compare">20<small>NumPy 基线</small></div></div><p class="scope">测试范围：采样点数 4/8/17/65，有限、单调可重复坐标；AIR 编译到 Mac CPU，参考端为原始 Python 函数体；float32/FMA 与 float64 有数值精度差异。倒数差值输入按上游预计算规则提供。</p><p class="files">源码定位：utils/fast_interp.py:5–83；基线 85–100<br>iOS 定位：AIR 028 / spk_curves；028.ll:26–39、55–71</p><div class="grid"><div class="codebox"><h4>SpektraFilm 原文：端点和查找顺序</h4><div class="files"><a href="reference-sources/upstream/src/spektrafilm/utils/fast_interp.py">fast_interp.py:71–81</a> · <a href="https://github.com/andreavolpato/spektrafilm/blob/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/utils/fast_interp.py#L71">固定提交原文</a></div><pre>  71              if x &lt;= xa[0]:
+  72                  flat_result[i, c] = y_vals[0, c]
+  73              elif x &gt;= xa[K - 1]:
+  74                  flat_result[i, c] = y_vals[K - 1, c]
+  75              else:
+  76                  idx = np.searchsorted(xa, x, side=&#x27;right&#x27;)
+  77                  low = idx - 1
+  78                  x0 = xa[low]
+  79                  # Use precomputed reciprocal to avoid division in inner loop.
+  80                  t = (x - x0) * inv_dx_val[low]
+  81                  flat_result[i, c] = y_vals[low, c] + t * (y_vals[low + 1, c] - y_vals[low, c])</pre></div><div class="codebox"><h4>iOS 原始 AIR：首端点分支</h4><div class="files"><a href="core-comparison/air-ir/028.ll">028.ll:26–39</a></div><pre>  26    %22 = load float, ptr addrspace(1) %21, align 4, !tbaa !38, !alias.scope !40, !noalias !41
+  27    %23 = zext i32 %18 to i64
+  28    %24 = getelementptr inbounds float, ptr addrspace(1) %1, i64 %23
+  29    %25 = load float, ptr addrspace(1) %24, align 4, !tbaa !38, !alias.scope !42, !noalias !43
+  30    %26 = add nuw nsw i32 %18, -3
+  31    %27 = add i32 %26, %15
+  32    %28 = zext i32 %27 to i64
+  33    %29 = fcmp ult float %25, %22
+  34    br i1 %29, label %33, label %30
+  35  
+  36  30:                                               ; preds = %17
+  37    %31 = getelementptr inbounds float, ptr addrspace(1) %3, i64 %23
+  38    %32 = load float, ptr addrspace(1) %31, align 4, !tbaa !38, !alias.scope !44, !noalias !45
+  39    br label %77</pre></div></div><details><summary>打开完整材料与测试结果</summary><div class="files"><a href="core-comparison/direct-upstream-round2-results.json">core-comparison/direct-upstream-round2-results.json</a><br><a href="core-comparison/air-ir/028.ll">core-comparison/air-ir/028.ll</a><br><a href="core-comparison/air-bitcode/028.bc">core-comparison/air-bitcode/028.bc</a><br><a href="core-comparison/upstream-curves-wrapper.cpp">core-comparison/upstream-curves-wrapper.cpp</a><br><a href="core-comparison/direct_upstream_round2.py">core-comparison/direct_upstream_round2.py</a></div></details></section><section class="card " id="U07"><span class="badge">U07 · SpektraFilm 原始源码</span><span class="meta">完整函数及 knee 执行</span><h2>径向色域压缩：射线交点、阈值与重建</h2><p>共同使用 |denom|&gt;1e-12、t&gt;1e-9、0≤s≤1，选最近有效交点；距白点 &lt;1e-9 原样返回，再做距离归一化、Reinhard knee 压缩、坐标重建。</p><p class="result">624 组；最大绝对差 4.440892098500626e-16</p><p>整条计算路径和多个筛选条件同时对应。</p><p class="scope">测试范围：4 种合成闭合多边形、白点附近及内外坐标、不同 knee 参数。通用 Reinhard 公式单独的来源辨识力较低；本项是完整径向函数而非整个色域 LUT。</p><p class="files">源码定位：utils/gamut_compression.py:283–393<br>iOS 定位：0x1008f39e0–0x1008f3b78；knee 0x1008e66c8–0x1008e6728</p><div class="grid"><div class="codebox"><h4>SpektraFilm 原文：射线交点函数</h4><div class="files"><a href="reference-sources/upstream/src/spektrafilm/utils/gamut_compression.py">gamut_compression.py:307–343</a> · <a href="https://github.com/andreavolpato/spektrafilm/blob/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/utils/gamut_compression.py#L307">固定提交原文</a></div><pre> 307  def _ray_polygon_distance(
+ 308      origin: np.ndarray, direction: np.ndarray, polygon: np.ndarray,
+ 309  ) -&gt; np.ndarray:
+ 310      &quot;&quot;&quot;Distance from ``origin`` along unit ``direction`` to the first
+ 311      intersection with the closed polygon.
+ 312  
+ 313      Vectorized: ``direction`` has shape ``(..., 2)``; the polygon is
+ 314      a single closed loop of shape ``(N+1, 2)`` with the first vertex
+ 315      repeated at the end. Returns shape ``(...)``.
+ 316  
+ 317      Uses the parametric line-segment intersection
+ 318      (origin + t · direction = a + s · (b - a)) with the usual
+ 319      1e-12 epsilon guard for parallel rays. NaN for rays that miss the
+ 320      polygon (should not happen for the visible locus + interior origin).
+ 321      &quot;&quot;&quot;
+ 322      direction = np.asarray(direction, dtype=float)
+ 323      flat = direction.reshape(-1, 2)
+ 324      n_rays = flat.shape[0]
+ 325      t_min = np.full(n_rays, np.inf)
+ 326  
+ 327      a = polygon[:-1]
+ 328      b = polygon[1:]
+ 329      edge = b - a
+ 330  
+ 331      for k in range(len(edge)):
+ 332          ex, ey = edge[k]
+ 333          ax, ay = a[k]
+ 334          dx = flat[:, 0]
+ 335          dy = flat[:, 1]
+ 336          denom = dx * ey - dy * ex
+ 337          valid = np.abs(denom) &gt; 1e-12
+ 338          ox = origin[0] - ax
+ 339          oy = origin[1] - ay
+ 340          # Solve t * d - s * edge = -o  →  t = (o × edge) / (d × edge)
+ 341          t = np.where(
+ 342              valid,
+ 343              (-ox * ey + oy * ex) / np.where(valid, denom, 1.0),</pre></div><div class="codebox"><h4>iOS 原始 ARM64 反汇编节选</h4><div class="files"><a href="core-comparison/gamut-radial.asm">gamut-radial.asm:57–78</a></div><pre>  57  0x1008f3abc: fabs     d17, d6
+  58  0x1008f3ac0: fcmp     d17, d1
+  59  0x1008f3ac4: b.ls     #0x1008f3a98
+  60  0x1008f3ac8: fsub     d4, d13, d4
+  61  0x1008f3acc: fsub     d5, d14, d5
+  62  0x1008f3ad0: fmul     d7, d5, d7
+  63  0x1008f3ad4: fmsub    d7, d4, d16, d7
+  64  0x1008f3ad8: fdiv     d7, d7, d6
+  65  0x1008f3adc: fmul     d5, d12, d5
+  66  0x1008f3ae0: fmsub    d4, d4, d11, d5
+  67  0x1008f3ae4: fdiv     d4, d4, d6
+  68  0x1008f3ae8: fcmp     d7, d2
+  69  0x1008f3aec: cset     w10, gt
+  70  0x1008f3af0: fcmp     d4, #0.0
+  71  0x1008f3af4: cset     w11, ge
+  72  0x1008f3af8: fcmp     d4, d3
+  73  0x1008f3afc: csel     w11, wzr, w11, hi
+  74  0x1008f3b00: and      w10, w10, w11
+  75  0x1008f3b04: fcmp     d7, d15
+  76  0x1008f3b08: cset     w11, mi
+  77  0x1008f3b0c: tst      w10, w11
+  78  0x1008f3b10: fcsel    d15, d7, d15, ne</pre></div></div><details><summary>打开完整材料与测试结果</summary><div class="files"><a href="core-comparison/direct-upstream-round2-results.json">core-comparison/direct-upstream-round2-results.json</a><br><a href="core-comparison/gamut-radial.asm">core-comparison/gamut-radial.asm</a><br><a href="core-comparison/reinhard-knee.asm">core-comparison/reinhard-knee.asm</a><br><a href="core-comparison/direct_upstream_round2.py">core-comparison/direct_upstream_round2.py</a></div></details></section><section class="card " id="U08"><span class="badge">U08 · SpektraFilm 结构 + 桌面版数值基线</span><span class="meta">静态上游核对；执行基线是桌面源码</span><h2>DIR 逐像素校正：上游结构对应、桌面数值对照</h2><p>正片 dmax−cmy、二次高曝光修正 c+=shift*c*c、donor-row/receiver-column 矩阵乘积，与原始 couplers.py 预扩散子计算对应；iOS AIR 与桌面 nodes.metal 也有逐项对应。</p><p class="result">与桌面函数比较：10000 组 / 90000 个通道输出；最大绝对差 0</p><p>验证了真实 AIR 计算，且原始 SpektraFilm 的相应子计算有直接源码定位。</p><p class="scope">测试范围：10,000 组测试的预期值来自 SpektraLab 桌面源码，未在该测试中执行 Andrea 的 Python。未覆盖上游后续空间扩散和最终 log_raw 相减。</p><p class="files">源码定位：model/couplers.py:95–102；桌面 nodes.metal:166–183<br>iOS 定位：AIR 032 / spk_couplers_correction</p><div class="grid"><div class="codebox"><h4>SpektraFilm 原文：校正及后续步骤</h4><div class="files"><a href="reference-sources/upstream/src/spektrafilm/model/couplers.py">couplers.py:95–107</a> · <a href="https://github.com/andreavolpato/spektrafilm/blob/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/model/couplers.py#L95">固定提交原文</a></div><pre>  95      if positive:
+  96          density_silver = density_max - density_cmy
+  97      else:
+  98          density_silver = np.copy(density_cmy)
+  99      density_silver += high_exposure_couplers_shift*density_silver**2
+ 100      # density_silver[..., k] generated in donor layer k contributes to receiver m
+ 101      # through dir_couplers_matrix[k, m].
+ 102      log_raw_correction = contract(&#x27;ijk, km-&gt;ijm&#x27;, density_silver, dir_couplers_matrix)
+ 103      if diffusion_size_pixel&gt;0:
+ 104          log_raw_correction = ( (1-diffusion_exp_tail_weight)*fast_gaussian_filter(log_raw_correction, diffusion_size_pixel)
+ 105                                         + fast_exponential_filter(log_raw_correction, diffusion_tail_size_pixel)*diffusion_exp_tail_weight)
+ 106      log_raw_corrected = log_raw - log_raw_correction
+ 107      return log_raw_corrected</pre></div><div class="codebox"><h4>桌面原文：实际数值比较基线</h4><div class="files"><a href="reference-sources/desktop/engine/src/shaders/nodes.metal">nodes.metal:166–183</a> · <a href="https://github.com/JamesQiu2005/SpektraLab/blob/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/shaders/nodes.metal#L166">固定提交原文</a></div><pre> 166  kernel void spk_couplers_correction(device const float* cmy [[buffer(0)]],
+ 167                                      device const float* m [[buffer(1)]],
+ 168                                      device const float* dmax [[buffer(2)]],
+ 169                                      device const uint* pos [[buffer(3)]],
+ 170                                      device const float* shift [[buffer(4)]],
+ 171                                      device const uint* n [[buffer(5)]],
+ 172                                      device float* out [[buffer(6)]],
+ 173                                      uint3 thread_position_in_grid [[thread_position_in_grid]]) {
+ 174      uint i = thread_position_in_grid.x;
+ 175      if (i &gt;= n[0]) return;
+ 176      float c0 = cmy[3u * i], c1 = cmy[3u * i + 1u], c2 = cmy[3u * i + 2u];
+ 177      if (pos[0] != 0u) { c0 = dmax[0] - c0; c1 = dmax[1] - c1; c2 = dmax[2] - c2; }
+ 178      float sh = shift[0];
+ 179      c0 += sh * c0 * c0; c1 += sh * c1 * c1; c2 += sh * c2 * c2;
+ 180      out[3u * i]      = c0 * m[0] + c1 * m[3] + c2 * m[6];
+ 181      out[3u * i + 1u] = c0 * m[1] + c1 * m[4] + c2 * m[7];
+ 182      out[3u * i + 2u] = c0 * m[2] + c1 * m[5] + c2 * m[8];
+ 183  }</pre></div><div class="codebox"><h4>iOS 原始 AIR：入口及分支</h4><div class="files"><a href="core-comparison/air-ir/032.ll">032.ll:7–26</a></div><pre>   7  define void @spk_couplers_correction(ptr addrspace(1) noundef readonly captures(none) &quot;air-buffer-no-alias&quot; %0, ptr addrspace(1) noundef readonly captures(none) &quot;air-buffer-no-alias&quot; %1, ptr addrspace(1) noundef readonly captures(none) &quot;air-buffer-no-alias&quot; %2, ptr addrspace(1) noundef readonly captures(none) &quot;air-buffer-no-alias&quot; %3, ptr addrspace(1) noundef readonly captures(none) &quot;air-buffer-no-alias&quot; %4, ptr addrspace(1) noundef readonly captures(none) &quot;air-buffer-no-alias&quot; %5, ptr addrspace(1) noundef writeonly captures(none) &quot;air-buffer-no-alias&quot; %6, &lt;3 x i32&gt; noundef %7) local_unnamed_addr #0 {
+   8    %9 = extractelement &lt;3 x i32&gt; %7, i64 0
+   9    %10 = load i32, ptr addrspace(1) %5, align 4, !tbaa !26, !alias.scope !30, !noalias !33
+  10    %11 = icmp ult i32 %9, %10
+  11    br i1 %11, label %12, label %76
+  12  
+  13  12:                                               ; preds = %8
+  14    %13 = mul i32 %9, 3
+  15    %14 = zext i32 %13 to i64
+  16    %15 = getelementptr inbounds float, ptr addrspace(1) %0, i64 %14
+  17    %16 = load float, ptr addrspace(1) %15, align 4, !tbaa !40, !alias.scope !42, !noalias !43
+  18    %17 = add i32 %13, 1
+  19    %18 = zext i32 %17 to i64
+  20    %19 = getelementptr inbounds float, ptr addrspace(1) %0, i64 %18
+  21    %20 = load float, ptr addrspace(1) %19, align 4, !tbaa !40, !alias.scope !42, !noalias !43
+  22    %21 = add i32 %13, 2
+  23    %22 = zext i32 %21 to i64
+  24    %23 = getelementptr inbounds float, ptr addrspace(1) %0, i64 %22
+  25    %24 = load float, ptr addrspace(1) %23, align 4, !tbaa !40, !alias.scope !42, !noalias !43
+  26    %25 = load i32, ptr addrspace(1) %3, align 4, !tbaa !26, !alias.scope !44, !noalias !45</pre></div></div><details><summary>打开完整材料与测试结果</summary><div class="files"><a href="core-comparison/couplers-equivalence-result.json">core-comparison/couplers-equivalence-result.json</a><br><a href="core-comparison/couplers-equivalence.cpp">core-comparison/couplers-equivalence.cpp</a><br><a href="core-comparison/air-ir/032.ll">core-comparison/air-ir/032.ll</a><br><a href="core-comparison/air-bitcode/032.bc">core-comparison/air-bitcode/032.bc</a></div></details></section><section class="card desk" id="D01"><span class="badge">D01 · SpektraLab 桌面工程</span><span class="meta">逐字节文本 + 指令引用</span><h2>工程诊断原句：文档编号、源码路径及实际引用</h2><p>check_math_mode 的 7 个字符串片段在 iOS 中逐字节存在，共 636 个 UTF-8 字节；包含完整 296 字节长诊断、RFC-014 §5.1 trap 1、shaders/util.metal、1.1e-5。相应 CPU 函数确实引用它们。</p><p class="result">7 个自检字符串片段 / 636 字节；另保留早期 14 条桌面长文本命中清单，两份清单有重叠，数量不相加</p><p>这些是工程上下文和诊断措辞，超出胶片物理公式。相比通用数学结果，它们对桌面与 iOS 工程关系的辨识力更强。</p><p class="scope">测试范围：直接归因到桌面工程，未追溯为 Andrea 原文；7 条中包括函数名和诊断片段，不称 7 个独立代码模块。代码引用已定位，未在手机上触发对应错误提示。早期其他文本仅属静态辅助证据。</p><p class="files">源码定位：桌面 engine/src/gpu/metal_gpu.cpp:200–215；其他文字见 15-candidate-code-markers.json<br>iOS 定位：函数 0x100911ba0–0x10091223c；长诊断 0x100b248bd；后缀 0x100b24a04；成功文本 0x100b24abe</p><div class="grid"><div class="codebox"><h4>桌面原文：诊断文本</h4><div class="files"><a href="reference-sources/desktop/engine/src/gpu/metal_gpu.cpp">metal_gpu.cpp:200–215</a> · <a href="https://github.com/JamesQiu2005/SpektraLab/blob/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/gpu/metal_gpu.cpp#L200">固定提交原文</a></div><pre> 200          if (zeros == n) {
+ 201              detail = &quot;the Metal library was compiled with fast math: `a*b - a*b` came back &quot;
+ 202                       &quot;exactly zero for all 64 probes. Rebuild with &quot;
+ 203                       &quot;-fmetal-math-mode=safe -fmetal-math-fp32-functions=precise &quot;
+ 204                       &quot;(RFC-014 §5.1 trap 1: fast math drifts exp and fma contraction by up to &quot;
+ 205                       &quot;1.1e-5, which is past the float32 bar and silent).&quot;;
+ 206              return false;
+ 207          }
+ 208          if (mismatched &gt; 0) {
+ 209              detail = &quot;the fast-math probe returned &quot; + std::to_string(mismatched) +
+ 210                       &quot; of 64 values that match neither zero nor the host&#x27;s fma error term. &quot;
+ 211                       &quot;The toolchain&#x27;s contraction behaviour has changed; re-derive the probe &quot;
+ 212                       &quot;in shaders/util.metal before trusting parity.&quot;;
+ 213              return false;
+ 214          }
+ 215          detail = &quot;safe (probe: fma contraction present, no reassociation)&quot;;</pre></div><div class="codebox"><h4>iOS 原始反汇编：文本引用定位</h4><div class="files"><a href="core-comparison/math-probe-literal-xrefs.asm">math-probe-literal-xrefs.asm:1–24</a></div><pre>   1  0x1009120b0: cmp      x22, #0x40
+   2  0x1009120b4: b.ne     #0x1009120cc
+   3  0x1009120b8: adrp     x1, #0x100b24000
+   4  0x1009120bc: add      x1, x1, #0x8bd
+   5  0x1009120c0: mov      x0, x19
+   6  0x1009120c4: bl       #0x1008e625c
+   7  0x1009120c8: b        #0x100911ff0
+   8  0x1009120cc: cbz      x21, #0x100912158
+   9  0x1009120d0: add      x8, sp, #8
+  10  0x1009120d4: mov      x0, x21
+  11  0x1009120d8: bl       #0x1009796d0
+  12  0x1009120dc: adrp     x0, #0x100b24000
+  13  0x1009120e0: add      x0, x0, #0x9e6
+  14  0x1009120e4: add      x8, sp, #0x20
+  15  0x1009120e8: add      x1, sp, #8
+  16  0x1009120ec: bl       #0x1009161f0
+  17  0x1009120f0: adrp     x1, #0x100b24000
+  18  0x1009120f4: add      x1, x1, #0xa04
+  19  0x1009120f8: add      x8, sp, #0x38
+  20  0x1009120fc: add      x0, sp, #0x20
+  21  0x100912100: bl       #0x100904754
+  22  0x100912158: adrp     x1, #0x100b24000
+  23  0x10091215c: add      x1, x1, #0xabe
+  24  0x100912160: mov      x0, x19</pre></div></div><details><summary>打开完整材料与测试结果</summary><div class="files"><a href="core-comparison/engineering-probe-results.json">core-comparison/engineering-probe-results.json</a><br><a href="core-comparison/math-mode-check.asm">core-comparison/math-mode-check.asm</a><br><a href="core-comparison/math-probe-literal-xrefs.asm">core-comparison/math-probe-literal-xrefs.asm</a><br><a href="15-candidate-code-markers.json">15-candidate-code-markers.json</a></div></details></section><section class="card desk" id="D02"><span class="badge">D02 · SpektraLab 桌面工程</span><span class="meta">CPU 指令 + AIR 执行</span><h2>浮点自检：输入、AIR 算法及零值优先分类</h2><p>64 对输入共同按 a=0.1+0.37*i、b=0.5*a+1 生成；GPU 自检使用乘加融合的舍入误差；结果分类先计零，再比较非零值是否等于期望，导致把一个应非零结果改为 0 后仍通过。</p><p class="result">输入 128 个 float / 512 字节一致；10,000 组随机 + 64 组启动数据输出字节一致；4 组分类器注入结果一致</p><p>输入的具体选取、算法和特殊分类行为成组对应，连接了 D01 的文本与实际执行代码。</p><p class="scope">测试范围：AIR 编译到 Mac CPU；分类器输入为合成注入。未称作手机 GPU 实测或用户已遭遇的故障；也未将该工程自检归给 Andrea。</p><p class="files">源码定位：桌面 metal_gpu.cpp:175–198；util.metal:148–154<br>iOS 定位：输入 0x100911bdc–0x100911c70；分类 0x100911da0–0x100912078；AIR 054</p><div class="grid"><div class="codebox"><h4>桌面原文：自检输入</h4><div class="files"><a href="reference-sources/desktop/engine/src/gpu/metal_gpu.cpp">metal_gpu.cpp:175–180</a> · <a href="https://github.com/JamesQiu2005/SpektraLab/blob/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/gpu/metal_gpu.cpp#L175">固定提交原文</a></div><pre> 175          constexpr size_t n = 64;
+ 176          float in[2 * n];
+ 177          for (size_t i = 0; i &lt; n; ++i) {
+ 178              in[2 * i] = 0.1f + 0.37f * float(i);
+ 179              in[2 * i + 1] = in[2 * i] * 0.5f + 1.0f;
+ 180          }</pre></div><div class="codebox"><h4>桌面原文：分类顺序</h4><div class="files"><a href="reference-sources/desktop/engine/src/gpu/metal_gpu.cpp">metal_gpu.cpp:192–198</a> · <a href="https://github.com/JamesQiu2005/SpektraLab/blob/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/gpu/metal_gpu.cpp#L192">固定提交原文</a></div><pre> 192          size_t zeros = 0, mismatched = 0;
+ 193          for (size_t i = 0; i &lt; n; ++i) {
+ 194              const float a = in[2 * i], b = in[2 * i + 1];
+ 195              const float want = std::fma(a, b, -(a * b));
+ 196              if (got[i] == 0.0f) ++zeros;
+ 197              else if (got[i] != want) ++mismatched;
+ 198          }</pre></div><div class="codebox"><h4>iOS 原始 ARM64 反汇编节选</h4><div class="files"><a href="core-comparison/math-mode-check.asm">math-mode-check.asm:141–149</a></div><pre> 141  0x100911dcc: ldr      s0, [x0, x8]
+ 142  0x100911dd0: fcmp     s0, #0.0
+ 143  0x100911dd4: b.eq     #0x100911db8
+ 144  0x100911dd8: ldp      s1, s2, [x9, #-4]
+ 145  0x100911ddc: fnmul    s3, s2, s1
+ 146  0x100911de0: fmadd    s1, s1, s2, s3
+ 147  0x100911de4: fcmp     s0, s1
+ 148  0x100911de8: b.eq     #0x100911dbc
+ 149  0x100911dec: add      x21, x21, #1</pre></div><div class="codebox"><h4>iOS 原始 AIR：实际浮点自检</h4><div class="files"><a href="core-comparison/air-ir/054.ll">054.ll:7–30</a></div><pre>   7  define void @spk_math_probe(ptr addrspace(1) noundef readonly captures(none) &quot;air-buffer-no-alias&quot; %0, ptr addrspace(1) noundef writeonly captures(none) &quot;air-buffer-no-alias&quot; %1, &lt;3 x i32&gt; noundef %2) local_unnamed_addr #0 {
+   8    %4 = extractelement &lt;3 x i32&gt; %2, i64 0
+   9    %5 = shl i32 %4, 1
+  10    %6 = zext i32 %5 to i64
+  11    %7 = getelementptr inbounds float, ptr addrspace(1) %0, i64 %6
+  12    %8 = load float, ptr addrspace(1) %7, align 4, !tbaa !21, !alias.scope !25, !noalias !28
+  13    %9 = or i32 %5, 1
+  14    %10 = zext i32 %9 to i64
+  15    %11 = getelementptr inbounds float, ptr addrspace(1) %0, i64 %10
+  16    %12 = load float, ptr addrspace(1) %11, align 4, !tbaa !21, !alias.scope !25, !noalias !28
+  17    %13 = fneg float %8
+  18    %14 = fmul float %12, %13
+  19    %15 = tail call float @llvm.fmuladd.f32(float %8, float %12, float %14)
+  20    %16 = zext i32 %4 to i64
+  21    %17 = getelementptr inbounds float, ptr addrspace(1) %1, i64 %16
+  22    store float %15, ptr addrspace(1) %17, align 4, !tbaa !21, !alias.scope !28, !noalias !25
+  23    ret void
+  24  }
+  25  
+  26  ; Function Attrs: nocallback nocreateundeforpoison nofree nosync nounwind speculatable willreturn memory(none)
+  27  declare float @llvm.fmuladd.f32(float, float, float) #1
+  28  
+  29  attributes #0 = { mustprogress nofree nosync nounwind willreturn memory(argmem: readwrite) &quot;frame-pointer&quot;=&quot;all&quot; &quot;min-legal-vector-width&quot;=&quot;96&quot; &quot;no-builtins&quot; &quot;no-trapping-math&quot;=&quot;true&quot; &quot;stack-protector-buffer-size&quot;=&quot;8&quot; }
+  30  attributes #1 = { nocallback nocreateundeforpoison nofree nosync nounwind speculatable willreturn memory(none) }</pre></div></div><details><summary>打开完整材料与测试结果</summary><div class="files"><a href="core-comparison/engineering-probe-results.json">core-comparison/engineering-probe-results.json</a><br><a href="core-comparison/probe_engineering_evidence.py">core-comparison/probe_engineering_evidence.py</a><br><a href="core-comparison/math-probe-reference.cpp">core-comparison/math-probe-reference.cpp</a><br><a href="core-comparison/math-probe-wrapper.cpp">core-comparison/math-probe-wrapper.cpp</a><br><a href="core-comparison/air-bitcode/054.bc">core-comparison/air-bitcode/054.bc</a><br><a href="core-comparison/air-ir/054.ll">core-comparison/air-ir/054.ll</a></div></details></section><section class="card desk" id="D03"><span class="badge">D03 · SpektraLab 桌面工程</span><span class="meta">编译元数据比对</span><h2>34 个内核的参数名及顺序对应</h2><p>已选取的 5 份桌面 shader 源文件中，有 34 个内核在 iOS 恢复库中找到；这 34 组参数名及顺序全部匹配。iOS 库共解析到 58 个 AIR 模块。</p><p class="result">34 / 34 组接口匹配；取代早期 23 组统计，不累加为 57 组</p><p>接口与编译元数据为具体函数核对提供关联索引。</p><p class="scope">测试范围：34 是选定源码范围内的匹配项数，非代码复用比例、非 34 处已验证函数体、非 34 处 Andrea 代码复制结论。</p><p class="files">源码定位：桌面 nodes.metal、grain.metal、blur.metal、scene_latitude.metal、util.metal<br>iOS 定位：core-comparison/air-functions.json 与 air-ir/*.ll 中的参数元数据</p><div class="grid"></div><details><summary>打开完整材料与测试结果</summary><div class="files"><a href="core-comparison/expanded-kernel-name-map.json">core-comparison/expanded-kernel-name-map.json</a><br><a href="core-comparison/air-functions.json">core-comparison/air-functions.json</a><br><a href="core-comparison/implementation-evidence.json">core-comparison/implementation-evidence.json</a></div></details></section><section class="card" id="differences"><h2>差异和未命中项</h2><h3>颗粒实现不同</h3><p>原始 model/grain.py:43–46 先 Poisson 再 Binomial；已核查的 iOS spk_grain_simple / AIR 021 合并为单个 Poisson 率。分布关系与逐步实现相同是两个问题；这项列为差异。</p><p class="files"><a href="reference-sources/upstream/src/spektrafilm/model/grain.py">grain.py</a> · <a href="core-comparison/air-ir/021.ll">021.ll</a></p><h3>原始上游长文本扫描未命中</h3><p>所选 9 份原始 Python 文件中，长度 ≥24 字符的字符串常量，在 iOS 主程序中未找到原文命中；范围仅限这些文件。桌面诊断原句的证据保持桌面归属。</p><p class="files"><a href="core-comparison/direct-upstream-string-scan.json">direct-upstream-string-scan.json</a></p><h3>零值判断存在差异</h3><p>耗尽参数的零值判断，上游存在 np.allclose 判断；已核查桌面/iOS 路径使用精确零判断。正常样本中的数值吻合不意味着全部输入一致。</p><p class="files"><a href="reference-sources/upstream/src/spektrafilm/utils/morph_curves.py">morph_curves.py</a> · <a href="reference-sources/desktop/engine/src/core/curves.cpp">curves.cpp</a></p><h3>未得到重新编译后的指令字节相同</h3><p>曾以 Apple clang 16、-O3、-ffp-contract=fast 重编桌面 logistic，未得到与 iOS 相同的指令序列；iOS 编译器及全部编译参数未对齐。此探索未列入正向证据。</p><p class="files"><a href="core-comparison/desktop-logistic-recompile.cpp">desktop-logistic-recompile.cpp</a></p><h3>内核集合存在差异</h3><p>iOS 有额外移动端颗粒、光晕及数据传输内核；选定桌面版本的 spk_highlight_headroom 未见于恢复库。</p><p class="files"><a href="core-comparison/implementation-evidence.json">implementation-evidence.json</a> · <a href="core-comparison/air-functions.json">air-functions.json</a></p></section><section class="card"><h2>要进一步核实的开发材料</h2><ul><li>与 iOS 1.0.1 / build 202610271810 对应的重写规格中，是否包含 U02 的重复缩放、U03 的整组稳定化阈值、U06 的首端点覆盖规则？请提供对应规格章节与版本。</li><li>桌面工程的 RFC-014、shaders/util.metal、完整英文诊断、自检输入和零值优先分类规则，如何进入 iOS？它们是否包含在传递给实现团队的技术描述中？</li><li>规格生成时使用了哪些源码和版本，规格整理者、实现者各自接触了哪些材料？是否保留提交历史和规格生成记录？</li><li>针对实际使用的代码与资源，另行许可覆盖哪些权利人、版本和分发范围？公司或个人对桌面新增代码的权利，与 Andrea 上游代码的权利应分别说明。</li></ul></section><section class="card" id="reproduce"><h2>复核入口与原始材料</h2><p><a href="00-summary-zh.txt">纯文本总档案</a> · <a href="evidence-index.json">结构化证据索引</a> · <a href="README-zh.txt">阅读及复现说明</a> · <a href="file-manifest.json">文件清单及 SHA-256</a></p><p>该包包含固定源码、许可、iOS 汇编/AIR、复现脚本与已有结果；整份 IPA 和主程序保留在本地原证据目录。CPU 复核需要该相同样本及依赖。此次整理未重复运行已通过的比较测试。</p><details><summary>分轮原报告（历史记录）</summary><p class="scope">以下保留原文，早期计数和解读以本总档案为准。</p><div class="files"><a href="history/17-core-code-comparison-zh.txt">17-core-code-comparison-zh.txt</a><br><a href="history/19-additional-core-evidence-zh.txt">19-additional-core-evidence-zh.txt</a><br><a href="history/21-response-code-exhibits-zh.txt">21-response-code-exhibits-zh.txt</a><br><a href="history/22-direct-upstream-code-evidence-zh.txt">22-direct-upstream-code-evidence-zh.txt</a></div></details></section><footer>公开源代码：Andrea Volpato / SpektraFilm；JamesQiu2005 / SpektraLab。技术注释及材料组织：本次调查整理。原始许可随包保留。</footer></main></body></html>

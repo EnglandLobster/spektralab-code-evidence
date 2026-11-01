@@ -1,0 +1,350 @@
+[
+  {
+    "wrapper_offset": 8804,
+    "bitcode_offset": 8824,
+    "bytes": 3556,
+    "path": "000.bc"
+  },
+  {
+    "wrapper_offset": 12388,
+    "bitcode_offset": 12408,
+    "bytes": 3968,
+    "path": "001.bc"
+  },
+  {
+    "wrapper_offset": 16388,
+    "bitcode_offset": 16408,
+    "bytes": 4300,
+    "path": "002.bc"
+  },
+  {
+    "wrapper_offset": 20708,
+    "bitcode_offset": 20728,
+    "bytes": 4796,
+    "path": "003.bc"
+  },
+  {
+    "wrapper_offset": 25524,
+    "bitcode_offset": 25544,
+    "bytes": 5528,
+    "path": "004.bc"
+  },
+  {
+    "wrapper_offset": 31076,
+    "bitcode_offset": 31096,
+    "bytes": 3876,
+    "path": "005.bc"
+  },
+  {
+    "wrapper_offset": 34980,
+    "bitcode_offset": 35000,
+    "bytes": 6152,
+    "path": "006.bc"
+  },
+  {
+    "wrapper_offset": 41156,
+    "bitcode_offset": 41176,
+    "bytes": 5244,
+    "path": "007.bc"
+  },
+  {
+    "wrapper_offset": 46420,
+    "bitcode_offset": 46440,
+    "bytes": 6576,
+    "path": "008.bc"
+  },
+  {
+    "wrapper_offset": 53028,
+    "bitcode_offset": 53048,
+    "bytes": 8152,
+    "path": "009.bc"
+  },
+  {
+    "wrapper_offset": 61204,
+    "bitcode_offset": 61224,
+    "bytes": 5572,
+    "path": "010.bc"
+  },
+  {
+    "wrapper_offset": 66804,
+    "bitcode_offset": 66824,
+    "bytes": 3948,
+    "path": "011.bc"
+  },
+  {
+    "wrapper_offset": 70772,
+    "bitcode_offset": 70792,
+    "bytes": 4248,
+    "path": "012.bc"
+  },
+  {
+    "wrapper_offset": 75044,
+    "bitcode_offset": 75064,
+    "bytes": 8480,
+    "path": "013.bc"
+  },
+  {
+    "wrapper_offset": 83556,
+    "bitcode_offset": 83576,
+    "bytes": 8132,
+    "path": "014.bc"
+  },
+  {
+    "wrapper_offset": 91716,
+    "bitcode_offset": 91736,
+    "bytes": 7708,
+    "path": "015.bc"
+  },
+  {
+    "wrapper_offset": 99444,
+    "bitcode_offset": 99464,
+    "bytes": 5620,
+    "path": "016.bc"
+  },
+  {
+    "wrapper_offset": 105092,
+    "bitcode_offset": 105112,
+    "bytes": 4364,
+    "path": "017.bc"
+  },
+  {
+    "wrapper_offset": 109476,
+    "bitcode_offset": 109496,
+    "bytes": 6404,
+    "path": "018.bc"
+  },
+  {
+    "wrapper_offset": 115908,
+    "bitcode_offset": 115928,
+    "bytes": 6404,
+    "path": "019.bc"
+  },
+  {
+    "wrapper_offset": 122340,
+    "bitcode_offset": 122360,
+    "bytes": 8060,
+    "path": "020.bc"
+  },
+  {
+    "wrapper_offset": 130420,
+    "bitcode_offset": 130440,
+    "bytes": 7292,
+    "path": "021.bc"
+  },
+  {
+    "wrapper_offset": 137732,
+    "bitcode_offset": 137752,
+    "bytes": 5776,
+    "path": "022.bc"
+  },
+  {
+    "wrapper_offset": 143540,
+    "bitcode_offset": 143560,
+    "bytes": 8036,
+    "path": "023.bc"
+  },
+  {
+    "wrapper_offset": 151604,
+    "bitcode_offset": 151624,
+    "bytes": 4748,
+    "path": "024.bc"
+  },
+  {
+    "wrapper_offset": 156372,
+    "bitcode_offset": 156392,
+    "bytes": 5264,
+    "path": "025.bc"
+  },
+  {
+    "wrapper_offset": 161668,
+    "bitcode_offset": 161688,
+    "bytes": 3732,
+    "path": "026.bc"
+  },
+  {
+    "wrapper_offset": 165428,
+    "bitcode_offset": 165448,
+    "bytes": 3824,
+    "path": "027.bc"
+  },
+  {
+    "wrapper_offset": 169284,
+    "bitcode_offset": 169304,
+    "bytes": 4232,
+    "path": "028.bc"
+  },
+  {
+    "wrapper_offset": 173540,
+    "bitcode_offset": 173560,
+    "bytes": 3908,
+    "path": "029.bc"
+  },
+  {
+    "wrapper_offset": 177476,
+    "bitcode_offset": 177496,
+    "bytes": 4244,
+    "path": "030.bc"
+  },
+  {
+    "wrapper_offset": 181748,
+    "bitcode_offset": 181768,
+    "bytes": 6332,
+    "path": "031.bc"
+  },
+  {
+    "wrapper_offset": 188100,
+    "bitcode_offset": 188120,
+    "bytes": 4452,
+    "path": "032.bc"
+  },
+  {
+    "wrapper_offset": 192580,
+    "bitcode_offset": 192600,
+    "bytes": 4896,
+    "path": "033.bc"
+  },
+  {
+    "wrapper_offset": 197508,
+    "bitcode_offset": 197528,
+    "bytes": 3808,
+    "path": "034.bc"
+  },
+  {
+    "wrapper_offset": 201348,
+    "bitcode_offset": 201368,
+    "bytes": 4336,
+    "path": "035.bc"
+  },
+  {
+    "wrapper_offset": 205716,
+    "bitcode_offset": 205736,
+    "bytes": 5084,
+    "path": "036.bc"
+  },
+  {
+    "wrapper_offset": 210820,
+    "bitcode_offset": 210840,
+    "bytes": 5592,
+    "path": "037.bc"
+  },
+  {
+    "wrapper_offset": 216436,
+    "bitcode_offset": 216456,
+    "bytes": 3848,
+    "path": "038.bc"
+  },
+  {
+    "wrapper_offset": 220308,
+    "bitcode_offset": 220328,
+    "bytes": 4840,
+    "path": "039.bc"
+  },
+  {
+    "wrapper_offset": 225172,
+    "bitcode_offset": 225192,
+    "bytes": 6500,
+    "path": "040.bc"
+  },
+  {
+    "wrapper_offset": 231700,
+    "bitcode_offset": 231720,
+    "bytes": 11020,
+    "path": "041.bc"
+  },
+  {
+    "wrapper_offset": 242740,
+    "bitcode_offset": 242760,
+    "bytes": 3948,
+    "path": "042.bc"
+  },
+  {
+    "wrapper_offset": 246708,
+    "bitcode_offset": 246728,
+    "bytes": 4172,
+    "path": "043.bc"
+  },
+  {
+    "wrapper_offset": 250900,
+    "bitcode_offset": 250920,
+    "bytes": 8384,
+    "path": "044.bc"
+  },
+  {
+    "wrapper_offset": 259316,
+    "bitcode_offset": 259336,
+    "bytes": 10332,
+    "path": "045.bc"
+  },
+  {
+    "wrapper_offset": 269668,
+    "bitcode_offset": 269688,
+    "bytes": 5520,
+    "path": "046.bc"
+  },
+  {
+    "wrapper_offset": 275220,
+    "bitcode_offset": 275240,
+    "bytes": 3488,
+    "path": "047.bc"
+  },
+  {
+    "wrapper_offset": 278740,
+    "bitcode_offset": 278760,
+    "bytes": 3744,
+    "path": "048.bc"
+  },
+  {
+    "wrapper_offset": 282516,
+    "bitcode_offset": 282536,
+    "bytes": 3504,
+    "path": "049.bc"
+  },
+  {
+    "wrapper_offset": 286052,
+    "bitcode_offset": 286072,
+    "bytes": 3780,
+    "path": "050.bc"
+  },
+  {
+    "wrapper_offset": 289860,
+    "bitcode_offset": 289880,
+    "bytes": 4252,
+    "path": "051.bc"
+  },
+  {
+    "wrapper_offset": 294132,
+    "bitcode_offset": 294152,
+    "bytes": 4260,
+    "path": "052.bc"
+  },
+  {
+    "wrapper_offset": 298420,
+    "bitcode_offset": 298440,
+    "bytes": 3900,
+    "path": "053.bc"
+  },
+  {
+    "wrapper_offset": 302340,
+    "bitcode_offset": 302360,
+    "bytes": 3360,
+    "path": "054.bc"
+  },
+  {
+    "wrapper_offset": 305732,
+    "bitcode_offset": 305752,
+    "bytes": 3556,
+    "path": "055.bc"
+  },
+  {
+    "wrapper_offset": 309316,
+    "bitcode_offset": 309336,
+    "bytes": 4996,
+    "path": "056.bc"
+  },
+  {
+    "wrapper_offset": 314340,
+    "bitcode_offset": 314360,
+    "bytes": 3812,
+    "path": "057.bc"
+  }
+]

@@ -1,0 +1,118 @@
+针对 2026-10-29 SpektraLab iOS 说明的代码核对
+日期：2026-10-29
+
+本轮重点
+
+用户提供的说明第1页称：用 AI 分析开源实现的数学模型、算法逻辑和边界条件，整理为技术描述，再由独立团队实现；第2页称当前版本未直接集成桌面端源码。现有附件为标记 01/04、02/04、03/04 的三页，不推测未提供的第4页。
+
+据此调整证据解读：前次的输出吻合、阈值相同和特殊边界行为，也可能通过详细规格传递；这些证据继续用于标记共同实现细节，但不单独作为历史复制过程的定论。本轮增加对摄影数学模型之外的工程自检、诊断文本与编译元数据的核对。
+
+核心新结果
+
+1. 桌面工程自检函数 check_math_mode 中的7个字符串片段，在 iOS 主程序中逐字节存在，共636个 UTF-8 字节，包含296字节的长诊断全文。共同保留 RFC-014 §5.1 trap 1、1.1e-5 和 shaders/util.metal 等工程上下文。
+2. 对应 iOS CPU 函数 0x100911ba0–0x10091223c 的指令确实引用了这些文本，并有相应的输入生成、GPU核函数调用和结果分类结构。这里确认的是代码引用关系，未在手机上触发该诊断。
+3. iOS 输入生成指令块 0x100911bdc–0x100911c70 生成的64对、128个float，与固定版本桌面源码编译生成的数据512字节全部相同。
+4. iOS 恢复出的 spk_math_probe AIR 与桌面 util.metal 中对应核函数，编译到同一台 Mac CPU 后，对10000组随机输入及64组自检输入，输出字节全部相同。此项不是手机GPU实测。
+5. iOS 自检分类器与桌面源码，在四组注入的合成结果上，零值/错误计数及接受结果一致：全零拒绝；原始自检数据接受（其中有2个自然零值）；一个错误非零值拒绝；把一个应非零值改为零后接受（零值计数由2变3，错误计数仍为0）。这是代码分类策略的复现，不称为正常使用中已出现的故障。
+6. 扩展到 util.metal 后，在已选取的5个桌面shader源文件中找到34个对应iOS核函数；34组参数名和顺序均一致。该计数只描述这些匹配项，不表示34项已分别追溯到 Andrea 的原始源码。
+
+为什么这组新结果值得回应
+
+本轮对象是编译模式检测和工程诊断，作用是检查浮点编译选项，包含文档编号、源码路径、诊断措辞和自检数据的具体选取。它们不属于胶片密度或光谱模型本身。若开发流程只通过技术描述传递信息，应当说明描述是否也包含上述工程自检及逐字诊断文本，以及相应规格与实现的版本记录。
+
+本轮新证据直接对应的是 JamesQiu2005/SpektraLab 桌面工程。其许可说明把应用和C++引擎标为GPL-3.0-or-later，但该工程各段代码的权利归属需与 Andrea/SpektraFilm 上游区分。原作者上游的实现链条仍以此前 morph_curves.py、couplers.py、spectral_upsampling.py 的逐项对比为准。不得把桌面工程新发现的诊断文字写成“已确认来自Andrea”。
+
+样本
+
+SpektraLab iOS 1.0.1，build 202610271810。
+解密主程序SHA256：62c0343b402acbc35eaefc17108baf1c94336d62ee92ada656c7550603d7acff。
+桌面源码固定commit：fd891c6bc5eb350387602deb5c1ef9b6dcdab948。
+上游源码固定commit：3bb2c2d2801ff68b92019cf1dbcbb133d60832bc。
+
+可以直接贴出的代码A：桌面自检数据选择，原文节选
+
+出处：engine/src/gpu/metal_gpu.cpp:175–180
+https://github.com/JamesQiu2005/SpektraLab/blob/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/gpu/metal_gpu.cpp#L175
+
+        constexpr size_t n = 64;
+        float in[2 * n];
+        for (size_t i = 0; i < n; ++i) {
+            in[2 * i] = 0.1f + 0.37f * float(i);
+            in[2 * i + 1] = in[2 * i] * 0.5f + 1.0f;
+        }
+
+iOS对应输入块已通过Unicorn实际执行，128个float的原始字节全部相同。相关指令见材料包 B1-ios-host-math-mode-check.asm 的 0x100911bdc–0x100911c70。参数0.1f/0.37f/0.5f/1.0f、64对数据的选择同时对应。
+
+可以直接贴出的代码B：桌面GPU自检与iOS AIR原文
+
+桌面出处：engine/src/shaders/util.metal:148–154
+https://github.com/JamesQiu2005/SpektraLab/blob/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/shaders/util.metal#L148
+
+kernel void spk_math_probe(device const float* in [[buffer(0)]],
+                           device float* out [[buffer(1)]],
+                           uint3 thread_position_in_grid [[thread_position_in_grid]]) {
+    uint i = thread_position_in_grid.x;
+    float a = in[2u * i], b = in[2u * i + 1u];
+    out[i] = a * b - a * b;
+}
+
+iOS原始AIR节选（%8/%12是前面加载的两个float；这句说明是分析者注释，不是恢复出的变量名）：
+
+  %13 = fneg float %8
+  %14 = fmul float %12, %13
+  %15 = tail call float @llvm.fmuladd.f32(float %8, float %12, float %14)
+  %16 = zext i32 %4 to i64
+  %17 = getelementptr inbounds float, ptr addrspace(1) %1, i64 %16
+  store float %15, ptr addrspace(1) %17, align 4, !tbaa !21, !alias.scope !28, !noalias !25
+
+上面是实存IR，未把人工写的C++伪代码冒充iOS源码。该计算因一次乘加融合而保留乘法舍入误差，是自检所测内容。完整IR包括函数名和参数元数据，见材料包 B2-ios-math-probe.ll。
+
+可以直接贴出的代码C：同样的分类次序与特殊行为
+
+桌面出处：engine/src/gpu/metal_gpu.cpp:192–198（原文节选）
+
+        size_t zeros = 0, mismatched = 0;
+        for (size_t i = 0; i < n; ++i) {
+            const float a = in[2 * i], b = in[2 * i + 1];
+            const float want = std::fma(a, b, -(a * b));
+            if (got[i] == 0.0f) ++zeros;
+            else if (got[i] != want) ++mismatched;
+        }
+
+iOS原始反汇编节选：
+
+0x100911dcc: ldr      s0, [x0, x8]
+0x100911dd0: fcmp     s0, #0.0
+0x100911dd4: b.eq     #0x100911db8
+0x100911dd8: ldp      s1, s2, [x9, #-4]
+0x100911ddc: fnmul    s3, s2, s1
+0x100911de0: fmadd    s1, s1, s2, s3
+0x100911de4: fcmp     s0, s1
+0x100911de8: b.eq     #0x100911dbc
+0x100911dec: add      x21, x21, #1
+
+目标0x100911db8的指令为 add x22,x22,#1，即零值计数。这与桌面“先判断是否0；只有非0才检查want”的顺序相符。全部64个为0才走失败分支，因此单个错误地变0的结果会被这项检查放过。该特殊行为已执行验证，四组结果列在 engineering-probe-results.json。
+
+可以直接贴出的文本D：工程诊断中的上下文
+
+从296字节长诊断中，直接匹配：RFC-014 §5.1 trap 1。
+从185字节诊断后缀中，直接匹配：shaders/util.metal before trusting parity.
+55字节成功诊断全文：safe (probe: fma contraction present, no reassociation)
+
+三段所在iOS首选虚拟地址分别涉及 0x100b248bd、0x100b24a04、0x100b24abe；对应实际分支引用指令见 B3-ios-diagnostic-xrefs.asm。材料包 C-diagnostics.json 含完整字符串、长度、文件偏移与地址，供逐字节核对。
+
+表达与复核要求
+
+“确认存在同样的工程自检实现细节与诊断文本”是已验证观察。
+“共同工程实现谱系”是基于这些观察的推断；“谁复制了哪份源码”“是否具有另行授权”需要开发与权利材料。
+对外最有针对性的追问：你提供给独立团队的技术描述里，是否包含RFC编号、源码路径、自检输入生成公式、上述英文诊断原句和零值优先的分类规则？这些内容如何进入我们取得的iOS 1.0.1（build 202610271810）样本？并请注明本次声明具体对应哪个版本和build。
+
+复现入口
+
+core-comparison/probe_engineering_evidence.py
+环境：此前取证Python环境，依赖NumPy、Capstone、Unicorn；Mac Command Line Tools用于编译AIR及桌面节选。
+结果：core-comparison/engineering-probe-results.json。
+参数名扩展核对：core-comparison/expanded-kernel-name-map.json。
+材料包中的iOS汇编和IR均源自既有解密样本；包中不放IPA或整个App主程序。
+
+本轮仅本地整理，未向开发者、GitHub、Apple或社交平台发出新消息。

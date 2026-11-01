@@ -1,0 +1,53 @@
+SpektraLab iOS 核心代码比对结果
+日期：2026-10-29
+
+判断
+已发现核心程序实现层面的实质对应。技术证据高度支持 SpektraLab iOS 1.0.1 沿用了公开 GPL 引擎的实现谱系，范围超出胶片特性文件、函数名称和相同物理公式。所谓“全部独立净室重写”的说法，需要解释以下具体对应关系。
+本报告没有裁定版权侵权，也没有取得开发者与相关版权人之间的授权文件。技术上的实现继承与法律上的授权是否充分，分别判断。
+
+样本与参照
+iOS：1.0.1，构建 202610271810；对应主程序 SHA-256：62c0343b402acbc35eaefc17108baf1c94336d62ee92ada656c7550603d7acff。照片中的 1.0 与本次版本不同。
+桌面源码：JamesQiu2005/SpektraLab，提交 fd891c6bc5eb350387602deb5c1ef9b6dcdab948。该版本随附许可说明将应用及 C++ 渲染引擎列为 GPL-3.0-or-later；引用源已保存在 reference-sources/desktop。
+上游源码：andreavolpato/spektrafilm，提交 3bb2c2d2801ff68b92019cf1dbcbb133d60832bc；GPL 许可及源码已保存在 reference-sources/upstream。
+
+证据一：显影耗尽补偿的 CPU 实现
+上游 src/spektrafilm/utils/morph_curves.py 第 152–203 行的 _developer_exhaustion_center_offset，与桌面 engine/src/core/curves.cpp 第 220–248 行，以及 iOS 地址 0x1008edf64–0x1008eec84 内的一段控制流对应。
+桌面 curves.hpp 明确将该模块称为上游 model/density_curves.py、model/couplers.py、utils/morph_curves.py 的移植。
+iOS 同一函数含有三条桌面曲线模块的相同诊断文本，并具有一致的参数检查和曲线模型处理。
+关键实现选择逐项对应：先算零曝光目标密度，建立偏移残差；abs(residual(0)) 与 1e-12 比较；初始区间 [-0.25,+0.25]；依次检查两端是否恰为零、两端残差是否异号；最多进行 12 次尝试；每次区间两端同时乘 2；进入 Brent 求根。
+具体 ARM64 地址：0x1008ee664–0x1008ee680 为零点残差检查；0x1008ee684/688/68c 为 -0.25/+0.25/12；0x1008ee6ac–0x1008ee6d8 为端点检查、符号检查、双倍扩展和循环计数。
+iOS 内联求根实现中使用 5e-11，即桌面传入 xtol=1e-10 的半值；另有 200 次迭代预算。阈值常量读取地址及反汇编见 implementation-evidence.json 和 print-curves-morph.asm。
+主程序在 0x100962640 调用了该函数；调用方起始地址为 0x1009615fc。
+这组经验阈值、重试次数、区间选择、分支顺序、求根器和诊断文本的共同出现，比“同一物理模型”更具体，构成实现继承的重要证据。
+
+证据二：真实着色器库与耦合剂校正
+已依据 iOS 自己的加载函数解析 kernels.bin。算法是两组 32 字节常量异或得到种子材料，经 FNV-1a-64 和 SplitMix64 字节流还原。独立 Python 实现与 Unicorn 执行 App 原始 ARM64 解码指令，输出逐字节相同。
+恢复的文件是 MTLB Metal 库，包含 58 个 AIR 内核模块；其中模块 032 为 spk_couplers_correction。
+桌面 engine/src/shaders/nodes.metal 第 166–183 行与恢复 IR 的计算对应：取三通道密度；正片时取 dmax-cmy；施加 c+=shift*c*c；以 [0,3,6]、[1,4,7]、[2,5,8] 顺序读取矩阵；输出三个通道；相同的越界提前返回。参数名及缓冲区顺序 cmy,m,dmax,pos,shift,n,out 也一致。
+实际可执行检查：直接编译恢复的 032.bc，并从桌面源文件自动抽取该函数，仅去掉 Metal 存储限定符和绑定属性，编译到同一个 Mac CPU 后端。10,000 组随机输入，覆盖正片/负片与越界线程；90,000 个通道结果最大绝对差值为 0。
+该检查验证抽取函数的采样语义一致，不作为整个 GPU 流水线逐位一致或历史复制行为的单独判据。原始 IR、测试源和输出均已保存。
+
+证据三：多个内核的一致接口和可见差异
+选取的 4 个桌面着色器源文件中，23 个内核存在于 iOS 恢复库中；这 23 个内核的全部参数名和顺序均与桌面源码相同。对照记录见 implementation-evidence.json。
+这些接口证据用于支持前两项实现比对，未将函数名相同直接等同于侵权。
+iOS 也包含额外的移动端颗粒、光晕和数据传输内核；所选桌面版本的 spk_highlight_headroom 未出现在恢复库中。因此本报告没有声称 iOS 与桌面整个引擎完全相同，也没有计算所谓复用百分比。
+
+结论的实际含义
+现有材料足以向开发者提出具体的代码来源与授权核查，重点应放在显影耗尽补偿、耦合剂校正及相应移植链。单称“净室重写”尚未解释这些实现对应关系。
+若开发者确实取得相关版权人的另行许可，需要进一步核对许可所覆盖的代码、贡献者及分发范围。
+本轮未向 GitHub issue、Apple 或开发者发送任何新消息。
+
+复核入口
+core-comparison/kernel-recovery.json：恢复算法、二进制地址和校验值。
+core-comparison/recover_kernels.py：复现恢复与 ARM64 独立执行核验。
+core-comparison/air-functions.json、air-ir/032.ll：内核清单与耦合剂函数实际 IR。
+core-comparison/couplers-equivalence.cpp、couplers-equivalence-result.json：实际函数语义比对。
+core-comparison/print-curves-morph.asm：CPU 曲线函数反汇编。
+core-comparison/implementation-evidence.json：源码、地址、常量与接口对应。
+
+源码链接
+https://github.com/andreavolpato/spektrafilm/blob/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/utils/morph_curves.py#L152
+https://github.com/JamesQiu2005/SpektraLab/blob/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/core/curves.cpp#L220
+https://github.com/JamesQiu2005/SpektraLab/blob/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/core/curves.hpp#L3
+https://github.com/JamesQiu2005/SpektraLab/blob/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/shaders/nodes.metal#L166
+https://github.com/JamesQiu2005/SpektraLab/blob/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/modern_UI/Spektrafilm/Spektrafilm/Resources/Licenses/README.txt#L8

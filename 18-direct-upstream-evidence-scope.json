@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-29",
+  "sample": "iOS 1.0.1 build 202610271810",
+  "direct_upstream_cases": [
+    {
+      "name": "Developer exhaustion center-offset compensation",
+      "upstream": "src/spektrafilm/utils/morph_curves.py:152-203",
+      "desktop": "engine/src/core/curves.cpp:220-248",
+      "ios": "0x1008edf64-0x1008eec84; decision sequence at 0x1008ee664-0x1008ee6d8",
+      "strength": "Strong source-lineage inference from the combination of implementation heuristics, decision ordering and identical desktop diagnostics; not a historical source-copy trace.",
+      "matched_choices": [
+        "zero-exposure target density and offset residual",
+        "1e-12 residual threshold",
+        "initial bracket -0.25,+0.25",
+        "12 bracket attempts",
+        "endpoint-zero checks before sign-change check",
+        "both bracket endpoints doubled",
+        "Brent tolerance 1e-10 represented by half-tolerance 5e-11 in inlined desktop/iOS solver"
+      ]
+    },
+    {
+      "name": "DIR coupler pre-diffusion exposure correction",
+      "upstream": "src/spektrafilm/model/couplers.py:95-102",
+      "desktop": "engine/src/shaders/nodes.metal:166-183",
+      "ios": "core-comparison/air-ir/032.ll:7-100",
+      "strength": "Confirmed semantic correspondence of this sub-computation. Generic mathematical operations make it weaker standalone evidence of historical copying than the developer-exhaustion case.",
+      "matched_choices": [
+        "positive-film density_max-density_cmy branch",
+        "density += high_exposure_shift*density*density",
+        "donor-row receiver-column matrix multiply"
+      ],
+      "scope_not_tested": "This case does not verify the upstream spatial diffusion and final log_raw subtraction at lines 103-107.",
+      "executable_test_scope": "10000 cases, 90000 channel outputs and zero maximum difference compare recovered iOS AIR against the desktop source function; upstream Python was not executed by that test."
+    }
+  ],
+  "supporting_only": [
+    "23 selected desktop kernel parameter-name/order matches",
+    "14 matching long desktop C++ diagnostic strings",
+    "desktop Hanatos header states it ports upstream spectral upsampling, but corresponding iOS function body has not been independently compared here"
+  ],
+  "not_claimed": [
+    "23 independent proven copies from SpektraFilm",
+    "whole-engine byte identity or reuse percentage",
+    "final copyright infringement determination",
+    "absence of a separate license"
+  ]
+}

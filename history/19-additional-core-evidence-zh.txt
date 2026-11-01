@@ -1,0 +1,108 @@
+SpektraLab iOS 与 SpektraFilm 核心实现：新增可复现证据
+调查日期：2026-10-29
+
+结论
+
+新增四项已验证的实现对应。其中，“同一层被重复缩放”的边界行为和 locked_logistic_rising 的整组稳定化分支最有区分力。结合此前的显影耗竭求根路径、桌面 GPL C++ 移植说明和 iOS 中相同诊断文本，部分核心实现沿用同一实现谱系的推断进一步增强。
+
+确认的是：从 App Store 获取的 iOS 1.0.1 内，实际 ARM64 代码具有下述行为，且与固定版本上游代码相符。“历史上复制了哪个文件、谁接触过源代码、是否有独立授权”仍需开发记录或权利人材料。净室流程是否成立，应针对这些具体实现细节作解释。
+
+样本与参照
+
+样本：SpektraLab iOS 1.0.1，build 202610271810。
+解密主程序 SHA-256：62c0343b402acbc35eaefc17108baf1c94336d62ee92ada656c7550603d7acff
+上游：andreavolpato/spektrafilm，commit 3bb2c2d2801ff68b92019cf1dbcbb133d60832bc。
+桌面：JamesQiu2005/SpektraLab，commit fd891c6bc5eb350387602deb5c1ef9b6dcdab948。
+上游及桌面许可、原始 IPA 及解密过程参见本目录 05、06、12、14、17、18 号记录。
+
+方法
+
+用 Unicorn 执行提取出的 iOS ARM64 指令。只替换外部 libm/libc 和 new/delete：exp、exp2、log、log1p、expm1、erf/erfc、内存分配、复制、清零等；模型算法、向量管理、排序、nanmax、插值均运行原二进制代码。
+参照端从固定上游文件中提取原函数 AST 执行，不手写一份“预期算法”代替上游。使用 NumPy；DIR 函数的 contract 映射为 numpy.einsum。测试脚本不访问手机，不安装或修改被测 App。
+
+一、相同的层索引重叠与重复缩放——强实现指纹
+
+上游：utils/morph_curves.py:133–137、206–242。
+https://github.com/andreavolpato/spektrafilm/blob/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/utils/morph_curves.py#L133
+桌面：engine/src/core/curves.cpp:198–218 附近的排序与三次 scale 调用。
+iOS：函数入口 0x1008edf64；排序后的索引读取 0x1008ee408–0x1008ee414；依次原地缩放 0x1008ee448–0x1008ee4b0。
+
+两端都排序选取 order[0]、order[n//2]、order[-1]，随后按快、中、慢依次原地修改同一组 centers/sigmas。两层输入时，中层和慢层的索引相同，同一层因此连续除以 gamma 两次；一层时三个索引相同。
+
+具体复现：centers=[-1,1]，sigmas=[0.4,0.4]，global gamma=2，其他 gamma=1，exhaustion=0。
+上游和 iOS 都得到 centers=[-0.5,0.25]，sigmas=[0.2,0.1]。
+单次逐层缩放会得到第二个 center=0.5、sigma=0.2，实际两端都出现了重复缩放。
+
+覆盖 1/2/3/4/5 层、随机层顺序及 gamma 的 200 组测试，修改后的 centers 和 sigmas 最大绝对差=0。
+本测试从完整 iOS 函数入口执行，在第三次 scale 之后读取实际内存；参照端执行原 _morph_channel_params，exhaustion=0 走原提前返回分支。
+
+意义：共同的边界行为比正常输入下效果相似更能辨认实现关系。这里使用合成输入辨认实现，尚未检查上架配置是否实际使用一层或两层；不把它写成已复现的用户可见故障。
+
+二、locked_logistic_rising 数值稳定化路径——强组合证据
+
+上游：utils/spectral_upsampling.py:192–212。
+https://github.com/andreavolpato/spektrafilm/blob/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/utils/spectral_upsampling.py#L192
+桌面：engine/src/core/hanatos.cpp:39–51。
+iOS：0x1008f5754–0x1008f5864；由光谱窗口计算函数在 0x1008f42e8 等位置调用。
+
+匹配细节：
+  1. nu 最小值 1e-5。
+  2. 最大斜率用 sigma*sqrt(2*pi) 标定。
+  3. 指数截断到 [-500,+500]。
+  4. 使用 nu*log(2)，在 50 处分支。
+  5. 大值分支使用 nu_log2 + log1p(-exp(-nu_log2))。
+  6. 小值分支使用 log(expm1(nu_log2))。
+  7. 之后按 t 正负拆分稳定的 logaddexp(0,t) 计算。
+
+iOS 常量实读：0x1009b3350=1e-5，0x1009c1998=2.5066282746310007，0x1009c19a0=0.6931471805599453；±500 和 50 在指令中构造。
+2028 组测试对比原上游 NumPy 函数，最大绝对差=3.530509218307998e-14。
+指令观察确认 nu_log2>50 / <=50 两分支分别执行 141 / 1887 次；t>0 / <=0 两分支分别执行 838 / 1190 次。
+
+静态调用端同时匹配 4 参数 erf 窗口与 8 参数 logiflex 窗口；后者 cuv=[base,base,b]，cir=[r,base,base]，各通道 UV 边缘乘以 (1-IR 边缘)。调用端反汇编见 hanatos-weights.asm。完整窗口函数本次只作静态核对，数值测试覆盖其 logistic 子函数。
+
+意义：logistic 数学形式本身通用，但同一处采用上述整组阈值、稳定化公式及分支结构，对实现谱系的辨识力明显高于一个公式或函数名。
+
+三、四阶曝光补偿曲面——已验证计算块，高概率组合证据
+
+上游：utils/spectral_upsampling.py:169–189、235–245。
+https://github.com/andreavolpato/spektrafilm/blob/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/utils/spectral_upsampling.py#L174
+桌面：engine/src/core/hanatos.cpp:22–34，以及 build_tc_lut 的 adaptation_surface 分支。
+iOS：0x1008f4be8–0x1008f4c8c（不含终点）。
+
+均保留 15 个参数的位置，但忽略 p0；按同样的 14 项顺序组合 x、y、x²、y²、xy、x³、y³、x²y、xy²、x⁴、y⁴、x³y、x²y²、xy³。
+随后同样用 z/sqrt(1+(z/2)²) 把曝光修正限制在 ±2 stops，最后取 2 的该修正次幂。
+1500 组随机坐标和系数测试，最大绝对差=1.9984014443252818e-15；p0 特意取大随机值，验证它确实被忽略。
+
+范围：执行的是内联后的首通道多项式、sigmoid、exp2 指令块。其循环内的 x、x²、x³、x⁴ 和 y 作为入块寄存器状态显式设置；未把它写成完整 Hanatos LUT 构建的端到端测试。
+参数排列也可能受 profile 格式约束，因此此项与第二项、调用路径及此前的曲线模型证据合并评价。
+
+四、DIR 密度曲线反推——完整 CPU 函数验证
+
+上游：model/couplers.py:8–38。
+https://github.com/andreavolpato/spektrafilm/blob/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/model/couplers.py#L8
+桌面：engine/src/core/curves.cpp:128–165。
+iOS：0x1008ed6f8–0x1008edf64；实际 nanmax helper 为 0x1008fbc40，interp helper 为 0x1008fbcd0。
+
+流程对应：positive 分支先逐通道取 dmax-curves；按 donor-row/receiver-column 矩阵计算抑制量；从 log_exposure 中减去；再按通道插值。
+positive 分支同样保留插值前对 curves 取负、插值后再取负的写法；相应 iOS 指令在 0x1008edb68–0x1008edbb0 等位置。这个双重取负对通常有限输入的线性插值是代数冗余的，保留它是额外实现对应细节。
+168 组正负片与不同曲线长度测试，19296 个通道输出，最大绝对差=4.440892098500626e-16。
+本次运行完整 iOS 函数及其真实插值/最大值 helper；输入为有限、单调曲线。与此前 AIR 中的 couplers_correction 是两个不同阶段，不重复计为同一核函数的新测试。
+
+证据强度与实际待查问题
+
+已确认：上述实际二进制行为、地址、参照代码与数值结果；它们位于计算实现中。
+高概率判断：这些实现与上游及桌面 GPL 移植代码具有共同实现谱系。“完全独立净室重写”的解释需要说明为何会保留相同的特殊阈值组合、索引重叠行为和冗余运算。
+待查：净室输入规格、规格编写者与实现者的源码接触范围、实现时间线和版本记录，以及是否另有权利人授权。输出一致本身不等于历史复制事件，独立实现也可以按规格复现行为。
+范围差异：iOS、桌面 C++ 和上游 Python 并非处处一致。例如此前 exhaustion 的零值判断，上游用 np.allclose，桌面/iOS 的相关路径用精确零判断；不采用“整个引擎逐字节相同”或“所有功能均复制”的表述。
+探索记录：用本机 Apple clang 16 -O3 -ffp-contract=fast 重编译桌面 logistic 函数，未得到与 iOS 相同的指令序列；未对齐 iOS 编译器和完整选项，本项不作为字节相同的证据。源码、目标文件保存在 core-comparison/desktop-logistic-recompile.*。
+
+复现与材料位置
+
+脚本：core-comparison/arm64_core_probe.py
+命令：python3 core-comparison/arm64_core_probe.py
+应从本证据目录运行；脚本按自身位置查找输入文件。
+结果：core-comparison/arm64-core-probe-results.json
+反汇编：core-comparison/locked-logistic.asm、hanatos-weights.asm、hanatos-build.asm、pre-dir-density.asm、print-curves-morph.asm。
+前次证据：17-core-code-comparison-zh.txt、18-direct-upstream-evidence-scope.json。
+
+以上脚本和结果供复核使用；本次没有向开发者、上游仓库或 Apple 发送新消息。

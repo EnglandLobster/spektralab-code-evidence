@@ -1,0 +1,116 @@
+{
+  "sample": "SpektraLab iOS 1.0.1 build 202610271810",
+  "binary_sha256": "62c0343b402acbc35eaefc17108baf1c94336d62ee92ada656c7550603d7acff",
+  "reference_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+  "ios_host_function": [
+    "0x100911ba0",
+    "0x10091223c"
+  ],
+  "host_input_generator": {
+    "ios_block": [
+      "0x100911bdc",
+      "0x100911c70"
+    ],
+    "pairs": 64,
+    "all_128_input_float_bytes_equal": true,
+    "desktop_source": "engine/src/gpu/metal_gpu.cpp:175-180"
+  },
+  "gpu_probe": {
+    "ios_air": "air-ir/054.ll",
+    "desktop_source": "engine/src/shaders/util.metal:148-154",
+    "random_pairs": 10000,
+    "startup_pairs": 64,
+    "output_bytes_all_equal": true,
+    "scope": "Recovered AIR compiled for Mac CPU against desktop source with only Metal qualifiers/attributes removed; not an on-device GPU test."
+  },
+  "ios_classifier": {
+    "block": [
+      "0x100911da0",
+      "0x100912078"
+    ],
+    "injected_test_results": [
+      {
+        "case": "all_zero",
+        "zero_count": 64,
+        "mismatched_count": 0,
+        "desktop_counts_equal": true,
+        "classifier_accepts": false
+      },
+      {
+        "case": "actual_probe",
+        "zero_count": 2,
+        "mismatched_count": 0,
+        "desktop_counts_equal": true,
+        "classifier_accepts": true
+      },
+      {
+        "case": "one_wrong",
+        "zero_count": 2,
+        "mismatched_count": 1,
+        "desktop_counts_equal": true,
+        "classifier_accepts": false
+      },
+      {
+        "case": "one_nonzero_replaced_with_zero",
+        "zero_count": 3,
+        "mismatched_count": 0,
+        "desktop_counts_equal": true,
+        "classifier_accepts": true
+      }
+    ]
+  },
+  "diagnostics": [
+    {
+      "text": "math probe could not allocate: ",
+      "utf8_bytes": 31,
+      "present_in_ios": true,
+      "file_offset": "0xb24873",
+      "preferred_va": "0x100b24873"
+    },
+    {
+      "text": "spk_math_probe",
+      "utf8_bytes": 14,
+      "present_in_ios": true,
+      "file_offset": "0xb24893",
+      "preferred_va": "0x100b24893"
+    },
+    {
+      "text": "math probe failed to run: ",
+      "utf8_bytes": 26,
+      "present_in_ios": true,
+      "file_offset": "0xb248a2",
+      "preferred_va": "0x100b248a2"
+    },
+    {
+      "text": "the Metal library was compiled with fast math: `a*b - a*b` came back exactly zero for all 64 probes. Rebuild with -fmetal-math-mode=safe -fmetal-math-fp32-functions=precise (RFC-014 §5.1 trap 1: fast math drifts exp and fma contraction by up to 1.1e-5, which is past the float32 bar and silent).",
+      "utf8_bytes": 296,
+      "present_in_ios": true,
+      "file_offset": "0xb248bd",
+      "preferred_va": "0x100b248bd"
+    },
+    {
+      "text": "the fast-math probe returned ",
+      "utf8_bytes": 29,
+      "present_in_ios": true,
+      "file_offset": "0xb249e6",
+      "preferred_va": "0x100b249e6"
+    },
+    {
+      "text": " of 64 values that match neither zero nor the host's fma error term. The toolchain's contraction behaviour has changed; re-derive the probe in shaders/util.metal before trusting parity.",
+      "utf8_bytes": 185,
+      "present_in_ios": true,
+      "file_offset": "0xb24a04",
+      "preferred_va": "0x100b24a04"
+    },
+    {
+      "text": "safe (probe: fma contraction present, no reassociation)",
+      "utf8_bytes": 55,
+      "present_in_ios": true,
+      "file_offset": "0xb24abe",
+      "preferred_va": "0x100b24abe"
+    }
+  ],
+  "diagnostic_fragments": 7,
+  "matched_utf8_bytes": 636,
+  "scope": "Engineering self-test, exact diagnostic text and actual code references; does not by itself establish historical copying or authorization status."
+}

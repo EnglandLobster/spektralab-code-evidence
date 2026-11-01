@@ -1,0 +1,130 @@
+SpektraLab iOS 对照 Andrea/SpektraFilm 原始源码：第二轮直接核对
+2026-10-29
+
+结果
+
+本轮新增两处直接对应，并把已有的显影曲线局部核对扩展为完整有效输入路径验证。预期结果全部来自 andreavolpato/spektrafilm 固定版本的 Python 函数，没有使用 SpektraLab 桌面代码生成预期值。
+
+新增A：密度曲线插值的重复端点处理。140组随机输入，8400个通道输出，最大绝对差4.192071023645383e-7，符合本轮float32/iOS对float64/Python的误差检查。另有两组可直接观察的重复点例子，其中重复首端点时，iOS与原始fast_interp都返回10，而numpy.interp基线返回20。
+新增B：xy径向色域压缩。完整iOS CPU函数与原始compress_xy_radial、_ray_polygon_distance、reinhard_knee组合直接比较，624组测试最大绝对差4.440892098500626e-16。
+扩展C：三通道三层显影曲线变形。完整iOS CPU函数及其实际调用的内部函数，与原始apply_print_curves_morph及全部依赖直接比较；64组、3264个输出最大绝对差8.881784197001252e-16。
+
+样本和许可来源
+
+iOS：1.0.1，build 202610271810。
+解密主程序SHA-256：62c0343b402acbc35eaefc17108baf1c94336d62ee92ada656c7550603d7acff。
+原始项目：andreavolpato/spektrafilm。
+固定commit：3bb2c2d2801ff68b92019cf1dbcbb133d60832bc。
+项目README第47行声明项目GPLv3许可，第49行另列JSON profiles和LUT的许可。本轮对比对象为计算函数，未把CC配置数据的相同列作GPL代码证据。许可正文及README在材料包中。
+
+A. 密度曲线插值：首端点截断优先于右偏查找
+
+直接上游来源：src/spektrafilm/utils/fast_interp.py:71–81。
+https://github.com/andreavolpato/spektrafilm/blob/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/utils/fast_interp.py#L71
+
+原文：
+
+            if x <= xa[0]:
+                flat_result[i, c] = y_vals[0, c]
+            elif x >= xa[K - 1]:
+                flat_result[i, c] = y_vals[K - 1, c]
+            else:
+                idx = np.searchsorted(xa, x, side='right')
+                low = idx - 1
+                x0 = xa[low]
+                # Use precomputed reciprocal to avoid division in inner loop.
+                t = (x - x0) * inv_dx_val[low]
+                flat_result[i, c] = y_vals[low, c] + t * (y_vals[low + 1, c] - y_vals[low, c])
+
+iOS：恢复出的Metal AIR模块028，spk_curves。028.ll:26–39先读取查询值和第一个轴点，在有限输入下先判断首轴点是否严格小于查询值；若否，读取第一个y并跳到输出。028.ll:55–71才是后续二分查找。
+
+原始IR节选，百分号编号为编译产物原有编号：
+
+  %29 = fcmp ult float %25, %22
+  br i1 %29, label %33, label %30
+
+30:
+  %31 = getelementptr inbounds float, ptr addrspace(1) %3, i64 %23
+  %32 = load float, ptr addrspace(1) %31, align 4, !tbaa !38, !alias.scope !44, !noalias !45
+  br label %77
+
+分析说明：%25是首轴点，%22是查询值，%32为首y值；这些中文解释属于分析者标注。上面30:行在完整IR中带有自动生成的preds注释，节选省略该注释，实际完整文件随包提供。
+
+可复现例子：
+  横坐标 [0,0,1,2]，对应值 [10,20,30,40]，查询0。
+  SpektraFilm fast_interp：10。
+  iOS spk_curves：10。
+  同一上游文件内np_interp_for_image基线：20。
+
+  横坐标 [0,1,1,2]，对应值 [10,20,30,40]，查询1。
+  三者均返回30。
+
+说明：共同的特点是首端点处理覆盖了“重复点右偏”的一般规则，而内部重复点继续右偏。它是具体实现行为，不是仅凭照片观感比较，也不称为上架App已发生的用户故障。
+
+测试范围：4/8/17/65个采样点，单调但可重复的通道独立坐标轴；有限输入。原始函数只去掉Numba装饰器并把prange绑定到range，函数体保持原样。iOS AIR使用原始028.bc编译到Mac CPU，未在手机GPU执行；倒数差值按上游预计算规则作为输入提供。
+
+B. 径向色域压缩：射线、多边形交点到压缩后的完整路径
+
+直接上游来源：src/spektrafilm/utils/gamut_compression.py:283–393。
+https://github.com/andreavolpato/spektrafilm/blob/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/utils/gamut_compression.py#L307
+
+原文关键筛选条件：
+
+        valid = np.abs(denom) > 1e-12
+        good = valid & (t > 1e-9) & (s >= 0.0) & (s <= 1.0)
+        t_min = np.where(good & (t < t_min), t, t_min)
+
+外层原文：
+
+        safe_dist = np.fmax(dist, 1e-12)
+        direction = delta / safe_dist[..., None]
+        boundary = _ray_polygon_distance(white_xy, direction, locus)
+        d_norm = dist / np.fmax(boundary, 1e-12)
+
+以及距离白点小于1e-9时原样返回。
+
+iOS函数0x1008f39e0–0x1008f3b78；其实际Reinhard函数为0x1008e66c8–0x1008e6728。
+  0x1008f3a38–0x1008f3a50：距白点阈值1e-9及提前返回。
+  0x1008f3abc–0x1008f3ac4：绝对分母与1e-12比较。
+  0x1008f3ae8–0x1008f3afc：t>1e-9、s>=0、s<=1。
+  0x1008f3b04–0x1008f3b10：保留最小有效交点。
+  0x1008f3b20–0x1008f3b50：归一化、调用Reinhard、重建坐标。
+常量地址0x10098aef0=1e-9、0x100991c58=1e-12。
+
+测试覆盖4种合成闭合多边形、白点附近及内外坐标、不同knee阈值/幂参数，共624组。实际运行整个iOS CPU函数，libm的hypot和pow由主机实现承接；交点逻辑及knee函数均执行iOS指令。
+这是完整径向函数核对，未扩大成“整个色域LUT构建均已验证”。Reinhard knee自身属于通用/公开算法，其独立归因价值低于整条实现细节的组合。
+
+C. 显影曲线变形：从局部指纹扩展为完整有效输入路径
+
+直接上游来源：src/spektrafilm/utils/morph_curves.py:77–296。
+https://github.com/andreavolpato/spektrafilm/blob/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/utils/morph_curves.py#L245
+
+本轮直接执行原始apply_print_curves_morph及依赖函数，包括_signed_z、_gumbel_matched_cdf、_layer_cdf、_evaluate_channel_density、_speed_layer_indices、_channel_gamma_factor、_developer_exhaustion_center_offset、_morph_channel_params。正态分布和求根调用原始SciPy norm/brentq。
+
+iOS从0x1008edf64完整函数入口运行到返回，输出由实际内存读出。包括真实排序、gamma缩放、Gumbel混合、残差函数、根求解、三层累加，未用上游函数替换任何iOS模型计算。
+覆盖正片/负片、三通道三层、exhaustion为0/0.2/0.6/1，各8组随机中心/层宽/幅度/gamma；64组，3264个输出，最大绝对差8.881784197001252e-16。
+本次验证active=true的有效参数路径；错误输入、全部层数、完整App渲染流程不在此测试范围内。
+
+仿真环境补全：非零exhaustion路径使用C++虚函数回调，需要按Mach-O记录执行dyld重定位。首次运行停在未解析的链式指针；随后按Apple SDK fixup-chains.h实现DYLD_CHAINED_PTR_64_OFFSET，在仿真内存应用20831项rebase，保留外部函数stub，原始文件及指令未改动。重定位脚本和完整记录供复核。
+
+同时发现的差异与未命中项
+
+1. 原始model/grain.py:43–46用Poisson取粒子数，再Binomial抽取显影粒子。已核查的iOS spk_grain_simple在AIR021中合并为一个Poisson率路径。泊松稀释可使分布对应，但两步随机采样与单步采样是不同实现；本轮不将此项列为逐步相同证据，也不以随机结果逐值相同作主张。
+2. 对本地所选9份原始上游Python文件的字符串常量进行扫描，长度>=24字符者，本轮没有在iOS主程序找到原文命中。不能把此前在桌面工程发现的长诊断文字归给Andrea上游。
+3. iOS的float32 AIR/FMA路径与原始Python双精度执行存在正常数值差异；报告保留实际最大误差，没有写成所有测试逐字节一致。
+
+结论范围
+
+本轮确认了原始SpektraFilm函数与iOS编译产物在所列路径、分支和边界行为上的直接对应，补强了“具体实现关系值得解释”的技术依据。
+对方已提出“AI从源码整理规格再独立实现”的过程解释；详细规格也可能传递这些行为。因此这些结果不按测试数量累计成侵权概率，也不单凭输出一致对历史复制过程作定论。需进一步核对规格内容、生成输入、实现者接触范围、版本记录和相关权利材料。
+
+对外可以明确追问：提供给重写团队的规格，是否逐项规定了首端点优先于右偏查找的处理、径向压缩的全部阈值/筛选顺序、以及显影耗竭的Gumbel与求根流程？请以与iOS 1.0.1对应的规格和实现版本回答这些可复现的代码对应。
+
+复现
+
+脚本：core-comparison/direct_upstream_round2.py。
+依赖脚本：macho_inspect.py、arm64_core_probe.py、macho_rebase.py。
+结果：core-comparison/direct-upstream-round2-results.json。
+原始文件分别来自reference-sources/upstream和decrypted-binaries；GPU原始bitcode为core-comparison/air-bitcode/028.bc。
+材料包提供源码、IR/汇编、脚本、结果及来源清单，不包含整个App二进制。该脚本按原证据目录结构读取既有样本，材料包不是无输入即可运行的独立测试发行包。
+本轮仅本地分析，没有提交外部评论、投诉或公开发布。

@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-29",
+  "upstream_repository": "andreavolpato/spektrafilm",
+  "upstream_commit": "3bb2c2d2801ff68b92019cf1dbcbb133d60832bc",
+  "ios_sample": "1.0.1 build 202610271810",
+  "binary_sha256": "62c0343b402acbc35eaefc17108baf1c94336d62ee92ada656c7550603d7acff",
+  "reference_policy": "Expected values use pinned original SpektraFilm functions, no desktop SpektraLab result oracle",
+  "gamut_radial": {
+    "cases": 624,
+    "max_abs_error": 4.440892098500626e-16,
+    "ios_function": "0x1008f39e0-0x1008f3b78",
+    "upstream": "utils/gamut_compression.py:283-393",
+    "matched_choices": [
+      "parallel-ray epsilon 1e-12",
+      "forward intersection t>1e-9",
+      "segment parameter 0<=s<=1",
+      "nearest positive intersection",
+      "near-white distance<1e-9 passthrough",
+      "distance normalization, Reinhard knee, radial reconstruction"
+    ],
+    "scope": "Complete CPU radial compression function with actual inlined ray intersection and actual knee function; synthetic closed polygons, not full LUT baking"
+  },
+  "curve_interpolation": {
+    "random_cases": 140,
+    "random_channel_outputs": 8400,
+    "max_abs_error": 4.192071023645383e-07,
+    "edge_examples": [
+      {
+        "axis": [
+          0,
+          0,
+          1,
+          2
+        ],
+        "y": [
+          10,
+          20,
+          30,
+          40
+        ],
+        "query": 0,
+        "ios": 10.0,
+        "upstream_fast_interp": 10.0,
+        "numpy_interp_baseline": 20.0
+      },
+      {
+        "axis": [
+          0,
+          1,
+          1,
+          2
+        ],
+        "y": [
+          10,
+          20,
+          30,
+          40
+        ],
+        "query": 1,
+        "ios": 30.0,
+        "upstream_fast_interp": 30.0,
+        "numpy_interp_baseline": 30.0
+      }
+    ],
+    "ios_ir": "air-ir/028.ll",
+    "upstream": "utils/fast_interp.py:5-83 (baseline helper:85-100)",
+    "scope": "Recovered iOS AIR compiled to Mac CPU; upstream function body unchanged, Numba decorator omitted and prange mapped to range; reciprocal input supplied according to upstream precomputation"
+  },
+  "complete_curve_morph": {
+    "cases": 64,
+    "channel_outputs": 3264,
+    "max_abs_error": 8.881784197001252e-16,
+    "ios_function": "0x1008edf64-0x1008eec84 plus actual called helpers",
+    "upstream": "utils/morph_curves.py:77-296",
+    "exhaustion_values": [
+      0,
+      0.2,
+      0.6,
+      1
+    ],
+    "emulator_loader": {
+      "rebases_applied": 20831,
+      "format": "DYLD_CHAINED_PTR_64_OFFSET; original instructions unchanged"
+    },
+    "scope": "Complete CPU curve morph with 3 channels and 3 layers, both positive/negative, real iOS sorting, Gumbel mixing, residual and root solver; upstream SciPy norm/brentq"
+  }
+}

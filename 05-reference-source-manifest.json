@@ -1,0 +1,184 @@
+{
+  "retrieved_at": "2026-10-28T15:09:35.569113+00:00",
+  "purpose": "Pinned reference sources for triage of an independently acquired iOS release. Shared names or algorithms require contextual analysis; CC profile equality is recorded separately.",
+  "sources": [
+    {
+      "repository": "JamesQiu2005/SpektraLab",
+      "commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "path": "license/LICENSE",
+      "source_url": "https://raw.githubusercontent.com/JamesQiu2005/SpektraLab/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/license/LICENSE",
+      "local_path": "reference-sources/desktop/license/LICENSE",
+      "bytes": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "metal_kernel_names": []
+    },
+    {
+      "repository": "JamesQiu2005/SpektraLab",
+      "commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "path": "modern_UI/Spektrafilm/Spektrafilm/Resources/Licenses/README.txt",
+      "source_url": "https://raw.githubusercontent.com/JamesQiu2005/SpektraLab/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/modern_UI/Spektrafilm/Spektrafilm/Resources/Licenses/README.txt",
+      "local_path": "reference-sources/desktop/modern_UI/Spektrafilm/Spektrafilm/Resources/Licenses/README.txt",
+      "bytes": 1480,
+      "sha256": "3089b9c482a57c5a707d0309c57157a551effce8ad968b5e738708ac33b09c36",
+      "metal_kernel_names": []
+    },
+    {
+      "repository": "JamesQiu2005/SpektraLab",
+      "commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "path": "engine/src/core/curves.cpp",
+      "source_url": "https://raw.githubusercontent.com/JamesQiu2005/SpektraLab/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/core/curves.cpp",
+      "local_path": "reference-sources/desktop/engine/src/core/curves.cpp",
+      "bytes": 11654,
+      "sha256": "1cde1154d92bf7671f8a427b0798ab9aa284e5ee15d94788b6677095cec57c85",
+      "metal_kernel_names": []
+    },
+    {
+      "repository": "JamesQiu2005/SpektraLab",
+      "commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "path": "engine/src/core/curves.hpp",
+      "source_url": "https://raw.githubusercontent.com/JamesQiu2005/SpektraLab/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/core/curves.hpp",
+      "local_path": "reference-sources/desktop/engine/src/core/curves.hpp",
+      "bytes": 2517,
+      "sha256": "2452bbc867df9cb517810c00c0f4c9ff9d8cd00eb3f110bbaf81dce3854c2e8d",
+      "metal_kernel_names": []
+    },
+    {
+      "repository": "JamesQiu2005/SpektraLab",
+      "commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "path": "engine/src/core/hanatos.cpp",
+      "source_url": "https://raw.githubusercontent.com/JamesQiu2005/SpektraLab/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/core/hanatos.cpp",
+      "local_path": "reference-sources/desktop/engine/src/core/hanatos.cpp",
+      "bytes": 16112,
+      "sha256": "e6e23dd599af20fca75eca648d86f5a46d9663de96cc617b0f87013c18c92a35",
+      "metal_kernel_names": []
+    },
+    {
+      "repository": "JamesQiu2005/SpektraLab",
+      "commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "path": "engine/src/core/hanatos.hpp",
+      "source_url": "https://raw.githubusercontent.com/JamesQiu2005/SpektraLab/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/core/hanatos.hpp",
+      "local_path": "reference-sources/desktop/engine/src/core/hanatos.hpp",
+      "bytes": 3961,
+      "sha256": "53043a6953e674198b3c0790fca15cc7989501c3025de8d3accae458039836f1",
+      "metal_kernel_names": []
+    },
+    {
+      "repository": "JamesQiu2005/SpektraLab",
+      "commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "path": "engine/src/gpu/metal_gpu.cpp",
+      "source_url": "https://raw.githubusercontent.com/JamesQiu2005/SpektraLab/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/gpu/metal_gpu.cpp",
+      "local_path": "reference-sources/desktop/engine/src/gpu/metal_gpu.cpp",
+      "bytes": 60352,
+      "sha256": "3df50efe1fa46a4680b8af1e95a71b2a8bac0f9b8f7423f311b877570aa81771",
+      "metal_kernel_names": []
+    },
+    {
+      "repository": "JamesQiu2005/SpektraLab",
+      "commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "path": "engine/src/shaders/nodes.metal",
+      "source_url": "https://raw.githubusercontent.com/JamesQiu2005/SpektraLab/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/shaders/nodes.metal",
+      "local_path": "reference-sources/desktop/engine/src/shaders/nodes.metal",
+      "bytes": 23991,
+      "sha256": "0220d05657dd01ae9d42286bebc7ae81b1d22cf9f1837313823301b16aa89dab",
+      "metal_kernel_names": [
+        "spk_log10_guarded",
+        "spk_boost",
+        "spk_highlight_headroom",
+        "spk_curves",
+        "spk_matmul3",
+        "spk_tc_b",
+        "spk_lut2d_cubic",
+        "spk_couplers_correction",
+        "spk_spectral_epilogue",
+        "spk_print_exposure",
+        "spk_cctf_decode",
+        "spk_cctf_encode_matrix",
+        "spk_geometry_resample_df",
+        "spk_bw_correct",
+        "spk_edr",
+        "spk_di_encode"
+      ]
+    },
+    {
+      "repository": "JamesQiu2005/SpektraLab",
+      "commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "path": "engine/src/shaders/grain.metal",
+      "source_url": "https://raw.githubusercontent.com/JamesQiu2005/SpektraLab/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/shaders/grain.metal",
+      "local_path": "reference-sources/desktop/engine/src/shaders/grain.metal",
+      "bytes": 7287,
+      "sha256": "8089ca27cb203eb6c638d92dc9fcb999519b4e6c23b186d770dfe0d512031ff7",
+      "metal_kernel_names": [
+        "spk_grain_layers",
+        "spk_grain_simple",
+        "spk_lognormal_field",
+        "spk_grain_layer_one"
+      ]
+    },
+    {
+      "repository": "JamesQiu2005/SpektraLab",
+      "commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "path": "engine/src/shaders/blur.metal",
+      "source_url": "https://raw.githubusercontent.com/JamesQiu2005/SpektraLab/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/shaders/blur.metal",
+      "local_path": "reference-sources/desktop/engine/src/shaders/blur.metal",
+      "bytes": 6480,
+      "sha256": "24c4fb9a1b372e6737e7cd8b7471f83128de5c3766734eff1f69ca897cf69a6f",
+      "metal_kernel_names": [
+        "spk_sep_fir_acc",
+        "spk_iir_df_acc",
+        "spk_lincomb3"
+      ]
+    },
+    {
+      "repository": "JamesQiu2005/SpektraLab",
+      "commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "path": "engine/src/shaders/scene_latitude.metal",
+      "source_url": "https://raw.githubusercontent.com/JamesQiu2005/SpektraLab/fd891c6bc5eb350387602deb5c1ef9b6dcdab948/engine/src/shaders/scene_latitude.metal",
+      "local_path": "reference-sources/desktop/engine/src/shaders/scene_latitude.metal",
+      "bytes": 3979,
+      "sha256": "52ebaf4034f4889fbfafd3f8f445bed07de8d7accf279a9ba3dcca968e357ec4",
+      "metal_kernel_names": [
+        "spk_scene_latitude"
+      ]
+    },
+    {
+      "repository": "andreavolpato/spektrafilm",
+      "commit": "3bb2c2d2801ff68b92019cf1dbcbb133d60832bc",
+      "path": "LICENSE",
+      "source_url": "https://raw.githubusercontent.com/andreavolpato/spektrafilm/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/LICENSE",
+      "local_path": "reference-sources/upstream/LICENSE",
+      "bytes": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "metal_kernel_names": []
+    },
+    {
+      "repository": "andreavolpato/spektrafilm",
+      "commit": "3bb2c2d2801ff68b92019cf1dbcbb133d60832bc",
+      "path": "src/spektrafilm/model/couplers.py",
+      "source_url": "https://raw.githubusercontent.com/andreavolpato/spektrafilm/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/model/couplers.py",
+      "local_path": "reference-sources/upstream/src/spektrafilm/model/couplers.py",
+      "bytes": 8420,
+      "sha256": "706a1832cdfa0399b45e9a246b4c29ef669d42bf4d679080fb0346cf6ec5fcf3",
+      "metal_kernel_names": []
+    },
+    {
+      "repository": "andreavolpato/spektrafilm",
+      "commit": "3bb2c2d2801ff68b92019cf1dbcbb133d60832bc",
+      "path": "src/spektrafilm/utils/morph_curves.py",
+      "source_url": "https://raw.githubusercontent.com/andreavolpato/spektrafilm/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/utils/morph_curves.py",
+      "local_path": "reference-sources/upstream/src/spektrafilm/utils/morph_curves.py",
+      "bytes": 10108,
+      "sha256": "f082d40c69f8f8c70f4d94ae947becf907609f2f56426c2fa7b9dd3006d4a6c9",
+      "metal_kernel_names": []
+    },
+    {
+      "repository": "andreavolpato/spektrafilm",
+      "commit": "3bb2c2d2801ff68b92019cf1dbcbb133d60832bc",
+      "path": "src/spektrafilm/utils/spectral_upsampling.py",
+      "source_url": "https://raw.githubusercontent.com/andreavolpato/spektrafilm/3bb2c2d2801ff68b92019cf1dbcbb133d60832bc/src/spektrafilm/utils/spectral_upsampling.py",
+      "local_path": "reference-sources/upstream/src/spektrafilm/utils/spectral_upsampling.py",
+      "bytes": 18881,
+      "sha256": "6c51273383c6aa5538c3c742dfd46a6660300c8211936bfbbc498c64e60ef6ea",
+      "metal_kernel_names": []
+    }
+  ]
+}
