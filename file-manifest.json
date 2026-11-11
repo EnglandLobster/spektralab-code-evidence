@@ -46,8 +46,8 @@
   },
   {
     "path": "README.md",
-    "bytes": 8898,
-    "sha256": "3885ceccedce7ddc486c7e1a470572144b8be5b5e3ec2b17b1c99e1f6e105912"
+    "bytes": 9883,
+    "sha256": "769a017f5fc4bb39e192758a6aa5f0bde56c37fd31de54ba8f66fd6a752b314e"
   },
   {
     "path": "REPRODUCING.md",
@@ -695,9 +695,19 @@
     "sha256": "1d5d3f9ff4cd9d2f8bdd4db01c7c8f770b06e41bba29b8bd9989dccc73efc8bd"
   },
   {
+    "path": "core-comparison/desktop-kernel-names.json",
+    "bytes": 3519,
+    "sha256": "7622e3fa232e96d3de6629ed460a3e3ac69d6806a6ad4bca2957069419c67e76"
+  },
+  {
     "path": "core-comparison/desktop-logistic-recompile.cpp",
     "bytes": 846,
     "sha256": "8bf3dddee7c99ce20ad3e17a1dc99cca461612f6e352d1aad7035683ae5f2f8c"
+  },
+  {
+    "path": "core-comparison/desktop_kernel_names.py",
+    "bytes": 3484,
+    "sha256": "c73eacd33f3fb1186556ecbb5d38d07d277c64a6b18a05c6ced332238d914626"
   },
   {
     "path": "core-comparison/direct-upstream-round2-results.json",
@@ -850,6 +860,21 @@
     "sha256": "f17276d0e473d319d52b17d548ee6784d3b72c96258205f8c1372c869da16706"
   },
   {
+    "path": "evidence/P01.md",
+    "bytes": 3051,
+    "sha256": "c8c5f20f5eca3407c428db6599ee2c316f35e664d139ce631af3d5f8d93eb5eb"
+  },
+  {
+    "path": "evidence/P02.md",
+    "bytes": 1976,
+    "sha256": "74733f74900f29de33542bdf6a6907d479f79b8ea0bc4194be620769c6d508fa"
+  },
+  {
+    "path": "evidence/P03.md",
+    "bytes": 2449,
+    "sha256": "0d6efdf6f031572257a5417362e5fa6dd4e25af1c806689a5883e27c27cc43a7"
+  },
+  {
     "path": "evidence/U01.md",
     "bytes": 3170,
     "sha256": "e6c9f3803551e51579e17231a2ce7183000ae4aa98d9f114612670636c9c11b2"
@@ -891,8 +916,8 @@
   },
   {
     "path": "evidence/colorchart-2026-11-11/README.md",
-    "bytes": 2354,
-    "sha256": "2671dde231ff12c61fd3b26250c3e9b38707832d44609c2f789502b2f9e58884"
+    "bytes": 3244,
+    "sha256": "f5e564a1f7f052ee221a0e5d801f1e78e1c7ba161dbd1b25e9746ef248e68b83"
   },
   {
     "path": "evidence/colorchart-2026-11-11/chart-figures/01-sampling.png",
@@ -1020,9 +1045,24 @@
     "sha256": "875e7144d880cdaf66ed766cb9e55d5c7f50d16b7aa8ad4c102129883d1ebcc3"
   },
   {
+    "path": "evidence/colorchart-2026-11-11/records/delta-e2000-matrix.csv",
+    "bytes": 1202,
+    "sha256": "98807a1cea746e01e3afcb0b1bf882a23fb30c9c6b4d5f4c7f7e21c637eeb784"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/records/delta-e2000.json",
+    "bytes": 10057,
+    "sha256": "23fb6d44688f3d2daa711a585ae86f302849181927a4ae3d04892efb92adf6ac"
+  },
+  {
     "path": "evidence/colorchart-2026-11-11/records/patch-mae-matrix.csv",
     "bytes": 3135,
     "sha256": "79621bbda0f89ce2bad6e7879438d882553ac6c392e8880e46dde3e6e7b05340"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/reference/delta_e2000.py",
+    "bytes": 6014,
+    "sha256": "7d75721e85e2a5af4daf3c43503240efc414aa79c7e659e16fd7ebefca1821bc"
   },
   {
     "path": "evidence/colorchart-2026-11-11/reference/fujifilm_c200.png",
@@ -1178,6 +1218,36 @@
     "path": "evidence/colorchart-2026-11-11/ui/states/s020/screen.png",
     "bytes": 401576,
     "sha256": "74745a06101a611ebc95938de421d9aa2ea22f53546928d63febb1204cbab2e3"
+  },
+  {
+    "path": "evidence/package-and-repositories-2026-11-11/PRODUCT_PROFILES_NOTICE-excerpt.md",
+    "bytes": 1595,
+    "sha256": "e2f6575ac0ff97d96d3a1366ce2675eeac3959107636849ec91f443df0b11316"
+  },
+  {
+    "path": "evidence/package-and-repositories-2026-11-11/README.md",
+    "bytes": 1123,
+    "sha256": "464410fa5eccc1ca4c99246b366b97f428a0b6ad35800f867e610134e8b0fab8"
+  },
+  {
+    "path": "evidence/package-and-repositories-2026-11-11/check.py",
+    "bytes": 7481,
+    "sha256": "74e2551e5d721955749c3b7bb645d73b10564222c40af79a8504a2ea7535cea0"
+  },
+  {
+    "path": "evidence/package-and-repositories-2026-11-11/clone-bundles.sha256",
+    "bytes": 311,
+    "sha256": "e069f6c3cd47d3c2db4476641b765459d1d2f515d6adbd1012b8752ddcd11b03"
+  },
+  {
+    "path": "evidence/package-and-repositories-2026-11-11/desktop-NOTICE-fd891c6-excerpt.md",
+    "bytes": 753,
+    "sha256": "3c8395cb92bae7465bc0422f2de37770799a79b7c84aec7ec757bf435ec8d660"
+  },
+  {
+    "path": "evidence/package-and-repositories-2026-11-11/record.json",
+    "bytes": 8401,
+    "sha256": "b316705c82b0fe9fa34f10d08770ef03d34101de26545a41e03ad45b6f90619d"
   },
   {
     "path": "history/17-core-code-comparison-zh.txt",

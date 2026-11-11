@@ -1,0 +1,198 @@
+{
+  "package": {
+    "sample": "SpektraLab iOS 1.0.1 build 202610271810, App Store ID 6820950508",
+    "ipa_bytes": 41834945,
+    "ipa_sha256": "8ead4398a1e4d350a87aa8e4be86dc02fc4106ae5e5a2883d6da12b2a23a6c00",
+    "entries": {
+      "PRODUCT_PROFILES_NOTICE.md": {
+        "path": "Payload/SpektraLab.app/EngineResources/PRODUCT_PROFILES_NOTICE.md",
+        "bytes": 5402,
+        "sha256": "8fd2e065323948eddddaa5750b394a31baca995de599e64cea798d41a9078d18",
+        "zip_timestamp": "2026-10-27 10:25:26"
+      },
+      "ENGINE-COMMIT.txt": {
+        "path": "Payload/SpektraLab.app/EngineResources/ENGINE-COMMIT.txt",
+        "bytes": 19,
+        "sha256": "f7b88762baf5f1fba09e13ec0de5453f658e88fc818cde713efe3ce95a4dd770",
+        "zip_timestamp": "2026-10-27 10:25:26"
+      },
+      "ENGINE-HARDENED.txt": {
+        "path": "Payload/SpektraLab.app/EngineResources/ENGINE-HARDENED.txt",
+        "bytes": 9,
+        "sha256": "807ed5cfb5b9fcd58ec15027ebc72234e580048384756dc9e514588df92f43b1",
+        "zip_timestamp": "2026-10-27 10:25:26"
+      },
+      "LICENSE-PROFILES.txt": {
+        "path": "Payload/SpektraLab.app/EngineResources/LICENSE-PROFILES.txt",
+        "bytes": 23677,
+        "sha256": "76d629501783ae52e8d63aee1e054c1e1a9713b9fe7d36fb306e25b1d14b24e9",
+        "zip_timestamp": "2026-10-27 10:25:26"
+      }
+    },
+    "engine_commit_txt": "998fd80 2026-10-22",
+    "notice_contains": {
+      "**In this repository (the phone)**, synced from the desktop's `0bca29da` on 2026-10-09": true,
+      "**On the desktop** (SpektraLab, where these files are made)": true,
+      "`app/SpektraLab/tools/build_engine.sh`": true,
+      "`engine/tests/bw_checks.py`": true,
+      "`engine/tests/mobile_checks.py` takes them through a phone engine the same way": true
+    },
+    "profiles": {
+      "in_package": 33,
+      "desktop_commit": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+      "in_desktop_engine_resources": 28,
+      "byte_identical_to_desktop": 28,
+      "in_package_only": [
+        "fujifilm_neopan_acros_100_ii.json",
+        "ilford_hp5_plus_400.json",
+        "ilford_multigrade_iv_rc.json",
+        "kodak_tmax_100.json",
+        "kodak_tri_x_400.json"
+      ]
+    }
+  },
+  "repositories": {
+    "commit_lookups": {
+      "0bca29da": {
+        "in_desktop_repository": false,
+        "in_engine_repository": false
+      },
+      "998fd80": {
+        "in_desktop_repository": false,
+        "in_engine_repository": false
+      },
+      "fd891c6": {
+        "in_desktop_repository": true,
+        "in_engine_repository": false
+      }
+    },
+    "desktop": {
+      "repository": "https://github.com/JamesQiu2005/SpektraLab",
+      "refs": {
+        "origin/Windows_Linux": "223205fddbbc01c583977497d9f27c79a49ca8d0",
+        "origin/main": "1952c63537ec576d24422f1065b12495631346a5",
+        "origin/main_v1": "ee8f20b93eb60dcf4d7fcd800a087c8094aff8b6",
+        "tags/spektralab-v0.3.1": "ae5d07a78255afede4ab50906228a43ea3d10682",
+        "tags/spektralab-v1.0.1": "f10bda08f5b1d99b9293a0705e9f552084639d96",
+        "tags/spektralab-v1.0.2": "b5334f9ec85eb38a496140532f921d27969fa8b3",
+        "tags/spektralab-v1.0.3": "e6aaf4e7d0f6b8b85aafd103aed2ffa9cfb0eafb",
+        "tags/spektralab-v1.0.4": "601404f649d8d43c8a7d4c21724f453dc671456a",
+        "tags/spektralab-v1.0.5": "8e207df3fa7028f8166c2bfe32d458ff7d183486",
+        "tags/spektralab-v1.1.0": "e517e96b27d075b1349514043cf16bdd29dfd5ca",
+        "tags/spektralab-v1.1.1": "33fdfa3c4dae18f7639a6314c3bf4f732a6c5a02",
+        "tags/spektralab-v1.2.0": "3c32dce3410653bb6ee023c9bada50ca605d4d05",
+        "tags/spektralab-v1.2.1": "985aaae78f4a5f8191c8e7ede1208f80a641f247",
+        "tags/spektralab-v1.2.2": "2c704e274fc0f333b67153f151899493156b87f8",
+        "tags/spektralab-v1.3.0": "36cf7fdf74b9b2ac47ba4f09932df7d7c3d5a750",
+        "tags/spektralab-v1.3.1": "33ccf2b6d119b6867e79cc9ed83546ea86113f9b",
+        "tags/spektralab-v1.3.2": "51ba5421bcc7dc5ad71d2d88a6fe58f5d145382e",
+        "tags/spektralab-v1.3.3": "c52657409ad8d4c1bcd2e581879891ae32e8352f",
+        "tags/spektralab-v1.3.4": "fd891c6bc5eb350387602deb5c1ef9b6dcdab948",
+        "tags/spektralab-v1.3.5": "e0422377ee3a71563f830e487d7e2a52627ef715",
+        "tags/spektralab-v1.3.6": "28adc42244f5393ccd91d3b0cb7e7dcc83096a4b",
+        "tags/spektralab-v1.3.7": "b1c8b00901fb06642e5da6a67308552800bf08e2",
+        "tags/spektralab-v2.2.0": "c966f2fed4743f6766cd7d6585d13733285ab235",
+        "tags/spektralab-v2.2.1": "9621d395eb291e2f538e8f3869cbcc7a527cd572",
+        "tags/spektralab-v2.2.2": "6f29efe81b4eb2a4cb3fc8be012d3a0f90e8587a",
+        "tags/spektralab-v2.3.0": "b49e3dc9e0282aa4cf85e83d525f55a775582679",
+        "tags/spektralab-v2.3.1": "1f8050f362fbba1189c30cc6db264bb01fa5ad8b",
+        "tags/spektralab-v2.3.2": "1952c63537ec576d24422f1065b12495631346a5",
+        "tags/spektralab-windows-v1.3.4-beta.1": "fa6096fd74c6f5328dfe78519d82cf5caaa6797c",
+        "tags/spektralab-windows-v1.3.4-beta.2": "2ca735ad60a998e925bf346f57d80012bdb5c6bf",
+        "tags/v0.1.0-alpha": "95fabee5a2ef402931a3ee601128ff2b4f82f759",
+        "tags/v0.2.0-legacy": "03664a793b7321054ebcbdd343ef0122e8a70762",
+        "tags/v0.3.2": "2d8f7c8025d4472d7042e7913554fffc2d3a4085",
+        "tags/v0.3.3": "e0e702c92d82c1152018c35465bde1b5eccc247c"
+      },
+      "refs_by_root_commit": {
+        "a09c162": [
+          "origin/Windows_Linux",
+          "origin/main_v1",
+          "tags/spektralab-v0.3.1",
+          "tags/spektralab-v1.0.1",
+          "tags/spektralab-v1.0.2",
+          "tags/spektralab-v1.0.3",
+          "tags/spektralab-v1.0.4",
+          "tags/spektralab-v1.0.5",
+          "tags/spektralab-v1.1.0",
+          "tags/spektralab-v1.1.1",
+          "tags/spektralab-v1.2.0",
+          "tags/spektralab-v1.2.1",
+          "tags/spektralab-v1.2.2",
+          "tags/spektralab-v1.3.0",
+          "tags/spektralab-v1.3.1",
+          "tags/spektralab-v1.3.2",
+          "tags/spektralab-v1.3.3",
+          "tags/spektralab-v1.3.4",
+          "tags/spektralab-v1.3.5",
+          "tags/spektralab-v1.3.6",
+          "tags/spektralab-v1.3.7",
+          "tags/spektralab-windows-v1.3.4-beta.1",
+          "tags/spektralab-windows-v1.3.4-beta.2",
+          "tags/v0.3.2",
+          "tags/v0.3.3"
+        ],
+        "243d3a3": [
+          "origin/main",
+          "tags/spektralab-v2.2.0",
+          "tags/spektralab-v2.2.1",
+          "tags/spektralab-v2.2.2",
+          "tags/spektralab-v2.3.0",
+          "tags/spektralab-v2.3.1",
+          "tags/spektralab-v2.3.2"
+        ],
+        "5bc98fb": [
+          "tags/v0.1.0-alpha",
+          "tags/v0.2.0-legacy"
+        ]
+      },
+      "root_commits": {
+        "243d3a3": {
+          "commit": "243d3a362a6443db34109a93b622230699596d68",
+          "author_date": "2026-11-08T21:51:19+08:00",
+          "subject": "SpektraLab 2.2.0 for the Mac"
+        },
+        "5bc98fb": {
+          "commit": "5bc98fbe88a0920c4b6adcfc43506bb4396bb28a",
+          "author_date": "2025-02-07T14:12:25+01:00",
+          "subject": "Initial commit"
+        },
+        "a09c162": {
+          "commit": "a09c1626e4c0f1e1a63cf9992125554ab446bc0f",
+          "author_date": "2025-02-07T14:12:25+01:00",
+          "subject": "Initial commit"
+        }
+      },
+      "merge_base_main_and_main_v1": null,
+      "commits_on_main": 18,
+      "commits_on_main_v1": 578,
+      "pinned_commit_on": [
+        "origin/Windows_Linux",
+        "origin/main_v1",
+        "tags/spektralab-v1.3.4",
+        "tags/spektralab-v1.3.5",
+        "tags/spektralab-v1.3.6",
+        "tags/spektralab-v1.3.7",
+        "tags/spektralab-windows-v1.3.4-beta.1",
+        "tags/spektralab-windows-v1.3.4-beta.2"
+      ],
+      "license_notice_first_sentence": "The SpektraLab engine is a C++/Metal implementation derived from spektrafilm by Andrea Volpato (GPL-3.0-or-later)."
+    },
+    "engine": {
+      "repository": "https://github.com/JamesQiu2005/spektralab-engine",
+      "refs": {
+        "origin/main": "1f6cad722d0fae4d6dc569590697b718193724fc"
+      },
+      "commits": 1
+    },
+    "upstream": {
+      "repository": "https://github.com/andreavolpato/spektrafilm",
+      "pinned_commit": "3bb2c2d2801ff68b92019cf1dbcbb133d60832bc",
+      "root_commit": {
+        "commit": "a09c1626e4c0f1e1a63cf9992125554ab446bc0f",
+        "author_date": "2025-02-07T14:12:25+01:00",
+        "subject": "Initial commit"
+      }
+    }
+  }
+}

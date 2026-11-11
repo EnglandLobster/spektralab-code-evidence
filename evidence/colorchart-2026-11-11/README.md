@@ -10,13 +10,20 @@ SpektraLab 1.0.1（202610271810），iPhone 16 Pro。原版使用 [spektrafilm �
 
 iOS 使用[灯箱 HEIC](original/IMG_5398.HEIC)。参考路径通过 ColorSync 将同一原片转换为 [960×720 sRGB PNG](reference/input.png)，关闭自动曝光和随机效果。将 11 张 iOS JPEG 缩至同样尺寸后，对每个色块中央 24×24 像素分别求 RGB 均值。每款统计 72 个通道均值的绝对差。[121 项交叉比较](records/patch-mae-matrix.csv)中，每行最小值均落在对应配方。原片与导出图的公开副本已剥离拍摄定位等元数据；校验清单对应公开文件。
 
+## 感知色差（CIEDE2000）
+
+RGB 绝对差不是感知指标。对同一批色块均值按 sRGB（D65）换算到 CIELAB，再计算 CIEDE2000：264 组对应色块的平均色差为 **0.71**，单款均值范围 0.66–0.79，最大 1.67；82% 的色块小于 1，全部小于 2。11 款中每一款与对应配方的色差都最小，与次接近配方的平均色差是它的 1.7–8.4 倍，区分余量最窄的两组是 Extra 400 对 C200（1.7 倍）和 Porta 400 对 Porta 800（1.8 倍）。[逐款结果](records/delta-e2000.json) · [121 项交叉矩阵](records/delta-e2000-matrix.csv)
+
+换算使用的 D65 是 sRGB 的参考白，与灯箱光源无关。两侧输入为同一张原片，光源只影响输入的颜色分布。脚本内含 Sharma、Wu、Dalal（2005）测试数据中的三组校验值。
+
 ## 复算
 
-在本目录中使用安装了 NumPy、Pillow 的 Python 执行下列命令。第一条从 11 张 iOS 导出与 11 张参考 PNG 重建误差表，第二条复核 Pro 400H 同一 PNG 输入及两次 iOS 导出。
+在本目录中使用安装了 NumPy、Pillow 的 Python 执行下列命令。第一条从 11 张 iOS 导出与 11 张参考 PNG 重建误差表，第二条复核 Pro 400H 同一 PNG 输入及两次 iOS 导出，第三条计算 CIEDE2000 色差。
 
 ```sh
 python3 reference/patches.py
 python3 shared-input/measure.py
+python3 reference/delta_e2000.py
 ```
 
 重新生成参考渲染时，先安装上述固定版本的 spektrafilm 及其依赖，再运行 `python3 reference/rerender.py`。可视化脚本在 [chart-figures](chart-figures/render.py)，使用 macOS 系统字体。
