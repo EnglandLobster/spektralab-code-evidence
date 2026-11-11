@@ -1,0 +1,37 @@
+{
+  "settings": {
+    "film_stock": "fujifilm_pro_400h",
+    "print_stock": "fujifilm_crystal_archive_typeii",
+    "input_color_space": "ProPhoto RGB",
+    "input_cctf_decoding": false,
+    "output_color_space": "sRGB",
+    "output_cctf_encoding": true,
+    "auto_exposure": false,
+    "glare_active": false,
+    "grain_active": false
+  },
+  "ios_minus_upstream": {
+    "patch_mae": 1.2459972993827158,
+    "bias": [
+      -0.016131365740743402,
+      0.34396701388888967,
+      1.809606481481482
+    ]
+  },
+  "ios_minus_metal": {
+    "patch_mae": 1.2460455246913578,
+    "bias": [
+      -0.016059027777780305,
+      0.34389467592592654,
+      1.809606481481482
+    ]
+  },
+  "metal_minus_upstream": {
+    "patch_mae": 4.822530864206303e-05,
+    "bias": [
+      -7.233796296309454e-05,
+      7.233796296309454e-05,
+      0.0
+    ]
+  }
+}

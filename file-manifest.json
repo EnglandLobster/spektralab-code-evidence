@@ -46,8 +46,8 @@
   },
   {
     "path": "README.md",
-    "bytes": 8636,
-    "sha256": "beb29327b3691d3d265f9faa93151e824f0c953c6001ca9b6362db1516118d2c"
+    "bytes": 8898,
+    "sha256": "3885ceccedce7ddc486c7e1a470572144b8be5b5e3ec2b17b1c99e1f6e105912"
   },
   {
     "path": "REPRODUCING.md",
@@ -78,6 +78,11 @@
     "path": "assets/visual-guide/README.md",
     "bytes": 445,
     "sha256": "502b3967a4e0289a0b7f53b4543cd7a1f9654e8534303c5c271fed0c71a26cc3"
+  },
+  {
+    "path": "core-comparison/air-bitcode-manifest.json",
+    "bytes": 6291,
+    "sha256": "b55d5c812a7180938a322af82946f4657a7ea5dd9876d5277eb28edbe9b48e13"
   },
   {
     "path": "core-comparison/air-bitcode/000.bc",
@@ -368,11 +373,6 @@
     "path": "core-comparison/air-bitcode/057.bc",
     "bytes": 3812,
     "sha256": "ca03c053e8bb2d9b7ec8eb735c286b75ca52f90296db727f03f1b60d576326f5"
-  },
-  {
-    "path": "core-comparison/air-bitcode-manifest.json",
-    "bytes": 6291,
-    "sha256": "b55d5c812a7180938a322af82946f4657a7ea5dd9876d5277eb28edbe9b48e13"
   },
   {
     "path": "core-comparison/air-functions.json",
@@ -830,6 +830,11 @@
     "sha256": "044402e7cf143965e5dde17b383357d244cb52c930dc13d5241046a9021134fa"
   },
   {
+    "path": "evidence-index.json",
+    "bytes": 24753,
+    "sha256": "82bdca85b86d5f62ccb96af020c6906597d63c3c5ffd9785e5e73210b56a66ca"
+  },
+  {
     "path": "evidence/D01.md",
     "bytes": 3578,
     "sha256": "17441780d8e5ce7bc84300fef61c32f7690e216038d93427513198a0c2788dd8"
@@ -885,9 +890,294 @@
     "sha256": "b4d9d87ce90024c91c5cc75c5521a8c1099cba8d01bc5676ab6fc1627f1194fc"
   },
   {
-    "path": "evidence-index.json",
-    "bytes": 24753,
-    "sha256": "82bdca85b86d5f62ccb96af020c6906597d63c3c5ffd9785e5e73210b56a66ca"
+    "path": "evidence/colorchart-2026-11-11/README.md",
+    "bytes": 2354,
+    "sha256": "2671dde231ff12c61fd3b26250c3e9b38707832d44609c2f789502b2f9e58884"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/chart-figures/01-sampling.png",
+    "bytes": 616445,
+    "sha256": "51579d2564f0d289b0d1ea0f62ae1a46467f098ac07366694932c89407011d91"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/chart-figures/02-paired-colours.png",
+    "bytes": 140435,
+    "sha256": "a31c04d7cf6f3519dc3ee9493bce34b61a69e1ddfca67bc10598022cbbe215f2"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/chart-figures/03-cross-comparison.png",
+    "bytes": 207303,
+    "sha256": "98cfef28cf01f1d79d9c1d0682facadc4f5d09f92e59b176c3439ec6e63a4e76"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/chart-figures/03-per-film.png",
+    "bytes": 165283,
+    "sha256": "e3efc16a5f9f0507ae53a5a2103a352cce0518d71d1511a81e3b818c6177d85d"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/chart-figures/render.py",
+    "bytes": 5481,
+    "sha256": "e93913668b1fd5c54dda2bed48fc109b56e075e30597660cc810c0f0254ef4c2"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/desktop-input/compare.py",
+    "bytes": 1370,
+    "sha256": "15a8f4bfdbb3855a0bd66fb191ef14364c38dcb0044f6dc622c86895b7275fe8"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/desktop-input/decode.m",
+    "bytes": 1041,
+    "sha256": "03042f5b45310fafc9c2d8b259558de91b5e31f66cd5785d51d482bb1b3112ba"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/desktop-input/metal-control.json",
+    "bytes": 835,
+    "sha256": "3110a4f75ea503e56612b5a066e3fe0ba72a59db8133230495c7cec9a012a569"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/desktop-input/metal-control.png",
+    "bytes": 650954,
+    "sha256": "94bc0fc8be27fba3eced876b367fce741f43ebfffef792811a41fbd086c4a31a"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/desktop-input/pro400h-desktop-input.png",
+    "bytes": 650957,
+    "sha256": "b24a0222e7dc87cea3dfbaeff7002d7bc36d1a8986676e4f629496e831f4344f"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/desktop-input/results.json",
+    "bytes": 621,
+    "sha256": "c48f0ce861d0ac2d1c4e4dea4a52c1a030e7a7f71c58d452ab15f137967c84e1"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ios/IMG_5409.JPG",
+    "bytes": 4008301,
+    "sha256": "cb84b4dc85252ff405314e05a2a93e4ac8589d3672b833026d52c4fb1665985d"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ios/IMG_5410.JPG",
+    "bytes": 3848035,
+    "sha256": "03bb7c84bd6d31891f2d762094efa1754771388578dbdc02c19d4a97eed4d6e9"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ios/IMG_5411.JPG",
+    "bytes": 3992530,
+    "sha256": "ca0fe952f309543d52dc8dacb1a04f9e76d6b28dcb9c9c901fb316c388ce199d"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ios/IMG_5412.JPG",
+    "bytes": 3978754,
+    "sha256": "304fc7857fc1b2d3d5c7fe89db80b425ebe448572fa17d5aaeeee5176db1eb6e"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ios/IMG_5413.JPG",
+    "bytes": 3784309,
+    "sha256": "d11f41f610d7548a07993c7207a8feca7d02a214f8cbb71c663d81d71bde4133"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ios/IMG_5414.JPG",
+    "bytes": 3980541,
+    "sha256": "3a20d10f12a59bfd0a4754ecdf68fb1f69883c4663608925261d01926396c69d"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ios/IMG_5415.JPG",
+    "bytes": 4162291,
+    "sha256": "7b3c0c56361d46e23bc2584ca6a31d48536e560f2cdc6d752f579f78e501a38e"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ios/IMG_5416.JPG",
+    "bytes": 4308772,
+    "sha256": "75dce6004049fcd3f6616f99a8567c262c39d7fb7adb3261270fc3f62e69b198"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ios/IMG_5417.JPG",
+    "bytes": 3963090,
+    "sha256": "ad74871f3a5673eed2837abe637c9b2ec96ddd4d57238ac83141ab8f264f694c"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ios/IMG_5418.JPG",
+    "bytes": 4490522,
+    "sha256": "55b501f146e72230eb6648f86633076b8f68bbb3a855bb85479fcf4a71650fea"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ios/IMG_5419.JPG",
+    "bytes": 4697567,
+    "sha256": "bee169e2f1c3a71c90d836dc83fac7a7b2d3735779983b1a10c152b3a603d4be"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/original/IMG_5398.HEIC",
+    "bytes": 2394905,
+    "sha256": "f7ebdabd037ca8d95cd5f80a301ed6f6db772ca92731ae4cf37db857fe30763e"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/paired-preview.jpg",
+    "bytes": 264097,
+    "sha256": "141cbcc56f029156abda0436c60771a4701ec0b070af5f9ff46614c20fd8f69b"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/records/comparison.json",
+    "bytes": 3160,
+    "sha256": "875e7144d880cdaf66ed766cb9e55d5c7f50d16b7aa8ad4c102129883d1ebcc3"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/records/patch-mae-matrix.csv",
+    "bytes": 3135,
+    "sha256": "79621bbda0f89ce2bad6e7879438d882553ac6c392e8880e46dde3e6e7b05340"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/reference/fujifilm_c200.png",
+    "bytes": 687924,
+    "sha256": "7a363f13366ffab825fe9d525da02506c87ddba88cd464565c03a9dc0221e4e1"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/reference/fujifilm_pro_400h.png",
+    "bytes": 650042,
+    "sha256": "15d478858fe0175207974d9a3979c98b6b895a9216a89666e6ad8c26b28dcb43"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/reference/fujifilm_xtra_400.png",
+    "bytes": 703117,
+    "sha256": "64dce40d24e7ae0d7685ec8e7b999803c0adbd651f6043ae74a967f5b77f332e"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/reference/input.png",
+    "bytes": 634940,
+    "sha256": "4002f15766aef93cb1976a6a467c476e0f88d1adbb7aefac3f5684da6c99725f"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/reference/kodak_ektar_100.png",
+    "bytes": 686534,
+    "sha256": "205f1220a8016260acc4d2fc04bfcb5847162c2e57e58113a127f34b8382acb2"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/reference/kodak_gold_200.png",
+    "bytes": 665177,
+    "sha256": "a5839eb0e27a79910360167b9bb982fc5d87e344b5d09a72dd2671c6393fc2bf"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/reference/kodak_portra_160.png",
+    "bytes": 669965,
+    "sha256": "054a16ff17cdb0a611f4dbeb123e994229689fd3f51f9ec777b798b9b808fcc5"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/reference/kodak_portra_400.png",
+    "bytes": 671752,
+    "sha256": "3b882fdc1796cc5b0c36b26bd44591d9669d4323c539e9a404cfeab47d5c7dee"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/reference/kodak_portra_800.png",
+    "bytes": 662535,
+    "sha256": "a7cfebebfae3234a4b20c521c61782e101799dfe06bd9829e30d6b77822bea62"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/reference/kodak_portra_800_push1.png",
+    "bytes": 702503,
+    "sha256": "282c201a900b01be2a719daa35f99eb8bdd95349efcc8b164c7d780f0cb4f374"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/reference/kodak_portra_800_push2.png",
+    "bytes": 733576,
+    "sha256": "45f23ea946a679feca59543d5853326315339048e21517f67f7af34f8139d031"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/reference/kodak_ultramax_400.png",
+    "bytes": 652278,
+    "sha256": "281376e05d8093c3d98758325e122307531f4ba980a9732553e618a5e17e14a7"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/reference/patches.py",
+    "bytes": 2134,
+    "sha256": "e5168dbf1d44faf7ec6f1fe4a43b1183c20192d1da095a9e5702cfe98ea837b3"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/reference/rerender.py",
+    "bytes": 903,
+    "sha256": "97861df134e4fff6ddaa6240a49bc77849351fab8616eb749c14c8b7bda1d906"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/report.md",
+    "bytes": 2092,
+    "sha256": "d33bc1597cb160249b08fd5cb09870c34e7fe667713291fa2e281430a5ad4f63"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/shared-input/IMG_5421.JPG",
+    "bytes": 121337,
+    "sha256": "77e9b78b15b5541081a0b5d8529d0fc40ae2b77c0249e8e1c37fa9f6cfd81a16"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/shared-input/IMG_5422.JPG",
+    "bytes": 121337,
+    "sha256": "77e9b78b15b5541081a0b5d8529d0fc40ae2b77c0249e8e1c37fa9f6cfd81a16"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/shared-input/device-input.png",
+    "bytes": 634940,
+    "sha256": "4002f15766aef93cb1976a6a467c476e0f88d1adbb7aefac3f5684da6c99725f"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/shared-input/measure.py",
+    "bytes": 1201,
+    "sha256": "205f8a7a6105e1dd01abbd0251f9e201ad1ceeb37f28b8688b9bd4045f1e8b9b"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/shared-input/results.json",
+    "bytes": 991,
+    "sha256": "bfa92ea8896b690e5e1cb458e83c0c0fc6608e9ad83539c940d91c84c8fe2539"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ui/states/s007/screen.png",
+    "bytes": 424617,
+    "sha256": "6eebcd11269cc0acbfa83f06fc8f9fe61b6cb45fa7f0db52f95c009ce8ec061d"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ui/states/s009/screen.png",
+    "bytes": 418752,
+    "sha256": "cb93e81463cb210c85fc5f958d7198a94f417519581670db22f844c234e6e986"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ui/states/s010/screen.png",
+    "bytes": 403154,
+    "sha256": "33d48824d4977357a389ed7bd7adc9e7654b293c4e6b67dbbf06ec5318609825"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ui/states/s011/screen.png",
+    "bytes": 420069,
+    "sha256": "647ccd381e5d22207fcbb707340f57095a026d00661b667fc9b9706232079739"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ui/states/s013/screen.png",
+    "bytes": 411595,
+    "sha256": "ec7f3fc275e6d0f049f49f60ec288f50bafd71f95a7cfc16eaef4166ab7220fc"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ui/states/s014/screen.png",
+    "bytes": 403953,
+    "sha256": "1ad3b0c7c4428a3a80a594fb5d32f43cf24aa0bb224edd2ad39ad4dcdcd126ca"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ui/states/s015/screen.png",
+    "bytes": 398411,
+    "sha256": "341e290b0ab3b826b664d4aae60c6c72de2f0d00d6eb20d7077f664a8df563a3"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ui/states/s016/screen.png",
+    "bytes": 403613,
+    "sha256": "f449d6bde70c9ac2793cf5f50bb0ee50764121663c6b694131d06394a4769ffa"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ui/states/s018/screen.png",
+    "bytes": 403557,
+    "sha256": "52816ba5446c23abb368f52afc26402e26b2e77e70fa2e4828d1fe2c62493f0b"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ui/states/s019/screen.png",
+    "bytes": 396508,
+    "sha256": "38cd234056b07a3e725977132941175b5f9c2f0ef86e84fe22a2908ca42e3444"
+  },
+  {
+    "path": "evidence/colorchart-2026-11-11/ui/states/s020/screen.png",
+    "bytes": 401576,
+    "sha256": "74745a06101a611ebc95938de421d9aa2ea22f53546928d63febb1204cbab2e3"
   },
   {
     "path": "history/17-core-code-comparison-zh.txt",

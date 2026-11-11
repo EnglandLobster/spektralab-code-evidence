@@ -1,0 +1,43 @@
+{
+  "input_sha256": "4002f15766aef93cb1976a6a467c476e0f88d1adbb7aefac3f5684da6c99725f",
+  "original_HEIC_vs_reference": {
+    "rgb_mae": 2.6974937307098767,
+    "patch_mae": 1.8943142361111127,
+    "patch_bias_rgb": [
+      0.5889756944444433,
+      1.126012731481484,
+      2.2816116898148167
+    ],
+    "exact_pct": 0.529079861111111
+  },
+  "shared_PNG_first_vs_reference": {
+    "rgb_mae": 2.1783072916666666,
+    "patch_mae": 1.7532552083333341,
+    "patch_bias_rgb": [
+      0.031322337962959655,
+      0.7241030092592581,
+      2.120949074074074
+    ],
+    "exact_pct": 2.640625
+  },
+  "shared_PNG_second_vs_reference": {
+    "rgb_mae": 2.1783072916666666,
+    "patch_mae": 1.7532552083333341,
+    "patch_bias_rgb": [
+      0.031322337962959655,
+      0.7241030092592581,
+      2.120949074074074
+    ],
+    "exact_pct": 2.640625
+  },
+  "repeat_iOS": {
+    "rgb_mae": 0.0,
+    "patch_mae": 0.0,
+    "patch_bias_rgb": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "exact_pct": 100.0
+  }
+}

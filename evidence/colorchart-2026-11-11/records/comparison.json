@@ -1,0 +1,123 @@
+[
+  {
+    "jpg": 5409,
+    "film": "Porta 400",
+    "film_id": "kodak_portra_400",
+    "paper": "Porta Enduro",
+    "paper_id": "kodak_portra_endura",
+    "state": "s020",
+    "mean_abs_rgb_8bit": 2.7731703317901233,
+    "pixel_exact_pct": 0.48090277777777773,
+    "max_abs": 158
+  },
+  {
+    "jpg": 5410,
+    "film": "Gold 200",
+    "film_id": "kodak_gold_200",
+    "paper": "Supera Enduro",
+    "paper_id": "kodak_supra_endura",
+    "state": "s019",
+    "mean_abs_rgb_8bit": 2.6905806327160495,
+    "pixel_exact_pct": 0.5543981481481481,
+    "max_abs": 161
+  },
+  {
+    "jpg": 5411,
+    "film": "Ectar 100",
+    "film_id": "kodak_ektar_100",
+    "paper": "Supera Enduro",
+    "paper_id": "kodak_supra_endura",
+    "state": "s018",
+    "mean_abs_rgb_8bit": 2.8109765625,
+    "pixel_exact_pct": 0.46918402777777773,
+    "max_abs": 162
+  },
+  {
+    "jpg": 5412,
+    "film": "Pro 400H",
+    "film_id": "fujifilm_pro_400h",
+    "paper": "Crystal Archiva II",
+    "paper_id": "fujifilm_crystal_archive_typeii",
+    "state": "s016",
+    "mean_abs_rgb_8bit": 2.6974937307098767,
+    "pixel_exact_pct": 0.529079861111111,
+    "max_abs": 157
+  },
+  {
+    "jpg": 5413,
+    "film": "Porta 160",
+    "film_id": "kodak_portra_160",
+    "paper": "Porta Enduro",
+    "paper_id": "kodak_portra_endura",
+    "state": "s015",
+    "mean_abs_rgb_8bit": 2.6845191936728394,
+    "pixel_exact_pct": 0.6876446759259259,
+    "max_abs": 158
+  },
+  {
+    "jpg": 5414,
+    "film": "Porta 800",
+    "film_id": "kodak_portra_800",
+    "paper": "Porta Enduro",
+    "paper_id": "kodak_portra_endura",
+    "state": "s014",
+    "mean_abs_rgb_8bit": 2.753699363425926,
+    "pixel_exact_pct": 0.4950810185185185,
+    "max_abs": 154
+  },
+  {
+    "jpg": 5415,
+    "film": "Porta 800 +1",
+    "film_id": "kodak_portra_800_push1",
+    "paper": "Porta Enduro",
+    "paper_id": "kodak_portra_endura",
+    "state": "s013",
+    "mean_abs_rgb_8bit": 2.9611424575617282,
+    "pixel_exact_pct": 0.42722800925925924,
+    "max_abs": 163
+  },
+  {
+    "jpg": 5416,
+    "film": "Porta 800 +2",
+    "film_id": "kodak_portra_800_push2",
+    "paper": "Porta Enduro",
+    "paper_id": "kodak_portra_endura",
+    "state": "s011",
+    "mean_abs_rgb_8bit": 3.1688401813271603,
+    "pixel_exact_pct": 0.4431423611111111,
+    "max_abs": 172
+  },
+  {
+    "jpg": 5417,
+    "film": "Ultima 400",
+    "film_id": "kodak_ultramax_400",
+    "paper": "Ultra Enduro",
+    "paper_id": "kodak_ultra_endura",
+    "state": "s010",
+    "mean_abs_rgb_8bit": 2.74442081404321,
+    "pixel_exact_pct": 0.9703414351851852,
+    "max_abs": 155
+  },
+  {
+    "jpg": 5418,
+    "film": "C200",
+    "film_id": "fujifilm_c200",
+    "paper": "Crystal Archiva II",
+    "paper_id": "fujifilm_crystal_archive_typeii",
+    "state": "s009",
+    "mean_abs_rgb_8bit": 3.0841030092592594,
+    "pixel_exact_pct": 0.49406828703703703,
+    "max_abs": 163
+  },
+  {
+    "jpg": 5419,
+    "film": "Extra 400",
+    "film_id": "fujifilm_xtra_400",
+    "paper": "Crystal Archiva II",
+    "paper_id": "fujifilm_crystal_archive_typeii",
+    "state": "s007",
+    "mean_abs_rgb_8bit": 3.2574995177469135,
+    "pixel_exact_pct": 0.435619212962963,
+    "max_abs": 165
+  }
+]
